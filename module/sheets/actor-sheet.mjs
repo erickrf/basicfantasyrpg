@@ -1,21 +1,26 @@
 import {successChatMessage} from '../helpers/chat.mjs';
 import {onManageActiveEffect, prepareActiveEffectCategories} from '../helpers/effects.mjs';
 
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class BasicFantasyRPGActorSheet extends ActorSheet {
+export class BasicFantasyRPGActorSheet extends foundry.applications.sheets.ActorSheetV2 {
 
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['basicfantasyrpg', 'sheet', 'actor'],
-      template: 'systems/basicfantasyrpg/templates/actor/actor-sheet.html',
-      width: 600,
-      height: 600,
-      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'combat' }]
-    });
+  static DEFAULT_OPTIONS = {
+    classes: ['basicfantasyrpg', 'sheet', 'actor'],
+    position: {
+        width: 600,
+        height: 600,
+    },
+    tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'combat' }]
+  }
+
+  static PARTS = {
+      main: {
+          template: 'systems/basicfantasyrpg/templates/actor/actor-sheet.html'
+      }
   }
 
   /** @override */
@@ -26,12 +31,13 @@ export class BasicFantasyRPGActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  async getData() {
+  // async getData() {
+  async _prepare_context() {
     // Retrieve the data structure from the base sheet. You can inspect or log
     // the context variable to see the structure, but some key properties for
     // sheets are the actor object, the data object, whether or not it's
     // editable, the items array, and the effects array.
-    const context = super.getData();
+    const context = await super._prepare_context();
 
     //enrichedBiography -- enriches system.biography for editor
     context.enrichedBiography = await TextEditor.enrichHTML(this.object.system.biography, {async: true});
@@ -200,8 +206,10 @@ export class BasicFantasyRPGActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
+  // activateListeners(html) {
+  _onRender(context, options) {
+    super._onRender(context, options);
+    const html = $(this.element);
 
     // Render the item sheet for viewing/editing prior to the editable check.
     html.find('.item-edit').click(ev => {

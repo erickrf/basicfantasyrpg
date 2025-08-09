@@ -8,6 +8,8 @@ import { BasicFantasyRPGItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { BASICFANTASYRPG } from './helpers/config.mjs';
 
+const { sheets } = foundry.applications;
+
 /* -------------------------------------------- */
 /*  Init Hook                                   */
 /* -------------------------------------------- */
@@ -39,7 +41,7 @@ Hooks.once('init', async function() {
   CONFIG.Item.documentClass = BasicFantasyRPGItem;
 
   // Register sheet application classes
-  Actors.unregisterSheet('core', ActorSheet);
+  Actors.unregisterSheet('core', sheets.ActorSheetV2);
   Actors.registerSheet('basicfantasyrpg', BasicFantasyRPGActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('basicfantasyrpg', BasicFantasyRPGItemSheet, { makeDefault: true });
