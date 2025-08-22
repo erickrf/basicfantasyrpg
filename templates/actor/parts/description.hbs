@@ -3,6 +3,7 @@
     data-group="{{tabs.description.group}}"
     data-tab="{{tabs.description.id}}">
 
+  {{#if (eq actor.type 'character')}}
   <div class="resources grid tab-container">
 
     <div class="resource flex-group-center">
@@ -27,7 +28,8 @@
     </div>
 
   </div>
-  {{ uuid }}
+  {{/if}}
+  
   <prose-mirror name="system.biography"
                 value="{{enrichedBiography}}"
                 data-document-uuid="{{uuid}}"
