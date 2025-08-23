@@ -107,6 +107,10 @@
     --font-primary: "Soutane";
     --color-border-light-primary:  #b7b7af;   /* neutral light grey-brown */
     --color-border-light-highlight: #ccc5b9;   /* warm light beige */
+    --color-bg-light: #f8f4e6;   /* warm light background */
+    --color-border-dark-primary: #2a2a2a;   /* dark scrollbar thumb */
+    --color-border-dark-secondary: #1a1a1a;   /* dark scrollbar hover */
+    --color-bg-dark: #f0f0f0;   /* light scrollbar track */
 }
 
 
@@ -391,6 +395,28 @@
 
 .basicfantasyrpg.sheet .tab {
   overflow-y: auto;
+  padding-right: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-dark-primary) var(--color-bg-dark);
+}
+
+/* WebKit scrollbar styling for tab content */
+.basicfantasyrpg.sheet .tab::-webkit-scrollbar {
+  width: 8px;
+}
+
+.basicfantasyrpg.sheet .tab::-webkit-scrollbar-track {
+  background: var(--color-bg-dark, #f0f0f0);
+  border-radius: 4px;
+}
+
+.basicfantasyrpg.sheet .tab::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark-primary, #2a2a2a);
+  border-radius: 4px;
+}
+
+.basicfantasyrpg.sheet .tab::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-dark-secondary, #1a1a1a);
 }
 
 .basicfantasyrpg .sheet-header {

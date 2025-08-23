@@ -13,8 +13,8 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["basicfantasyrpg", "sheet", "actor", "themed", "theme-light"],
     position: {
-      width: 600,
-      height: 600,
+      width: 650,
+      height: 700,
     },
     window: {
       resizable: true,
