@@ -142,28 +142,6 @@ export class BasicFantasyRPGActor extends Actor {
   }
 
   /**
-   * Prepare Monster type derived data.
-   */
-  _prepareMonsterDerivedData(actorData) {
-    if (actorData.type !== 'monster') return;
-  }
-
-
-  /**
-   * Prepare Siege Engine type template data
-   */
-  _prepareSiegeEngineData(actorData) {
-    if (actorData.type !== 'siegeEngine') return;
-  }
-
-  /**
-   * Prepare Siege Engine type derived data
-   */
-  _prepareSiegeEngineDerivedData(actorData) {
-    if (actorData.type !== 'siegeEngine') return;
-  }
-
-  /**
    * Prepare Stronghold type template data
    */
   _prepareStrongholdData(actorData) {

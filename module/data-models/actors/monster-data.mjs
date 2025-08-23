@@ -116,6 +116,10 @@ export class MonsterDataModel extends BaseActorDataModel {
     if (this.xp.value === 0) {
       this.xp.value = this._calculateBaseXP();
     }
+
+    if (this.attackBonus.value === 0) {
+      this.attackBonus.value = this._calculateMonsterAttackBonus();
+    }
   }
   
   /**
@@ -145,6 +149,44 @@ export class MonsterDataModel extends BaseActorDataModel {
 
     xpSpecialAbilityBonus = Math.max(0, xpSpecialAbilityBonus); // never return a negative special ability bonus
     return xpValue + xpSpecialAbilityBonus;
+  }
+
+  /**
+   * Calculate monster attack bonus
+   */
+  _calculateMonsterAttackBonus() {
+    const hitDiceNumber = this.hitDice.number;
+    if (hitDiceNumber < 1) {
+      return 0;
+    } else if (hitDiceNumber > 31) {
+      return 16;
+    }
+    switch (hitDiceNumber) {
+      case 9: return 8;
+      case 10:
+      case 11: return 9
+      case 12:
+      case 13: return 10;
+      case 14:
+      case 15: return 11;
+      case 16:
+      case 17:
+      case 18:
+      case 19: return 12;
+      case 20:
+      case 21:
+      case 22:
+      case 23: return 13;
+      case 24:
+      case 25:
+      case 26:
+      case 27: return 14;
+      case 28:
+      case 29:
+      case 30:
+      case 31: return 15;
+      default: return hitDiceNumber; // this handles 1-9
+    }
   }
   
   /**
