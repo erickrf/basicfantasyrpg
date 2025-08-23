@@ -7,6 +7,7 @@ import { BasicFantasyRPGItemSheet } from './sheets/item-sheet.mjs';
 import { CharacterSheet } from './sheets/character-sheet.mjs';
 // Import data models.
 import { CharacterDataModel } from './data-models/actors/character-data.mjs';
+import { MonsterDataModel } from './data-models/actors/monster-data.mjs';
 
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
@@ -44,6 +45,7 @@ Hooks.once('init', async function() {
 
   // Register data models
   CONFIG.Actor.dataModels.character = CharacterDataModel;
+  CONFIG.Actor.dataModels.monster = MonsterDataModel;
 
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet);
