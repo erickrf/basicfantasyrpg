@@ -19,11 +19,11 @@ export class BasicFantasyRPGActor extends Actor {
     // documents or derived data.
     const actorData = this;
 
-    // Make separate methods for each Actor type to keep things organized.
-    this._prepareCharacterData(actorData);
-    this._prepareMonsterData(actorData);
-    this._prepareStrongholdData(actorData);
-    this._prepareVehicleData(actorData);
+    // // Make separate methods for each Actor type to keep things organized.
+    // this._prepareCharacterData(actorData);
+    // this._prepareMonsterData(actorData);
+    // this._prepareStrongholdData(actorData);
+    // this._prepareVehicleData(actorData);
   }
 
   /**
