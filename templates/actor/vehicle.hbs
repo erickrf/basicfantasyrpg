@@ -1,0 +1,67 @@
+<div class="{{actor.type}}">
+
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}" data-dtype="String"/></h1>
+      <div class="resources grid grid-2col">
+
+        <div class="resource flex-group-center">
+          <label for="system.hitPoints.value" class="resource-label">{{localize data.hitPoints.label}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <input type="number" name="system.hitPoints.value" value="{{data.hitPoints.value}}" data-dtype="Number" disabled/>
+            <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
+            <input type="number" name="system.hitPoints.max" value="{{data.hitPoints.max}}" data-dtype="Number" disabled/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="system.move.value" class="resource-label">{{localize 'BASICFANTASYRPG.Movement'}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <input type="text" class="flexlarge{{#if (eq data.move.current 0)}} failure-text{{/if}}" name="system.move.current" value="{{#if (eq data.move.current 0)}}{{localize 'BASICFANTASYRPG.Immobilized'}}/{{localize 'BASICFANTASYRPG.Sunk'}}{{else}}{{data.move.current}}{{/if}}" data-dtype="String" disabled/>
+            <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
+            <input type="number" name="system.move.value" value="{{data.move.value}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="resources grid grid-4col">
+
+        <div class="resource flex-group-center">
+          <label for="system.maneuverability.value" class="resource-label">{{localize data.maneuverability.label}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <input type="text" name="system.maneuverability.value" value="{{data.maneuverability.value}}" data-dtype="String"/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="system.length.value" class="resource-label">{{localize data.length.label}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <input type="number" name="system.length.value" value="{{data.length.value}}" data-dtype="Number"/>
+            <span class="flexshrink flex-align-center">&nbsp;{{localize 'BASICFANTASYRPG.FeetAbbr'}}</span>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="system.width.value" class="resource-label">{{localize data.width.label}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <input type="number" name="system.width.value" value="{{data.width.value}}" data-dtype="Number"/>
+            <span class="flexshrink flex-align-center">&nbsp;{{localize 'BASICFANTASYRPG.FeetAbbr'}}</span>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="system.cargo.value" class="resource-label">{{localize 'BASICFANTASYRPG.Cargo'}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <input type="text" name="system.cargo.value" value="{{data.cargo.value}}" data-dtype="String"/>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+</div>

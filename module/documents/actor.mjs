@@ -22,7 +22,6 @@ export class BasicFantasyRPGActor extends Actor {
     // Make separate methods for each Actor type to keep things organized.
     this._prepareCharacterData(actorData);
     this._prepareMonsterData(actorData);
-    this._prepareSiegeEngineData(actorData);
     this._prepareStrongholdData(actorData);
     this._prepareVehicleData(actorData);
   }
@@ -40,28 +39,8 @@ export class BasicFantasyRPGActor extends Actor {
     const actorData = this;
 
     // Make separate methods for each Actor type to keep things organized.
-    this._prepareCharacterDerivedData(actorData);
-    this._prepareMonsterDerivedData(actorData);
-    this._prepareSiegeEngineDerivedData(actorData);
     this._prepareStrongholdDerivedData(actorData);
     this._prepareVehicleDerivedData(actorData);
-  }
-
-
-  /**
-   * Prepare Character type template data
-   */
-  _prepareCharacterData(actorData) {
-    if (actorData.type !== 'character') return;
-  }
-
-  /**
-   * Prepare Character type derived data
-   * Character logic now handled by CharacterDataModel
-   */
-  _prepareCharacterDerivedData(actorData) {
-    if (actorData.type !== 'character') return;
-    // Character-specific logic now handled by data model
   }
 
 

@@ -1,0 +1,72 @@
+<section
+  class="tab combat {{tabs.combat.cssClass}}"
+  data-group="{{tabs.combat.group}}"
+  data-tab="{{tabs.combat.id}}">
+
+  <div class="tab-container grid grid-3col">
+
+    <div class="sidebar vehicle-resources">
+      <div class="resources">
+        <div class="resource flexcol flex-group-center">
+          <label for="system.hitPoints.forward.value" class="resource-label">{{localize data.hitPoints.forward.label}} {{localize data.hitPoints.abbr}}</label>
+          <div class="flexrow">
+            <input type="text" name="system.hitPoints.forward.value" value="{{data.hitPoints.forward.value}}" data-dtype="Number"/>
+            <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
+            <input type="number" name="system.hitPoints.forward.max" value="{{data.hitPoints.forward.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="resources flexcol grid grid-2col" >
+        <div class="resource flexcol flex-group-center">
+          <label for="system.hitPoints.port.value" class="resource-label">{{localize data.hitPoints.port.label}} {{localize data.hitPoints.abbr}}</label>
+          <div class="flexrow">
+            <input type="text" name="system.hitPoints.port.value" value="{{data.hitPoints.port.value}}" data-dtype="Number"/>
+            <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
+            <input type="number" name="system.hitPoints.port.max" value="{{data.hitPoints.port.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="resource flexcol flex-group-center">
+          <label for="system.hitPoints.starboard.value" class="resource-label">{{localize data.hitPoints.starboard.label}} {{localize data.hitPoints.abbr}}</label>
+          <div class="flexrow">
+            <input type="text" name="system.hitPoints.starboard.value" value="{{data.hitPoints.starboard.value}}" data-dtype="Number"/>
+            <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
+            <input type="number" name="system.hitPoints.starboard.max" value="{{data.hitPoints.starboard.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="resources">
+        <div class="resource flexcol flex-group-center">
+          <label for="system.hitPoints.aft.value" class="resource-label">{{localize data.hitPoints.aft.label}} {{localize data.hitPoints.abbr}}</label>
+          <div class="flexrow">
+            <input type="text" name="system.hitPoints.aft.value" value="{{data.hitPoints.aft.value}}" data-dtype="Number"/>
+            <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
+            <input type="number" name="system.hitPoints.aft.max" value="{{data.hitPoints.aft.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="resources">
+        <div class="resource flexrow flex-group-center">
+          <label for="system.hardness.value" class="resource-label align-left">{{localize data.hardness.label}}</label>
+          <input type="text" name="system.hardness.value" value="{{data.hardness.value}}" data-dtype="Number"/>
+        </div>
+      </div>
+
+      <div class="resources">
+        <div class="resource flexrow flex-group-center">
+          <label for="system.armorClass.value" class="resource-label align-left">{{localize data.armorClass.label}}</label>
+          <input type="text" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number"/>
+        </div>
+      </div>
+    </div>
+
+    <section class="main grid-span-2">
+      {{> "systems/basicfantasyrpg/templates/actor/parts/actor-items.html"}}
+    </section>
+
+  </div>
+</section>
