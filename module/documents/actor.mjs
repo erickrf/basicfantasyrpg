@@ -57,39 +57,11 @@ export class BasicFantasyRPGActor extends Actor {
 
   /**
    * Prepare Character type derived data
+   * Character logic now handled by CharacterDataModel
    */
   _prepareCharacterDerivedData(actorData) {
     if (actorData.type !== 'character') return;
-
-    // Make modifications to data here. For example:
-    const data = actorData.system;
-
-    // Loop through ability scores, and add their modifiers to our sheet output.
-    for (let [key, ability] of Object.entries(data.abilities)) {
-      // Calculate the ability bonus
-      ability.bonus = this._calculateAbilityBonus(ability.value);
-    }
-  }
-
-  /**
-   * Determine ability score modifiers
-   */
-  _calculateAbilityBonus(abilityScore) {
-    switch (abilityScore) {
-      case 3: return -3;
-      case 4:
-      case 5: return -2;
-      case 6:
-      case 7:
-      case 8: return -1;
-      case 13:
-      case 14:
-      case 15: return 1;
-      case 16:
-      case 17: return 2;
-      case 18: return 3;
-      default: return 0;
-    }
+    // Character-specific logic now handled by data model
   }
 
 

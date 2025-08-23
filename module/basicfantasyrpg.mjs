@@ -5,6 +5,8 @@ import { BasicFantasyRPGItem } from './documents/item.mjs';
 import { BasicFantasyRPGActorSheet } from './sheets/actor-sheet.mjs';
 import { BasicFantasyRPGItemSheet } from './sheets/item-sheet.mjs';
 import { CharacterSheet } from './sheets/character-sheet.mjs';
+// Import data models.
+import { CharacterDataModel } from './data-models/actors/character-data.mjs';
 
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
@@ -39,6 +41,9 @@ Hooks.once('init', async function() {
   // Define custom Document classes
   CONFIG.Actor.documentClass = BasicFantasyRPGActor;
   CONFIG.Item.documentClass = BasicFantasyRPGItem;
+
+  // Register data models
+  CONFIG.Actor.dataModels.character = CharacterDataModel;
 
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet);
