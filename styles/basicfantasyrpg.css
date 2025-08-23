@@ -663,6 +663,14 @@
   border: none;
 }
 
+.basicfantasyrpg .tab-container .sidebar.vehicle-resources {
+  flex: 0 0 200px;
+}
+
+.basicfantasyrpg .tab-container .vehicle-main {
+  flex: 1;
+}
+
 /* Item deletion animation */
 .basicfantasyrpg .items-list .item.item-deleting {
   animation: itemDeleteFade 0.15s ease-out forwards;
