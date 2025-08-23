@@ -696,6 +696,34 @@
   border: none;
 }
 
+.basicfantasyrpg .tab-container .sidebar.vehicle-resources {
+  flex: 0 0 200px;
+}
+
+.basicfantasyrpg .tab-container .vehicle-main {
+  flex: 1;
+}
+
+.basicfantasyrpg h2 {
+  font-family: "Soutane", "Century Gothic", "TeX Gyre Adventor";
+}
+
+.basicfantasyrpg h2.resource-label {
+  margin: 16px;
+}
+
+.basicfantasyrpg .sheet input {
+
+}
+
+.basicfantasyrpg.sheet input {
+  text-align: center;
+}
+
+.basicfantasyrpg.sheet .charname input {
+  text-align: left;
+}
+
 /* Item deletion animation */
 .basicfantasyrpg .items-list .item.item-deleting {
   animation: itemDeleteFade 0.15s ease-out forwards;

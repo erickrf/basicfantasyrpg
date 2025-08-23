@@ -1,13 +1,22 @@
 // Import document classes.
 import { BasicFantasyRPGActor } from './documents/actor.mjs';
 import { BasicFantasyRPGItem } from './documents/item.mjs';
+
 // Import sheet classes.
 import { BasicFantasyRPGActorSheet } from './sheets/actor-sheet.mjs';
 import { BasicFantasyRPGItemSheet } from './sheets/item-sheet.mjs';
 import { CharacterSheet } from './sheets/character-sheet.mjs';
 import { MonsterSheet } from './sheets/monster-sheet.mjs';
+import { VehicleSheet } from './sheets/vehicle-sheet.mjs';
+import { SiegeEngineSheet } from './sheets/siege-engine-sheet.mjs';
+import { StrongholdSheet } from './sheets/stronghold-sheet.mjs';
+
 // Import data models.
 import { CharacterDataModel } from './data-models/actors/character-data.mjs';
+import { MonsterDataModel } from './data-models/actors/monster-data.mjs';
+import { VehicleDataModel } from './data-models/actors/vehicle-data.mjs';
+import { SiegeEngineDataModel } from './data-models/actors/siege-engine-data.mjs';
+import { StrongholdDataModel } from './data-models/actors/stronghold-data.mjs';
 
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
@@ -45,6 +54,10 @@ Hooks.once('init', async function() {
 
   // Register data models
   CONFIG.Actor.dataModels.character = CharacterDataModel;
+  CONFIG.Actor.dataModels.monster = MonsterDataModel;
+  CONFIG.Actor.dataModels.vehicle = VehicleDataModel;
+  CONFIG.Actor.dataModels.siegeEngine = SiegeEngineDataModel;
+  CONFIG.Actor.dataModels.stronghold = StrongholdDataModel;
 
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet);
@@ -58,6 +71,18 @@ Hooks.once('init', async function() {
   Actors.registerSheet('basicfantasyrpg',
       MonsterSheet,
       { types: ['monster'], makeDefault: true, label: "Monster Sheet V2"}
+  );
+  Actors.registerSheet('basicfantasyrpg',
+    VehicleSheet,
+    { types: ['vehicle'], makeDefault: true, label: "Vehicle Sheet V2"}
+  );
+  Actors.registerSheet('basicfantasyrpg',
+    SiegeEngineSheet,
+    { types: ['siegeEngine'], makeDefault: true, label: "Siege Engine Sheet V2"}
+  );
+  Actors.registerSheet('basicfantasyrpg',
+    StrongholdSheet,
+    { types: ['stronghold'], makeDefault: true, label: "Stronghold Sheet V2"}
   );
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('basicfantasyrpg', BasicFantasyRPGItemSheet, { makeDefault: true });

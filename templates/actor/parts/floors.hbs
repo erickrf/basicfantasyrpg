@@ -1,10 +1,10 @@
-<section>
+<section   class="tab floors {{tabs.floors.cssClass}}"
+           data-group="{{tabs.floors.group}}"
+           data-tab="{{tabs.floors.id}}">
 
-  <div class="resources">
-    <div class="resource flex-group-right">
-      <div class="item-controls">
-        <a class="item-control item-create" title="Create item" data-type="floor""><i class="fas fa-plus"></i> {{localize 'BASICFANTASYRPG.Add'}} {{localize 'TYPES.Item.floor'}}</a>
-      </div>
+  <div class="resource flex-group-right">
+    <div class="item-controls">
+      <a class="item-control item-create" title="Create item" data-type="floor"><i class="fas fa-plus"></i> {{localize 'BASICFANTASYRPG.Add'}} {{localize 'TYPES.Item.floor'}}</a>
     </div>
   </div>
 
@@ -38,4 +38,5 @@
       </li>
     {{/each}}
   </ol>
+
 </section>

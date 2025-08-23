@@ -19,12 +19,11 @@ export class BasicFantasyRPGActor extends Actor {
     // documents or derived data.
     const actorData = this;
 
-    // Make separate methods for each Actor type to keep things organized.
-    this._prepareCharacterData(actorData);
-    this._prepareMonsterData(actorData);
-    this._prepareSiegeEngineData(actorData);
-    this._prepareStrongholdData(actorData);
-    this._prepareVehicleData(actorData);
+    // // Make separate methods for each Actor type to keep things organized.
+    // this._prepareCharacterData(actorData);
+    // this._prepareMonsterData(actorData);
+    // this._prepareStrongholdData(actorData);
+    // this._prepareVehicleData(actorData);
   }
 
   /**
@@ -40,28 +39,8 @@ export class BasicFantasyRPGActor extends Actor {
     const actorData = this;
 
     // Make separate methods for each Actor type to keep things organized.
-    this._prepareCharacterDerivedData(actorData);
-    this._prepareMonsterDerivedData(actorData);
-    this._prepareSiegeEngineDerivedData(actorData);
     this._prepareStrongholdDerivedData(actorData);
     this._prepareVehicleDerivedData(actorData);
-  }
-
-
-  /**
-   * Prepare Character type template data
-   */
-  _prepareCharacterData(actorData) {
-    if (actorData.type !== 'character') return;
-  }
-
-  /**
-   * Prepare Character type derived data
-   * Character logic now handled by CharacterDataModel
-   */
-  _prepareCharacterDerivedData(actorData) {
-    if (actorData.type !== 'character') return;
-    // Character-specific logic now handled by data model
   }
 
 
@@ -139,28 +118,6 @@ export class BasicFantasyRPGActor extends Actor {
       xpSpecialAbilityBonus = specialAbilityLookup[hitDice.number] * specialAbility;
     }
     return xpValue + Math.max(0, xpSpecialAbilityBonus); // never return a negative special ability bonus
-  }
-
-  /**
-   * Prepare Monster type derived data.
-   */
-  _prepareMonsterDerivedData(actorData) {
-    if (actorData.type !== 'monster') return;
-  }
-
-
-  /**
-   * Prepare Siege Engine type template data
-   */
-  _prepareSiegeEngineData(actorData) {
-    if (actorData.type !== 'siegeEngine') return;
-  }
-
-  /**
-   * Prepare Siege Engine type derived data
-   */
-  _prepareSiegeEngineDerivedData(actorData) {
-    if (actorData.type !== 'siegeEngine') return;
   }
 
   /**

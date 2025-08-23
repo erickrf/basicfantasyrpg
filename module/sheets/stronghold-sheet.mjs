@@ -1,44 +1,42 @@
 import { BaseActorSheet } from './base-actor-sheet.mjs';
 
 /**
- * Monster Sheet for Basic Fantasy RPG
- * Extends BaseActorSheet with monster-specific functionality
+ * Stronghold Sheet for Basic Fantasy RPG
+ * Extends BaseActorSheet with stronghold-specific functionality
  * @extends {BaseActorSheet}
  */
-export class MonsterSheet extends BaseActorSheet {
+export class StrongholdSheet extends BaseActorSheet {
 
   static DEFAULT_OPTIONS = {
     ...BaseActorSheet.DEFAULT_OPTIONS,
-    classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "monster"],
+    classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "stronghold"],
     window: {
       ...BaseActorSheet.DEFAULT_OPTIONS.window,
-      title: "Character",
+      title: "Stronghold",
     },
   };
 
   static TABS = {
     primary: {
-      tabs: [{ id: "combat" }, { id: "description"}],
+      tabs: [{ id: "description" }, { id: "floors" }],
       labelPrefix: "BASICFANTASYRPG.Tab",
-      initial: "combat",
+      initial: "floors",
     },
   };
 
   static PARTS = {
-    main: {
-      template: "systems/basicfantasyrpg/templates/actor/monster.hbs"
+    header: {
+      template: "systems/basicfantasyrpg/templates/actor/stronghold.hbs",
     },
     tabs: {
-      // Foundry-provided generic template
       template: 'templates/generic/tab-navigation.hbs',
-    },
-    combat: {
-      template: "systems/basicfantasyrpg/templates/actor/parts/combat.hbs",
     },
     description: {
       template: "systems/basicfantasyrpg/templates/actor/parts/description.hbs",
     },
-
+    floors: {
+      template: "systems/basicfantasyrpg/templates/actor/parts/floors.hbs",
+    }
   };
 
   /** @override */
@@ -50,7 +48,8 @@ export class MonsterSheet extends BaseActorSheet {
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
 
-    context.tabs = this._prepareTabs("primary");
+    // Add stronghold-specific context data
+    context.isStronghold = true;
 
     return context;
   }

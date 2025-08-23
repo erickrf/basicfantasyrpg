@@ -1,18 +1,18 @@
 import { BaseActorSheet } from './base-actor-sheet.mjs';
 
 /**
- * Monster Sheet for Basic Fantasy RPG
- * Extends BaseActorSheet with monster-specific functionality
+ * Vehicle Sheet for Basic Fantasy RPG
+ * Extends BaseActorSheet with vehicle-specific functionality
  * @extends {BaseActorSheet}
  */
-export class MonsterSheet extends BaseActorSheet {
+export class VehicleSheet extends BaseActorSheet {
 
   static DEFAULT_OPTIONS = {
     ...BaseActorSheet.DEFAULT_OPTIONS,
-    classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "monster"],
+    classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "vehicle"],
     window: {
       ...BaseActorSheet.DEFAULT_OPTIONS.window,
-      title: "Character",
+      title: "Vehicle",
     },
   };
 
@@ -26,24 +26,26 @@ export class MonsterSheet extends BaseActorSheet {
 
   static PARTS = {
     main: {
-      template: "systems/basicfantasyrpg/templates/actor/monster.hbs"
+      template: "systems/basicfantasyrpg/templates/actor/vehicle.hbs"
     },
     tabs: {
       // Foundry-provided generic template
       template: 'templates/generic/tab-navigation.hbs',
     },
     combat: {
-      template: "systems/basicfantasyrpg/templates/actor/parts/combat.hbs",
+      template: "systems/basicfantasyrpg/templates/actor/parts/vehicle-combat.hbs",
     },
     description: {
       template: "systems/basicfantasyrpg/templates/actor/parts/description.hbs",
     },
-
   };
 
   /** @override */
   _onRender(context, options) {
     super._onRender(context, options);
+
+    // Add vehicle-specific rendering logic if needed
+    console.log("Vehicle Sheet rendered for:", context.name);
   }
 
   /** @override */
