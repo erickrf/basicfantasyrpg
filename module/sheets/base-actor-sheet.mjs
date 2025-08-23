@@ -174,6 +174,14 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     }
   }
 
+  /** Prepare the context for actor types that have saves */
+  async _prepareSaves(context){
+    // Handle saves.
+    for (let [k, v] of Object.entries(context.data.saves)) {
+      v.label = game.i18n.localize(CONFIG.BASICFANTASYRPG.saves[k]) ?? k;
+    }
+  }
+
   /**
    * Handle click events using event delegation
    * @param {Event} event The click event

@@ -1,14 +1,15 @@
-import { BaseActorSheet } from "./base-actor-sheet.mjs";
+import { BaseActorSheet } from './base-actor-sheet.mjs';
 
 /**
- * Character Sheet for Basic Fantasy RPG
- * Extends BaseActorSheet with character-specific functionality
+ * Monster Sheet for Basic Fantasy RPG
+ * Extends BaseActorSheet with monster-specific functionality
  * @extends {BaseActorSheet}
  */
-export class CharacterSheet extends BaseActorSheet {
+export class MonsterSheet extends BaseActorSheet {
+
   static DEFAULT_OPTIONS = {
     ...BaseActorSheet.DEFAULT_OPTIONS,
-    classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "character"],
+    classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "monster"],
     window: {
       ...BaseActorSheet.DEFAULT_OPTIONS.window,
       title: "Character",
@@ -17,15 +18,15 @@ export class CharacterSheet extends BaseActorSheet {
 
   static TABS = {
     primary: {
-      tabs: [{ id: "combat" }, { id: "description"}, { id: "items" }, { id: "spells"}, { id: "features" }],
+      tabs: [{ id: "combat" }, { id: "description"}],
       labelPrefix: "BASICFANTASYRPG.Tab",
       initial: "combat",
     },
   };
 
   static PARTS = {
-    header: {
-      template: "systems/basicfantasyrpg/templates/actor/character.hbs",
+    main: {
+      template: "systems/basicfantasyrpg/templates/actor/monster.hbs"
     },
     tabs: {
       // Foundry-provided generic template
@@ -37,24 +38,15 @@ export class CharacterSheet extends BaseActorSheet {
     description: {
       template: "systems/basicfantasyrpg/templates/actor/parts/description.hbs",
     },
-    items: {
-      template: "systems/basicfantasyrpg/templates/actor/parts/items.hbs",
-    },
-    spells: {
-      template: "systems/basicfantasyrpg/templates/actor/parts/spells.hbs",
-    },
-    features: {
-      template: "systems/basicfantasyrpg/templates/actor/parts/features.hbs",
-    }
-  };
 
+  };
 
   /** @override */
   _onRender(context, options) {
     super._onRender(context, options);
 
-    // Add character-specific rendering logic
-    console.log("Character Sheet rendered for:", context.name);
+    // Add monster-specific rendering logic
+    console.log("Monster Sheet rendered for:", context.name);
   }
 
   /** @override */
