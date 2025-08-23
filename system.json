@@ -43,6 +43,11 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "hitPoints",
   "secondaryTokenAttribute": null,
+  "documentTypes": {
+    "Actor": {
+      "character": "systems/basicfantasyrpg/module/data-models/actors/character-data.mjs"
+    }
+  },
   "url": "https://github.com/orffen/basicfantasyrpg",
   "manifest": "https://raw.githubusercontent.com/orffen/basicfantasyrpg/main/system.json",
   "download": "https://github.com/orffen/basicfantasyrpg/archive/refs/tags/r14.zip",

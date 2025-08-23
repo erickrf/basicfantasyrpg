@@ -60,19 +60,8 @@ export class CharacterSheet extends BaseActorSheet {
   /** @override */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
-    await super._prepareSaves(context);
 
     context.tabs = this._prepareTabs("primary");
-
-    // Handle ability scores.
-    for (let [k, v] of Object.entries(context.data.abilities)) {
-      v.label = game.i18n.localize(CONFIG.BASICFANTASYRPG.abilities[k]) ?? k;
-    }
-
-    // Handle money.
-    for (let [k, v] of Object.entries(context.data.money)) {
-      v.label = game.i18n.localize(CONFIG.BASICFANTASYRPG.money[k]) ?? k;
-    }
 
     return context;
   }
