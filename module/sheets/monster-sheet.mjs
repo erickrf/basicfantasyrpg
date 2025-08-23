@@ -44,9 +44,6 @@ export class MonsterSheet extends BaseActorSheet {
   /** @override */
   _onRender(context, options) {
     super._onRender(context, options);
-
-    // Add monster-specific rendering logic
-    console.log("Monster Sheet rendered for:", context.name);
   }
 
   /** @override */
