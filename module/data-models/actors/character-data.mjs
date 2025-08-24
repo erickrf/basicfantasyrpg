@@ -284,6 +284,12 @@ export class CharacterDataModel extends BaseActorDataModel {
     for (let [, ability] of Object.entries(this.abilities)) {
       ability.bonus = this._calculateAbilityBonus(ability.value);
     }
+    
+    // Calculate next level XP based on class and current level
+    this.xp.next = this._calculateNextLevelXP();
+    
+    // Calculate saving throws based on class and level
+    this._calculateSavingThrows();
   }
   
   /**
@@ -306,6 +312,48 @@ export class CharacterDataModel extends BaseActorDataModel {
       case 17: return 2;
       case 18: return 3;
       default: return 0;
+    }
+  }
+  
+  /**
+   * Calculate the XP required for the next level based on class and current level
+   * @returns {number} The XP required for the next level
+   */
+  _calculateNextLevelXP() {
+    const characterClass = this.class.value || "fighter"; // Default to fighter if no class
+    const currentLevel = this.level.value;
+    
+    // Get the progression table for this class
+    const progressionTable = CONFIG.BASICFANTASYRPG?.xpProgression?.[characterClass];
+
+    // Get XP for next level (current level index in 0-based array)
+    const nextLevelIndex = currentLevel; // Level 2 is at index 1, etc.
+    if (nextLevelIndex >= progressionTable.length) {
+      // Beyond max level in table, return last value
+      return progressionTable[progressionTable.length - 1];
+    }
+    
+    return progressionTable[nextLevelIndex] || 2000;
+  }
+  
+  /**
+   * Calculate saving throws based on class and current level
+   */
+  _calculateSavingThrows() {
+    const characterClass = this.class.value || "fighter"; // Default to fighter if no class
+    const currentLevel = this.level.value;
+    const levelIndex = Math.max(0, currentLevel - 1); // Convert to 0-based index
+    
+    // Get the saves progression table for this class
+    const savesTable = CONFIG.BASICFANTASYRPG.savesProgression[characterClass];
+    
+    // Iterate through each save type and set the value
+    for (let [saveType, saveData] of Object.entries(this.saves)) {
+      const progressionArray = savesTable[saveType];
+      if (progressionArray) {
+        const saveIndex = Math.min(levelIndex, progressionArray.length - 1);
+        saveData.value = progressionArray[saveIndex];
+      }
     }
   }
   
