@@ -1,7 +1,7 @@
 export const BASICFANTASYRPG = {};
 
 /**
- * The set of Ability Scores used within the sytem.
+ * The set of Ability Scores used within the system.
  * @type {Object}
  */
  BASICFANTASYRPG.abilities = {
@@ -23,7 +23,7 @@ BASICFANTASYRPG.abilityAbbreviations = {
 };
 
 /**
- * The set of Saving Throws used within the sytem.
+ * The set of Saving Throws used within the system.
  * @type {Object}
  */
 BASICFANTASYRPG.saves = {
@@ -35,7 +35,7 @@ BASICFANTASYRPG.saves = {
 };
 
 /**
- * Money used within the sytem.
+ * Money used within the system.
  * @type {Object}
  */
 BASICFANTASYRPG.money = {
@@ -65,52 +65,92 @@ BASICFANTASYRPG.characterClasses = {
  */
 BASICFANTASYRPG.xpProgression = {
   'fighter': [
-    0,      // Level 1
-    2000,   // Level 2
-    4000,   // Level 3
-    8000,   // Level 4
-    16000,  // Level 5
-    32000,  // Level 6
-    64000,  // Level 7
-    125000, // Level 8
-    250000, // Level 9
-    375000  // Level 10
+    0,       // Level 1
+    2000,    // Level 2
+    4000,    // Level 3
+    8000,    // Level 4
+    16000,   // Level 5
+    32000,   // Level 6
+    64000,   // Level 7
+    120000,  // Level 8
+    240000,  // Level 9
+    360000,  // Level 10
+    480000,  // Level 11
+    600000,  // Level 12
+    720000,  // Level 13
+    840000,  // Level 14
+    960000,  // Level 15
+    1080000, // Level 16
+    1200000, // Level 17
+    1320000, // Level 18
+    1440000, // Level 19
+    1560000  // Level 20
   ],
   'cleric': [
-    0,      // Level 1
-    1500,   // Level 2
-    3000,   // Level 3
-    6000,   // Level 4
-    12000,  // Level 5
-    25000,  // Level 6
-    50000,  // Level 7
-    100000, // Level 8
-    200000, // Level 9
-    300000  // Level 10
+    0,       // Level 1
+    1500,    // Level 2
+    3000,    // Level 3
+    6000,    // Level 4
+    12000,   // Level 5
+    24000,   // Level 6
+    48000,   // Level 7
+    90000,   // Level 8
+    180000,  // Level 9
+    270000,  // Level 10
+    360000,  // Level 11
+    450000,  // Level 12
+    540000,  // Level 13
+    630000,  // Level 14
+    720000,  // Level 15
+    810000,  // Level 16
+    900000,  // Level 17
+    990000,  // Level 18
+    1080000, // Level 19
+    1170000  // Level 20
   ],
   'magicUser': [
-    0,      // Level 1
-    2500,   // Level 2
-    5000,   // Level 3
-    10000,  // Level 4
-    20000,  // Level 5
-    40000,  // Level 6
-    80000,  // Level 7
-    150000, // Level 8
-    300000, // Level 9
-    450000  // Level 10
+    0,       // Level 1
+    2500,    // Level 2
+    5000,    // Level 3
+    10000,   // Level 4
+    20000,   // Level 5
+    40000,   // Level 6
+    80000,   // Level 7
+    150000,  // Level 8
+    300000,  // Level 9
+    450000,  // Level 10
+    600000,  // Level 11
+    750000,  // Level 12
+    900000,  // Level 13
+    1050000, // Level 14
+    1200000, // Level 15
+    1350000, // Level 16
+    1500000, // Level 17
+    1650000, // Level 18
+    1800000, // Level 19
+    1950000  // Level 20
   ],
   'thief': [
-    0,      // Level 1
-    1200,   // Level 2
-    2400,   // Level 3
-    4800,   // Level 4
-    9600,   // Level 5
-    20000,  // Level 6
-    40000,  // Level 7
-    80000,  // Level 8
-    160000, // Level 9
-    240000  // Level 10
+    0,       // Level 1
+    1250,    // Level 2
+    2500,    // Level 3
+    5000,    // Level 4
+    10000,   // Level 5
+    20000,   // Level 6
+    40000,   // Level 7
+    75000,   // Level 8
+    150000,  // Level 9
+    225000,  // Level 10
+    300000,  // Level 11
+    375000,  // Level 12
+    450000,  // Level 13
+    525000,  // Level 14
+    600000,  // Level 15
+    675000,  // Level 16
+    750000,  // Level 17
+    825000,  // Level 18
+    900000,  // Level 19
+    975000   // Level 20
   ]
 };
 
@@ -120,10 +160,10 @@ BASICFANTASYRPG.xpProgression = {
  * @type {Object}
  */
 BASICFANTASYRPG.attackBonusProgression = {
-  'fighter': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5],        // Improves every 2 levels
-  'cleric': [1, 1, 1, 2, 2, 2, 3, 3, 3, 4],         // Improves every 3 levels  
-  'magicUser': [1, 1, 1, 1, 1, 2, 2, 2, 2, 2],      // Improves every 5 levels
-  'thief': [1, 1, 2, 2, 2, 3, 3, 3, 4, 4]           // Improves every 2-3 levels
+  'fighter': [1, 2, 2, 3, 4, 4, 5, 6, 6, 6, 7, 7, 8, 8, 8, 9, 9, 10, 10, 10],
+  'cleric': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8],
+  'magicUser': [1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7],
+  'thief': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8]
 };
 
 /**
@@ -133,31 +173,31 @@ BASICFANTASYRPG.attackBonusProgression = {
  */
 BASICFANTASYRPG.savesProgression = {
   'fighter': {
-    death: [12, 11, 11, 10, 10, 9, 9, 8, 8, 7],      // Death Ray or Poison
-    wands: [13, 12, 12, 11, 11, 10, 10, 9, 9, 8],    // Magic Wands
-    paralysis: [14, 13, 13, 12, 12, 11, 11, 10, 10, 9], // Paralysis or Petrify
-    breath: [15, 14, 14, 13, 13, 12, 12, 11, 11, 10], // Dragon Breath
-    spells: [17, 16, 16, 15, 15, 14, 14, 13, 13, 12]  // Rods, Staves, and Spells
+    death: [12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6],
+    wands: [13, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6],
+    paralysis: [14, 14, 14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8],
+    breath: [15, 15, 15, 14, 14, 14, 14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 9],
+    spells: [17, 16, 16, 15, 15, 15, 15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10]
   },
   'cleric': {
-    death: [11, 10, 10, 9, 9, 8, 8, 7, 7, 6],
-    wands: [12, 11, 11, 10, 10, 9, 9, 8, 8, 7],
-    paralysis: [14, 13, 13, 12, 12, 11, 11, 10, 10, 9],
-    breath: [16, 15, 15, 14, 14, 13, 13, 12, 12, 11],
-    spells: [15, 14, 14, 13, 13, 12, 12, 11, 11, 10]
+    death: [11, 10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 5],
+    wands: [12, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 6],
+    paralysis: [14, 13, 13, 13, 13, 12, 12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9],
+    breath: [16, 15, 15, 15, 15, 14, 14, 14, 14, 13, 13, 13, 13, 12, 12, 12, 12, 11, 11, 11],
+    spells: [15, 14, 14, 14, 14, 13, 13, 13, 13, 12, 12, 12, 12, 11, 11, 11, 11, 10, 10, 10]
   },
   'magicUser': {
-    death: [13, 13, 12, 12, 11, 11, 10, 10, 9, 9],
-    wands: [14, 14, 13, 13, 12, 12, 11, 11, 10, 10],
-    paralysis: [13, 13, 12, 12, 11, 11, 10, 10, 9, 9],
-    breath: [16, 16, 15, 15, 14, 14, 13, 13, 12, 12],
-    spells: [15, 15, 14, 14, 13, 13, 12, 12, 11, 11]
+    death: [13, 13, 13, 12, 12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8],
+    wands: [14, 14, 14, 13, 13, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 7, 7, 6],
+    paralysis: [13, 13, 13, 12, 12, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 6, 6, 5],
+    breath: [16, 15, 15, 15, 15, 14, 14, 14, 14, 13, 13, 13, 13, 12, 12, 12, 12, 11, 11, 11],
+    spells: [15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 8]
   },
   'thief': {
-    death: [13, 12, 12, 11, 11, 10, 10, 9, 9, 8],
-    wands: [14, 13, 13, 12, 12, 11, 11, 10, 10, 9],
-    paralysis: [12, 11, 11, 10, 10, 9, 9, 8, 8, 7],
-    breath: [16, 15, 15, 14, 14, 13, 13, 12, 12, 11],
-    spells: [15, 14, 14, 13, 13, 12, 12, 11, 11, 10]
+    death: [13, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6],
+    wands: [14, 14, 14, 13, 13, 13, 13, 12, 12, 12, 12, 10, 10, 10, 10, 9, 9, 9, 9, 8],
+    paralysis: [13, 12, 12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, 8],
+    breath: [16, 15, 15, 14, 14, 13, 13, 12, 12, 11, 11, 10, 10, 9, 9, 8, 8, 7, 7, 6],
+    spells: [15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 8]
   }
 };
