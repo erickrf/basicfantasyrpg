@@ -115,6 +115,18 @@ BASICFANTASYRPG.xpProgression = {
 };
 
 /**
+ * Attack bonus progression tables for each class
+ * Key is class, value is array indexed by level (0-based, so level 1 = index 0)
+ * @type {Object}
+ */
+BASICFANTASYRPG.attackBonusProgression = {
+  'fighter': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5],        // Improves every 2 levels
+  'cleric': [1, 1, 1, 2, 2, 2, 3, 3, 3, 4],         // Improves every 3 levels  
+  'magicUser': [1, 1, 1, 1, 1, 2, 2, 2, 2, 2],      // Improves every 5 levels
+  'thief': [1, 1, 2, 2, 2, 3, 3, 3, 4, 4]           // Improves every 2-3 levels
+};
+
+/**
  * Saving throw progression tables for each class
  * Key is class, value is object with save types containing arrays indexed by level (0-based)
  * @type {Object}

@@ -290,6 +290,33 @@ export class CharacterDataModel extends BaseActorDataModel {
     
     // Calculate saving throws based on class and level
     this._calculateSavingThrows();
+    
+    // Calculate attack bonus based on class and level
+    this.attackBonus.value = this._calculateAttackBonus();
+  }
+  
+  /**
+   * Get the character's class, defaulting to fighter if not set
+   * @returns {string} The character class
+   */
+  _getCharacterClass() {
+    return this.class.value || "fighter";
+  }
+  
+  /**
+   * Get the character's current level, defaulting to 1
+   * @returns {number} The current level
+   */
+  _getCurrentLevel() {
+    return this.level.value || 1;
+  }
+  
+  /**
+   * Get the 0-based level index for use with progression arrays
+   * @returns {number} The level index (level - 1, minimum 0)
+   */
+  _getLevelIndex() {
+    return Math.max(0, this._getCurrentLevel() - 1);
   }
   
   /**
@@ -320,8 +347,8 @@ export class CharacterDataModel extends BaseActorDataModel {
    * @returns {number} The XP required for the next level
    */
   _calculateNextLevelXP() {
-    const characterClass = this.class.value || "fighter"; // Default to fighter if no class
-    const currentLevel = this.level.value;
+    const characterClass = this._getCharacterClass();
+    const currentLevel = this._getCurrentLevel();
     
     // Get the progression table for this class
     const progressionTable = CONFIG.BASICFANTASYRPG?.xpProgression?.[characterClass];
@@ -340,9 +367,8 @@ export class CharacterDataModel extends BaseActorDataModel {
    * Calculate saving throws based on class and current level
    */
   _calculateSavingThrows() {
-    const characterClass = this.class.value || "fighter"; // Default to fighter if no class
-    const currentLevel = this.level.value;
-    const levelIndex = Math.max(0, currentLevel - 1); // Convert to 0-based index
+    const characterClass = this._getCharacterClass();
+    const levelIndex = this._getLevelIndex();
     
     // Get the saves progression table for this class
     const savesTable = CONFIG.BASICFANTASYRPG.savesProgression[characterClass];
@@ -355,6 +381,26 @@ export class CharacterDataModel extends BaseActorDataModel {
         saveData.value = progressionArray[saveIndex];
       }
     }
+  }
+  
+  /**
+   * Calculate attack bonus based on class and current level
+   * @returns {number} The calculated attack bonus
+   */
+  _calculateAttackBonus() {
+    const characterClass = this._getCharacterClass();
+    const levelIndex = this._getLevelIndex();
+    
+    // Get the attack bonus progression table for this class
+    const attackBonusTable = CONFIG.BASICFANTASYRPG.attackBonusProgression[characterClass];
+    
+    if (attackBonusTable) {
+      const attackIndex = Math.min(levelIndex, attackBonusTable.length - 1);
+      return attackBonusTable[attackIndex];
+    }
+    
+    // Fallback to 1 if class not found in progression table
+    return 1;
   }
   
   /**
