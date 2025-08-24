@@ -451,16 +451,40 @@
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
+
+}
+
+.basicfantasyrpg .manual-mode-toggle {
+  align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  gap: 6px;
+  width: auto;
+  height: auto;
+  display: flex;
+}
+
+.basicfantasyrpg .manual-mode-toggle input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  display: flex;
+}
+
+.basicfantasyrpg .name-and-checkbox {
+  display: flex;
 }
 
 .basicfantasyrpg .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
   margin: 5px 0;
+  flex: 1;
   border-bottom: 0;
   line-height: 48px;
   font-size: 28px;
   font-weight: 400;
+  display: inline-block;
 }
 
 .basicfantasyrpg .sheet-header h1.charname input {
