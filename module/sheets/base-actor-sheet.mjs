@@ -23,6 +23,9 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       handler: BaseActorSheet.#onSubmitDocumentForm,
       submitOnChange: true,
     },
+    actions: {
+      editImage: BaseActorSheet.#onEditImage,
+    },
   };
 
   /** @override */
@@ -57,6 +60,23 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static async #onSubmitDocumentForm(event, form, formData) {
     const updates = foundry.utils.expandObject(formData.object);
     return this.document.update(updates);
+  }
+
+  /**
+   * Handle editing the actor's image
+   * @param {Event} event The click event
+   * @param {HTMLElement} target The clicked element
+   * @returns {Promise<void>}
+   */
+  static async #onEditImage(event, target) {
+    const actor = this.document;
+    new FilePicker({
+      type: "image",
+      current: actor.img,
+      callback: (path) => {
+        actor.update({ img: path });
+      },
+    }).render(true);
   }
 
   /**
