@@ -445,6 +445,9 @@
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
+  border: 1px solid var(--color-border-dark-primary);
+  border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .basicfantasyrpg .sheet-header .header-fields {
