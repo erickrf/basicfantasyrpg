@@ -62,6 +62,7 @@ export class CharacterSheet extends BaseActorSheet {
     const context = await super._prepareContext(options);
 
     context.tabs = this._prepareTabs("primary");
+    context.characterClasses = CONFIG.BASICFANTASYRPG.characterClasses;
 
     return context;
   }

@@ -32,7 +32,13 @@
               <div class="resource flex-group-center">
                 <label for="system.level.value" class="resource-label">{{localize data.class.label}}&nbsp;/&nbsp;{{localize data.level.label}}</label>
                 <div class="resource-content flexrow flex-center flex-between">
-                  <input type="text" name="system.class.value" value="{{data.class.value}}" data-dtype="String"/>
+                  <select name="system.class.value" class="class-selector" id="system.class.value" data-dtype="String">
+                    {{#each characterClasses as |label key|}}
+                      <option value="{{key}}" {{selected (eq ../data.class.value key)}}>
+                        {{#if label}}{{localize label}}{{else}}--{{/if}}
+                      </option>
+                    {{/each}}
+                  </select>
                   <span class="flexshrink flex-align-center">&nbsp;</span>
                   <input type="text" name="system.level.value" value="{{data.level.value}}" data-dtype="Number"/>
                 </div>

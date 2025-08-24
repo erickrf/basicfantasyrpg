@@ -454,7 +454,6 @@
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
-
 }
 
 .basicfantasyrpg .manual-mode-toggle {
@@ -749,6 +748,10 @@
 
 .basicfantasyrpg.sheet .charname input {
   text-align: left;
+}
+
+.basicfantasyrpg.sheet .class-selector {
+  width: max-content;
 }
 
 /* Item deletion animation */

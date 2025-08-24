@@ -129,7 +129,9 @@ export class CharacterDataModel extends BaseActorDataModel {
       
       class: new fields.SchemaField({
         value: new fields.StringField({
-          initial: ""
+          initial: "",
+          blank: true,
+          choices: CONFIG.BASICFANTASYRPG.characterClasses
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Class"

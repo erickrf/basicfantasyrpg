@@ -45,3 +45,15 @@ BASICFANTASYRPG.money = {
   'sp': 'BASICFANTASYRPG.Silver',
   'cp': 'BASICFANTASYRPG.Copper'
 };
+
+/**
+ * Character classes available in Basic Fantasy RPG
+ * @type {Object}
+ */
+BASICFANTASYRPG.characterClasses = {
+  '': '',
+  'fighter': 'BASICFANTASYRPG.ClassFighter',
+  'cleric': 'BASICFANTASYRPG.ClassCleric', 
+  'magicUser': 'BASICFANTASYRPG.ClassMagicUser',
+  'thief': 'BASICFANTASYRPG.ClassThief'
+};
