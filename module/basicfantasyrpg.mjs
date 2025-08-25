@@ -17,6 +17,15 @@ import { VehicleDataModel } from "./data-models/actors/vehicle-data.mjs";
 import { SiegeEngineDataModel } from "./data-models/actors/siege-engine-data.mjs";
 import { StrongholdDataModel } from "./data-models/actors/stronghold-data.mjs";
 
+// Import item data models.
+import { ItemDataModel } from "./data-models/items/item-data.mjs";
+import { WeaponDataModel } from "./data-models/items/weapon-data.mjs";
+import { ArmorDataModel } from "./data-models/items/armor-data.mjs";
+import { SpellDataModel } from "./data-models/items/spell-data.mjs";
+import { FeatureDataModel } from "./data-models/items/feature-data.mjs";
+import { FloorDataModel } from "./data-models/items/floor-data.mjs";
+import { WallDataModel } from "./data-models/items/wall-data.mjs";
+
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { BASICFANTASYRPG } from "./helpers/config.mjs";
@@ -61,6 +70,15 @@ Hooks.once("init", async function () {
   CONFIG.Actor.dataModels.vehicle = VehicleDataModel;
   CONFIG.Actor.dataModels.siegeEngine = SiegeEngineDataModel;
   CONFIG.Actor.dataModels.stronghold = StrongholdDataModel;
+
+  // Register item data models
+  CONFIG.Item.dataModels.item = ItemDataModel;
+  CONFIG.Item.dataModels.weapon = WeaponDataModel;
+  CONFIG.Item.dataModels.armor = ArmorDataModel;
+  CONFIG.Item.dataModels.spell = SpellDataModel;
+  CONFIG.Item.dataModels.feature = FeatureDataModel;
+  CONFIG.Item.dataModels.floor = FloorDataModel;
+  CONFIG.Item.dataModels.wall = WallDataModel;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
