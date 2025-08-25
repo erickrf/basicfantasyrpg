@@ -4,9 +4,7 @@
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}"/></h1>
 
-      {{# if (eq item.type "armor") }}
-        {{> "systems/basicfantasyrpg/templates/item/armor.hbs"}}
-      {{/if}}
+      {{> (concat "systems/basicfantasyrpg/templates/item/" item.type ".hbs")}}
 
     </div>
   </header>

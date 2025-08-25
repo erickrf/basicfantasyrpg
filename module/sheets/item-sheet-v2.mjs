@@ -10,7 +10,7 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
   static DEFAULT_OPTIONS = {
     classes: ["basicfantasyrpg", "sheet", "item", "themed", "theme-light"],
     position: {
-      width: 520,
+      width: 540,
       height: 480,
     },
     window: {
@@ -35,6 +35,21 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
     },
     armor: {
       template: "systems/basicfantasyrpg/templates/item/armor.hbs"
+    },
+    feature: {
+      template: "systems/basicfantasyrpg/templates/item/feature.hbs"
+    },
+    floor: {
+      template: "systems/basicfantasyrpg/templates/item/floor.hbs"
+    },
+    spell: {
+      template: "systems/basicfantasyrpg/templates/item/spell.hbs"
+    },
+    wall: {
+      template: "systems/basicfantasyrpg/templates/item/wall.hbs"
+    },
+    weapon: {
+      template: "systems/basicfantasyrpg/templates/item/weapon.hbs"
     }
   }
 
