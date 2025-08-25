@@ -3,7 +3,6 @@
  * @extends {Actor}
  */
 export class BasicFantasyRPGActor extends Actor {
-
   /** @override */
   prepareData() {
     // Prepare data for the actor. Calling the super version of this executes
@@ -43,17 +42,16 @@ export class BasicFantasyRPGActor extends Actor {
     this._prepareVehicleDerivedData(actorData);
   }
 
-
   /**
    * Prepare Monster type template data.
    */
   _prepareMonsterData(actorData) {
-    if (actorData.type !== 'monster') return;
+    if (actorData.type !== "monster") return;
 
     const data = actorData.system;
 
     // Handle changed label for monster special ability XP bonus -- this will be handled in the system data model when it's implemented
-    data.specialAbility.label = 'BASICFANTASYRPG.SpecialAbilityXPBonus';
+    data.specialAbility.label = "BASICFANTASYRPG.SpecialAbilityXPBonus";
 
     data.xp.value = this._calculateMonsterXPValue();
     data.attackBonus.value = this._calculateMonsterAttackBonus();
@@ -70,30 +68,39 @@ export class BasicFantasyRPGActor extends Actor {
       return 16;
     }
     switch (hitDiceNumber) {
-      case 9: return 8;
+      case 9:
+        return 8;
       case 10:
-      case 11: return 9
+      case 11:
+        return 9;
       case 12:
-      case 13: return 10;
+      case 13:
+        return 10;
       case 14:
-      case 15: return 11;
+      case 15:
+        return 11;
       case 16:
       case 17:
       case 18:
-      case 19: return 12;
+      case 19:
+        return 12;
       case 20:
       case 21:
       case 22:
-      case 23: return 13;
+      case 23:
+        return 13;
       case 24:
       case 25:
       case 26:
-      case 27: return 14;
+      case 27:
+        return 14;
       case 28:
       case 29:
       case 30:
-      case 31: return 15;
-      default: return hitDiceNumber; // this handles 1-9
+      case 31:
+        return 15;
+      default:
+        return hitDiceNumber; // this handles 1-9
     }
   }
 
@@ -103,11 +110,17 @@ export class BasicFantasyRPGActor extends Actor {
   _calculateMonsterXPValue() {
     const hitDice = this.system.hitDice;
     const specialAbility = this.system.specialAbility.value;
-    let xpLookup = [10, 25, 75, 145, 240, 360, 500, 670, 875, 1075, 1300, 1575, 1875, 2175, 2500, 2850, 3250, 3600, 4000, 4500, 5250, 6000, 6750, 7500, 8250, 9000];
-    let specialAbilityLookup = [3, 12, 25, 30, 40, 45, 55, 65, 70, 75, 90, 95, 100, 110, 115, 125, 135, 145, 160, 175, 200, 225, 250, 275, 300, 325];
+    let xpLookup = [
+      10, 25, 75, 145, 240, 360, 500, 670, 875, 1075, 1300, 1575, 1875, 2175, 2500, 2850, 3250, 3600, 4000, 4500, 5250,
+      6000, 6750, 7500, 8250, 9000,
+    ];
+    let specialAbilityLookup = [
+      3, 12, 25, 30, 40, 45, 55, 65, 70, 75, 90, 95, 100, 110, 115, 125, 135, 145, 160, 175, 200, 225, 250, 275, 300,
+      325,
+    ];
     let xpValue = 0;
     let xpSpecialAbilityBonus = 0;
-    if (hitDice.number < 1 || (hitDice.number === 1 && hitDice.mod < 0) || hitDice.size < 'd8') {
+    if (hitDice.number < 1 || (hitDice.number === 1 && hitDice.mod < 0) || hitDice.size < "d8") {
       xpValue = xpLookup[0];
       xpSpecialAbilityBonus = specialAbilityLookup[0] * specialAbility;
     } else if (hitDice.number > 25) {
@@ -124,49 +137,73 @@ export class BasicFantasyRPGActor extends Actor {
    * Prepare Stronghold type template data
    */
   _prepareStrongholdData(actorData) {
-    if (actorData.type !== 'stronghold') return;
+    if (actorData.type !== "stronghold") return;
 
     const data = actorData.system;
     const floors = actorData.itemTypes.floor;
     const walls = actorData.itemTypes.wall;
 
-    floors.forEach(floor => {
+    floors.forEach((floor) => {
       switch (floor.system.material.value) {
-        case 'roofSlate': floor.system.price.value = floor.system.area.value / 10 * 4; break;
-        case 'roofWood': floor.system.price.value = floor.system.area.value / 10 * 2; break;
-        case 'floor':
-        case 'roofThatch':
-        default: floor.system.price.value = floor.system.area.value / 10; break;
+        case "roofSlate":
+          floor.system.price.value = (floor.system.area.value / 10) * 4;
+          break;
+        case "roofWood":
+          floor.system.price.value = (floor.system.area.value / 10) * 2;
+          break;
+        case "floor":
+        case "roofThatch":
+        default:
+          floor.system.price.value = floor.system.area.value / 10;
+          break;
       }
     });
 
-    walls.forEach(wall => {
+    walls.forEach((wall) => {
       switch (wall.system.material.value) {
-        case 'stoneHard':
+        case "stoneHard":
           wall.system.hardness.value = 16;
           switch (wall.system.thickness.value) {
-            case 15: wall.system.price.value = 350; break;
-            case 10: wall.system.price.value = 260; break;
-            case 5: wall.system.price.value = 90; break;
-            default: wall.system.price.value = 40; break;
+            case 15:
+              wall.system.price.value = 350;
+              break;
+            case 10:
+              wall.system.price.value = 260;
+              break;
+            case 5:
+              wall.system.price.value = 90;
+              break;
+            default:
+              wall.system.price.value = 40;
+              break;
           }
           break;
-        case 'stoneSoft':
+        case "stoneSoft":
           wall.system.hardness.value = 12;
           switch (wall.system.thickness.value) {
-            case 10: wall.system.price.value = 200; break;
-            case 5: wall.system.price.value = 70; break;
-            default: wall.system.price.value = 30; break;
+            case 10:
+              wall.system.price.value = 200;
+              break;
+            case 5:
+              wall.system.price.value = 70;
+              break;
+            default:
+              wall.system.price.value = 30;
+              break;
           }
           break;
-        case 'brick':
+        case "brick":
           wall.system.hardness.value = 8;
           switch (wall.system.thickness.value) {
-            case 5: wall.system.price.value = 50; break;
-            default: wall.system.price.value = 20; break;
+            case 5:
+              wall.system.price.value = 50;
+              break;
+            default:
+              wall.system.price.value = 20;
+              break;
           }
           break;
-        case 'wood':
+        case "wood":
         default:
           wall.system.hardness.value = 6;
           wall.system.thickness.value = 1;
@@ -181,7 +218,7 @@ export class BasicFantasyRPGActor extends Actor {
    * Prepare Stronghold type derived data
    */
   _prepareStrongholdDerivedData(actorData) {
-    if (actorData.type !== 'stronghold') return;
+    if (actorData.type !== "stronghold") return;
 
     const data = actorData.system;
     const floors = actorData.itemTypes.floor;
@@ -189,36 +226,35 @@ export class BasicFantasyRPGActor extends Actor {
 
     let totalCost = 0;
     let totalHeight = 0;
-    floors.forEach(floor => {
+    floors.forEach((floor) => {
       totalHeight += floor.system.height.value;
       totalCost += floor.system.price.value;
     });
-    walls.forEach(wall => {
+    walls.forEach((wall) => {
       totalCost += wall.system.price.value;
     });
 
     data.height = {
-      "value": totalHeight,
-      "label": 'BASICFANTASYRPG.Height'
+      value: totalHeight,
+      label: "BASICFANTASYRPG.Height",
     };
 
     data.cost = {
-      "value": (totalCost + (totalCost * (totalHeight / 100))) * data.costMultiplier.value, // each 10' of height adds 10% to the costs in both time and money
-      "label": 'BASICFANTASYRPG.Cost'
+      value: (totalCost + totalCost * (totalHeight / 100)) * data.costMultiplier.value, // each 10' of height adds 10% to the costs in both time and money
+      label: "BASICFANTASYRPG.Cost",
     };
 
     data.buildTime = {
-      "value": Math.ceil(Math.max(data.cost.value / data.workers.value, Math.sqrt(data.cost.value))),
-      "label": 'BASICFANTASYRPG.BuildTime'
+      value: Math.ceil(Math.max(data.cost.value / data.workers.value, Math.sqrt(data.cost.value))),
+      label: "BASICFANTASYRPG.BuildTime",
     };
   }
-
 
   /**
    * Prepare Vehicle type template data
    */
   _prepareVehicleData(actorData) {
-    if (actorData.type !== 'vehicle') return;
+    if (actorData.type !== "vehicle") return;
 
     const data = actorData.system;
     data.hitPoints.value = 0;
@@ -226,7 +262,7 @@ export class BasicFantasyRPGActor extends Actor {
 
     // Calculate totals for HP value and HP max
     for (let [key, side] of Object.entries(data.hitPoints)) {
-      if (['forward', 'aft', 'port', 'starboard'].includes(key)) {
+      if (["forward", "aft", "port", "starboard"].includes(key)) {
         data.hitPoints.value += side.value;
         data.hitPoints.max += side.max;
       }
@@ -237,14 +273,14 @@ export class BasicFantasyRPGActor extends Actor {
    * Prepare Vehicle type derived data
    */
   _prepareVehicleDerivedData(actorData) {
-    if (actorData.type !== 'vehicle') return;
+    if (actorData.type !== "vehicle") return;
 
     const data = actorData.system;
 
     // Check if any 1 or 2 sides are reduced to 0 HP
     let sidesAtZeroHP = 0;
     for (let [key, side] of Object.entries(data.hitPoints)) {
-      if (['forward', 'aft', 'port', 'starboard'].includes(key) && side.value === 0 && side.max !== 0) {
+      if (["forward", "aft", "port", "starboard"].includes(key) && side.value === 0 && side.max !== 0) {
         ++sidesAtZeroHP;
       }
     }
@@ -256,7 +292,6 @@ export class BasicFantasyRPGActor extends Actor {
       data.move.current = data.move.value;
     }
   }
-
 
   /**
    * Override getRollData() that's supplied to rolls.
@@ -279,7 +314,7 @@ export class BasicFantasyRPGActor extends Actor {
    * Prepare character roll data.
    */
   _getCharacterRollData(data) {
-    if (this.type !== 'character') return;
+    if (this.type !== "character") return;
 
     // Copy the ability scores to the top level, so that rolls can use
     // formulas like `@str.bonus + 4`.
@@ -299,40 +334,36 @@ export class BasicFantasyRPGActor extends Actor {
    * Prepare NPC roll data.
    */
   _getMonsterRollData(data) {
-    if (this.type !== 'monster') return;
+    if (this.type !== "monster") return;
 
     // Process additional NPC data here.
-
   }
 
   /**
    * Prepare Siege Engine roll data.
    */
   _getSiegeEngineRollData(data) {
-    if (this.type !== 'siegeEngine') return;
+    if (this.type !== "siegeEngine") return;
 
     // Process additional Siege Engine data here.
-
   }
 
   /**
    * Prepare Stronghold roll data.
    */
   _getStrongholdRollData(data) {
-    if (this.type !== 'stronghold') return;
+    if (this.type !== "stronghold") return;
 
     // Process additional Stronghold data here.
-
   }
 
   /**
    * Prepare Vehicle roll data.
    */
   _getVehicleRollData(data) {
-    if (this.type !== 'vehicle') return;
+    if (this.type !== "vehicle") return;
 
     // Process additional Vehicle data here.
-
   }
 
   /**

@@ -1,4 +1,4 @@
-import { BaseActorSheet } from './base-actor-sheet.mjs';
+import { BaseActorSheet } from "./base-actor-sheet.mjs";
 
 /**
  * Vehicle Sheet for Basic Fantasy RPG
@@ -6,7 +6,6 @@ import { BaseActorSheet } from './base-actor-sheet.mjs';
  * @extends {BaseActorSheet}
  */
 export class VehicleSheet extends BaseActorSheet {
-
   static DEFAULT_OPTIONS = {
     ...BaseActorSheet.DEFAULT_OPTIONS,
     classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "vehicle"],
@@ -18,7 +17,7 @@ export class VehicleSheet extends BaseActorSheet {
 
   static TABS = {
     primary: {
-      tabs: [{ id: "combat" }, { id: "description"}],
+      tabs: [{ id: "combat" }, { id: "description" }],
       labelPrefix: "BASICFANTASYRPG.Tab",
       initial: "combat",
     },
@@ -26,11 +25,11 @@ export class VehicleSheet extends BaseActorSheet {
 
   static PARTS = {
     main: {
-      template: "systems/basicfantasyrpg/templates/actor/vehicle.hbs"
+      template: "systems/basicfantasyrpg/templates/actor/vehicle.hbs",
     },
     tabs: {
       // Foundry-provided generic template
-      template: 'templates/generic/tab-navigation.hbs',
+      template: "templates/generic/tab-navigation.hbs",
     },
     combat: {
       template: "systems/basicfantasyrpg/templates/actor/parts/vehicle-combat.hbs",

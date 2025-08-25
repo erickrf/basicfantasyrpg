@@ -1,32 +1,56 @@
 <div class="{{actor.type}}">
 
-  {{!-- Sheet Header --}}
+  {{! Sheet Header }}
   <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-action="editImage" title="{{actor.name}}" height="100" width="100"/>
+    <img
+      class="profile-img"
+      src="{{actor.img}}"
+      data-action="editImage"
+      title="{{actor.name}}"
+      height="100"
+      width="100"
+    />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}" data-dtype="String"/></h1>
+      <h1 class="charname"><input
+          name="name"
+          type="text"
+          value="{{actor.name}}"
+          placeholder="{{localize 'BASICFANTASYRPG.Name'}}"
+          data-dtype="String"
+        /></h1>
       <div class="resources grid grid-3col">
 
         <div class="resource flex-group-center">
           <label for="system.height.value" class="resource-label">{{localize data.height.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.height.value" value="{{data.height.value}}" data-dtype="Number" disabled/>
-            <span class="flexshrink flex-align-center">&nbsp;{{localize 'BASICFANTASYRPG.FeetAbbr'}}</span>
+            <input
+              type="number"
+              name="system.height.value"
+              value="{{data.height.value}}"
+              data-dtype="Number"
+              disabled
+            />
+            <span class="flexshrink flex-align-center">&nbsp;{{localize "BASICFANTASYRPG.FeetAbbr"}}</span>
           </div>
         </div>
 
         <div class="resource flex-group-center">
           <label for="system.costMultiplier.value" class="resource-label">{{localize data.costMultiplier.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.costMultiplier.value" value="{{data.costMultiplier.value}}" data-dtype="Number"/>
+            <input
+              type="number"
+              name="system.costMultiplier.value"
+              value="{{data.costMultiplier.value}}"
+              data-dtype="Number"
+            />
           </div>
         </div>
 
         <div class="resource flex-group-center">
           <label for="system.cost.value" class="resource-label">{{localize data.cost.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.cost.value" value="{{data.cost.value}}" data-dtype="Number" disabled/>
-            <span class="flexshrink flex-align-center">&nbsp;{{localizeLowerCase 'BASICFANTASYRPG.Gold'}}</span>
+            <input type="number" name="system.cost.value" value="{{data.cost.value}}" data-dtype="Number" disabled />
+            <span class="flexshrink flex-align-center">&nbsp;{{localizeLowerCase "BASICFANTASYRPG.Gold"}}</span>
           </div>
         </div>
 
@@ -37,22 +61,28 @@
         <div class="resource flex-group-center">
           <label for="system.workers.value" class="resource-label">{{localize data.workers.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.workers.value" value="{{data.workers.value}}" data-dtype="Number"/>
+            <input type="number" name="system.workers.value" value="{{data.workers.value}}" data-dtype="Number" />
           </div>
         </div>
 
         <div class="resource flex-group-center grid-span-2">
           <label for="system.buildTime.value" class="resource-label">{{localize data.buildTime.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.buildTime.value" value="{{data.buildTime.value}}" data-dtype="Number" disabled/>
-            <span class="flexshrink flex-align-center">&nbsp;{{localizeLowerCase 'BASICFANTASYRPG.WorkerDays'}}</span>
+            <input
+              type="number"
+              name="system.buildTime.value"
+              value="{{data.buildTime.value}}"
+              data-dtype="Number"
+              disabled
+            />
+            <span class="flexshrink flex-align-center">&nbsp;{{localizeLowerCase "BASICFANTASYRPG.WorkerDays"}}</span>
           </div>
         </div>
 
         <div class="resource flex-group-center">
           <label for="system.followers.value" class="resource-label">{{localize data.followers.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.followers.value" value="{{data.followers.value}}" data-dtype="Number"/>
+            <input type="number" name="system.followers.value" value="{{data.followers.value}}" data-dtype="Number" />
           </div>
         </div>
 

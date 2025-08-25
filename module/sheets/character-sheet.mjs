@@ -17,7 +17,7 @@ export class CharacterSheet extends BaseActorSheet {
 
   static TABS = {
     primary: {
-      tabs: [{ id: "combat" }, { id: "description"}, { id: "items" }, { id: "spells"}, { id: "features" }],
+      tabs: [{ id: "combat" }, { id: "description" }, { id: "items" }, { id: "spells" }, { id: "features" }],
       labelPrefix: "BASICFANTASYRPG.Tab",
       initial: "combat",
     },
@@ -29,7 +29,7 @@ export class CharacterSheet extends BaseActorSheet {
     },
     tabs: {
       // Foundry-provided generic template
-      template: 'templates/generic/tab-navigation.hbs',
+      template: "templates/generic/tab-navigation.hbs",
     },
     combat: {
       template: "systems/basicfantasyrpg/templates/actor/parts/combat.hbs",
@@ -45,9 +45,8 @@ export class CharacterSheet extends BaseActorSheet {
     },
     features: {
       template: "systems/basicfantasyrpg/templates/actor/parts/features.hbs",
-    }
+    },
   };
-
 
   /** @override */
   _onRender(context, options) {

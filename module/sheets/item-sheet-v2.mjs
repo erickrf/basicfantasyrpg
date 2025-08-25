@@ -31,32 +31,32 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
     },
     description: {
       // Foundry-provided generic template
-      template: "systems/basicfantasyrpg/templates/item/parts/description.hbs"
+      template: "systems/basicfantasyrpg/templates/item/parts/description.hbs",
     },
     armor: {
-      template: "systems/basicfantasyrpg/templates/item/armor.hbs"
+      template: "systems/basicfantasyrpg/templates/item/armor.hbs",
     },
     feature: {
-      template: "systems/basicfantasyrpg/templates/item/feature.hbs"
+      template: "systems/basicfantasyrpg/templates/item/feature.hbs",
     },
     floor: {
-      template: "systems/basicfantasyrpg/templates/item/floor.hbs"
+      template: "systems/basicfantasyrpg/templates/item/floor.hbs",
     },
     spell: {
-      template: "systems/basicfantasyrpg/templates/item/spell.hbs"
+      template: "systems/basicfantasyrpg/templates/item/spell.hbs",
     },
     wall: {
-      template: "systems/basicfantasyrpg/templates/item/wall.hbs"
+      template: "systems/basicfantasyrpg/templates/item/wall.hbs",
     },
     weapon: {
-      template: "systems/basicfantasyrpg/templates/item/weapon.hbs"
-    }
-  }
+      template: "systems/basicfantasyrpg/templates/item/weapon.hbs",
+    },
+  };
 
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
 
-    options.parts = ['main', 'description'];
+    options.parts = ["main", "description"];
   }
 
   /** @override */
@@ -72,10 +72,7 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
     context.flags = this.document.flags;
 
     // Enrich description for editor
-    context.enrichedDescription = await TextEditor.enrichHTML(
-      this.document.system.description,
-      { async: true }
-    );
+    context.enrichedDescription = await TextEditor.enrichHTML(this.document.system.description, { async: true });
 
     // Retrieve the roll data for TinyMCE editors
     context.rollData = {};
@@ -86,7 +83,6 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
 
     return context;
   }
-
 
   /**
    * Handle form submission for the item sheet

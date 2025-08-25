@@ -1,4 +1,4 @@
-import { BaseActorSheet } from './base-actor-sheet.mjs';
+import { BaseActorSheet } from "./base-actor-sheet.mjs";
 
 /**
  * Stronghold Sheet for Basic Fantasy RPG
@@ -6,7 +6,6 @@ import { BaseActorSheet } from './base-actor-sheet.mjs';
  * @extends {BaseActorSheet}
  */
 export class StrongholdSheet extends BaseActorSheet {
-
   static DEFAULT_OPTIONS = {
     ...BaseActorSheet.DEFAULT_OPTIONS,
     classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "stronghold"],
@@ -29,14 +28,14 @@ export class StrongholdSheet extends BaseActorSheet {
       template: "systems/basicfantasyrpg/templates/actor/stronghold.hbs",
     },
     tabs: {
-      template: 'templates/generic/tab-navigation.hbs',
+      template: "templates/generic/tab-navigation.hbs",
     },
     description: {
       template: "systems/basicfantasyrpg/templates/actor/parts/description.hbs",
     },
     floors: {
       template: "systems/basicfantasyrpg/templates/actor/parts/floors.hbs",
-    }
+    },
   };
 
   /** @override */

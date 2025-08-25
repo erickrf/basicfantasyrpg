@@ -1,125 +1,134 @@
 /* Custom Fonts */
 @font-face {
-    font-family: 'Soutane';
-    src: url('soutane-webfont.eot');
-    src: url('soutane-webfont.eot?#iefix') format('embedded-opentype'),
-         url('soutane-webfont.ttf') format('truetype'),
-         url('soutane-webfont.svg#soutaneregular') format('svg'),
-         url('soutane-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Soutane";
+  src: url("soutane-webfont.eot");
+  src:
+    url("soutane-webfont.eot?#iefix") format("embedded-opentype"),
+    url("soutane-webfont.ttf") format("truetype"),
+    url("soutane-webfont.svg#soutaneregular") format("svg"),
+    url("soutane-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Soutane';
-    src: url('soutanebold-webfont.eot');
-    src: url('soutanebold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('soutanebold-webfont.ttf') format('truetype'),
-         url('soutanebold-webfont.svg#soutanebold') format('svg'),
-         url('soutanebold-webfont.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Soutane";
+  src: url("soutanebold-webfont.eot");
+  src:
+    url("soutanebold-webfont.eot?#iefix") format("embedded-opentype"),
+    url("soutanebold-webfont.ttf") format("truetype"),
+    url("soutanebold-webfont.svg#soutanebold") format("svg"),
+    url("soutanebold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Soutane';
-    src: url('soutanebolditalic-webfont.eot');
-    src: url('soutanebolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('soutanebolditalic-webfont.ttf') format('truetype'),
-         url('soutanebolditalic-webfont.svg#soutanebold_italic') format('svg'),
-         url('soutanebolditalic-webfont.woff') format('woff');
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
+  font-family: "Soutane";
+  src: url("soutanebolditalic-webfont.eot");
+  src:
+    url("soutanebolditalic-webfont.eot?#iefix") format("embedded-opentype"),
+    url("soutanebolditalic-webfont.ttf") format("truetype"),
+    url("soutanebolditalic-webfont.svg#soutanebold_italic") format("svg"),
+    url("soutanebolditalic-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Soutane';
-    src: url('soutaneitalic-webfont.eot');
-    src: url('soutaneitalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('soutaneitalic-webfont.ttf') format('truetype'),
-         url('soutaneitalic-webfont.svg#soutaneitalic') format('svg'),
-         url('soutaneitalic-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
+  font-family: "Soutane";
+  src: url("soutaneitalic-webfont.eot");
+  src:
+    url("soutaneitalic-webfont.eot?#iefix") format("embedded-opentype"),
+    url("soutaneitalic-webfont.ttf") format("truetype"),
+    url("soutaneitalic-webfont.svg#soutaneitalic") format("svg"),
+    url("soutaneitalic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'SoutaneBlack';
-    src: url('soutaneblack-webfont.eot');
-    src: url('soutaneblack-webfont.eot?#iefix') format('embedded-opentype'),
-         url('soutaneblack-webfont.ttf') format('truetype'),
-         url('soutaneblack-webfont.svg#soutaneblackregular') format('svg'),
-         url('soutaneblack-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "SoutaneBlack";
+  src: url("soutaneblack-webfont.eot");
+  src:
+    url("soutaneblack-webfont.eot?#iefix") format("embedded-opentype"),
+    url("soutaneblack-webfont.ttf") format("truetype"),
+    url("soutaneblack-webfont.svg#soutaneblackregular") format("svg"),
+    url("soutaneblack-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'TeX Gyre Adventor';
-    src: url('texgyreadventor-regular-webfont.eot');
-    src: url('texgyreadventor-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('texgyreadventor-regular-webfont.woff') format('woff'),
-         url('texgyreadventor-regular-webfont.ttf') format('truetype'),
-         url('texgyreadventor-regular-webfont.svg#tex_gyre_adventorregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "TeX Gyre Adventor";
+  src: url("texgyreadventor-regular-webfont.eot");
+  src:
+    url("texgyreadventor-regular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("texgyreadventor-regular-webfont.woff") format("woff"),
+    url("texgyreadventor-regular-webfont.ttf") format("truetype"),
+    url("texgyreadventor-regular-webfont.svg#tex_gyre_adventorregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'TeX Gyre Adventor';
-    src: url('texgyreadventor-italic-webfont.eot');
-    src: url('texgyreadventor-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('texgyreadventor-italic-webfont.woff') format('woff'),
-         url('texgyreadventor-italic-webfont.ttf') format('truetype'),
-         url('texgyreadventor-italic-webfont.svg#tex_gyre_adventoritalic') format('svg');
-    font-weight: normal;
-    font-style: italic;
+  font-family: "TeX Gyre Adventor";
+  src: url("texgyreadventor-italic-webfont.eot");
+  src:
+    url("texgyreadventor-italic-webfont.eot?#iefix") format("embedded-opentype"),
+    url("texgyreadventor-italic-webfont.woff") format("woff"),
+    url("texgyreadventor-italic-webfont.ttf") format("truetype"),
+    url("texgyreadventor-italic-webfont.svg#tex_gyre_adventoritalic") format("svg");
+  font-weight: normal;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'TeX Gyre Adventor';
-    src: url('texgyreadventor-bold-webfont.eot');
-    src: url('texgyreadventor-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('texgyreadventor-bold-webfont.woff') format('woff'),
-         url('texgyreadventor-bold-webfont.ttf') format('truetype'),
-         url('texgyreadventor-bold-webfont.svg#tex_gyre_adventorbold') format('svg');
-    font-weight: bold;
-    font-style: normal;
+  font-family: "TeX Gyre Adventor";
+  src: url("texgyreadventor-bold-webfont.eot");
+  src:
+    url("texgyreadventor-bold-webfont.eot?#iefix") format("embedded-opentype"),
+    url("texgyreadventor-bold-webfont.woff") format("woff"),
+    url("texgyreadventor-bold-webfont.ttf") format("truetype"),
+    url("texgyreadventor-bold-webfont.svg#tex_gyre_adventorbold") format("svg");
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'TeX Gyre Adventor';
-    src: url('texgyreadventor-bolditalic-webfont.eot');
-    src: url('texgyreadventor-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('texgyreadventor-bolditalic-webfont.woff') format('woff'),
-         url('texgyreadventor-bolditalic-webfont.ttf') format('truetype'),
-         url('texgyreadventor-bolditalic-webfont.svg#tex_gyre_adventorbold_italic') format('svg');
-    font-weight: bold;
-    font-style: italic;
+  font-family: "TeX Gyre Adventor";
+  src: url("texgyreadventor-bolditalic-webfont.eot");
+  src:
+    url("texgyreadventor-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),
+    url("texgyreadventor-bolditalic-webfont.woff") format("woff"),
+    url("texgyreadventor-bolditalic-webfont.ttf") format("truetype"),
+    url("texgyreadventor-bolditalic-webfont.svg#tex_gyre_adventorbold_italic") format("svg");
+  font-weight: bold;
+  font-style: italic;
 }
 
 :root {
-    --font-primary: "Soutane";
-    --color-border-light-primary:  #b7b7af;   /* neutral light grey-brown */
-    --color-border-light-highlight: #ccc5b9;   /* warm light beige */
-    --color-bg-light: #f8f4e6;   /* warm light background */
-    --color-border-dark-primary: #2a2a2a;   /* dark scrollbar thumb */
-    --color-border-dark-secondary: #1a1a1a;   /* dark scrollbar hover */
-    --color-bg-dark: #f0f0f0;   /* light scrollbar track */
+  --font-primary: "Soutane";
+  --color-border-light-primary: #b7b7af; /* neutral light grey-brown */
+  --color-border-light-highlight: #ccc5b9; /* warm light beige */
+  --color-bg-light: #f8f4e6; /* warm light background */
+  --color-border-dark-primary: #2a2a2a; /* dark scrollbar thumb */
+  --color-border-dark-secondary: #1a1a1a; /* dark scrollbar hover */
+  --color-bg-dark: #f0f0f0; /* light scrollbar track */
 }
-
 
 /* Global styles */
 .game {
   font-family: "Soutane", "Century Gothic", "TeX Gyre Adventor", var(--font-primary);
 }
 
-.rollable:hover, .rollable:focus {
+.rollable:hover,
+.rollable:focus {
   color: #000;
   text-shadow: 0 0 10px red;
   cursor: pointer;
@@ -515,7 +524,7 @@
 }
 
 .basicfantasyrpg.sheet .tab-container {
-    display: flex;
+  display: flex;
 }
 
 .basicfantasyrpg .editor-content {
@@ -617,7 +626,8 @@
   display: flex;
 }
 
-.basicfantasyrpg .items-list .item-name h3, .basicfantasyrpg .items-list .item-name h4 {
+.basicfantasyrpg .items-list .item-name h3,
+.basicfantasyrpg .items-list .item-name h4 {
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
@@ -743,7 +753,6 @@
 }
 
 .basicfantasyrpg .sheet input {
-
 }
 
 .basicfantasyrpg.sheet input {

@@ -5,41 +5,40 @@ import { BaseActorDataModel } from "./base-actor-data.mjs";
  * Extends BaseActorDataModel with monster-specific fields
  */
 export class MonsterDataModel extends BaseActorDataModel {
-  
   static defineSchema() {
     const fields = foundry.data.fields;
     const baseSchema = super.defineSchema();
-    
+
     return {
       ...baseSchema,
-      
+
       hitDice: new fields.SchemaField({
         size: new fields.StringField({
           required: true,
           initial: "d8",
-          choices: ["d4", "d6", "d8", "d10", "d12", "d20", "d100"]
+          choices: ["d4", "d6", "d8", "d10", "d12", "d20", "d100"],
         }),
         number: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
           min: 1,
-          initial: 1
+          initial: 1,
         }),
         mod: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
-          initial: 0
+          initial: 0,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.HitDice"
+          initial: "BASICFANTASYRPG.HitDice",
         }),
         abbr: new fields.StringField({
-          initial: "BASICFANTASYRPG.HitDiceAbbr"
-        })
+          initial: "BASICFANTASYRPG.HitDiceAbbr",
+        }),
       }),
-      
+
       morale: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
@@ -47,71 +46,71 @@ export class MonsterDataModel extends BaseActorDataModel {
           integer: true,
           min: 2,
           max: 12,
-          initial: 7
+          initial: 7,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.Morale"
-        })
+          initial: "BASICFANTASYRPG.Morale",
+        }),
       }),
-      
+
       numberAppearing: new fields.SchemaField({
         value: new fields.StringField({
           required: true,
-          initial: "1d4"
+          initial: "1d4",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.NumberAppearing"
-        })
+          initial: "BASICFANTASYRPG.NumberAppearing",
+        }),
       }),
-      
+
       specialAbility: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
           min: 0,
-          initial: 0
+          initial: 0,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.SpecialAbilityXPBonus"
-        })
+          initial: "BASICFANTASYRPG.SpecialAbilityXPBonus",
+        }),
       }),
-      
+
       treasureType: new fields.SchemaField({
         value: new fields.StringField({
           required: true,
-          initial: "None"
+          initial: "None",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.TreasureType"
-        })
+          initial: "BASICFANTASYRPG.TreasureType",
+        }),
       }),
-      
+
       xp: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
           min: 0,
-          initial: 0
+          initial: 0,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.ExperiencePoints"
+          initial: "BASICFANTASYRPG.ExperiencePoints",
         }),
         abbr: new fields.StringField({
-          initial: "BASICFANTASYRPG.ExperiencePointsAbbr"
-        })
-      })
+          initial: "BASICFANTASYRPG.ExperiencePointsAbbr",
+        }),
+      }),
     };
   }
-  
+
   /**
    * Prepare derived data for monsters
    * Calculates XP values based on hit dice and special abilities
    */
   prepareDerivedData() {
     super.prepareDerivedData();
-    
+
     // Calculate base XP from hit dice if not manually set
     if (this.xp.value === 0) {
       this.xp.value = this._calculateBaseXP();
@@ -121,7 +120,7 @@ export class MonsterDataModel extends BaseActorDataModel {
       this.attackBonus.value = this._calculateMonsterAttackBonus();
     }
   }
-  
+
   /**
    * Calculate base XP value from hit dice using Basic Fantasy RPG rules
    * @returns {number} The calculated base XP value
@@ -130,13 +129,19 @@ export class MonsterDataModel extends BaseActorDataModel {
     const hitDice = this.hitDice.number;
     const specialAbility = this.specialAbility.value;
 
-    const xpLookup = [10, 25, 75, 145, 240, 360, 500, 670, 875, 1075, 1300, 1575, 1875, 2175, 2500, 2850, 3250, 3600, 4000, 4500, 5250, 6000, 6750, 7500, 8250, 9000];
-    const specialAbilityLookup = [3, 12, 25, 30, 40, 45, 55, 65, 70, 75, 90, 95, 100, 110, 115, 125, 135, 145, 160, 175, 200, 225, 250, 275, 300, 325];
+    const xpLookup = [
+      10, 25, 75, 145, 240, 360, 500, 670, 875, 1075, 1300, 1575, 1875, 2175, 2500, 2850, 3250, 3600, 4000, 4500, 5250,
+      6000, 6750, 7500, 8250, 9000,
+    ];
+    const specialAbilityLookup = [
+      3, 12, 25, 30, 40, 45, 55, 65, 70, 75, 90, 95, 100, 110, 115, 125, 135, 145, 160, 175, 200, 225, 250, 275, 300,
+      325,
+    ];
 
     let xpValue = 0;
     let xpSpecialAbilityBonus = 0;
 
-    if (hitDice.number < 1 || (hitDice.number === 1 && hitDice.mod < 0) || hitDice.size < 'd8') {
+    if (hitDice.number < 1 || (hitDice.number === 1 && hitDice.mod < 0) || hitDice.size < "d8") {
       xpValue = xpLookup[0];
       xpSpecialAbilityBonus = specialAbilityLookup[0] * specialAbility;
     } else if (hitDice.number > 25) {
@@ -162,33 +167,42 @@ export class MonsterDataModel extends BaseActorDataModel {
       return 16;
     }
     switch (hitDiceNumber) {
-      case 9: return 8;
+      case 9:
+        return 8;
       case 10:
-      case 11: return 9
+      case 11:
+        return 9;
       case 12:
-      case 13: return 10;
+      case 13:
+        return 10;
       case 14:
-      case 15: return 11;
+      case 15:
+        return 11;
       case 16:
       case 17:
       case 18:
-      case 19: return 12;
+      case 19:
+        return 12;
       case 20:
       case 21:
       case 22:
-      case 23: return 13;
+      case 23:
+        return 13;
       case 24:
       case 25:
       case 26:
-      case 27: return 14;
+      case 27:
+        return 14;
       case 28:
       case 29:
       case 30:
-      case 31: return 15;
-      default: return hitDiceNumber; // this handles 1-9
+      case 31:
+        return 15;
+      default:
+        return hitDiceNumber; // this handles 1-9
     }
   }
-  
+
   /**
    * Migrate data from older versions
    * @param {object} source - The source data to migrate

@@ -183,7 +183,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     if (this._boundClickHandler) {
       this.element.removeEventListener("click", this._boundClickHandler);
     }
-    
+
     // Add click listener with proper binding
     this._boundClickHandler = this._onSheetClick.bind(this);
     this.element.addEventListener("click", this._boundClickHandler);
@@ -195,7 +195,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   /** Prepare the context for actor types that have saves */
-  async _prepareSaves(context){
+  async _prepareSaves(context) {
     // Handle saves.
     for (let [k, v] of Object.entries(context.data.saves)) {
       v.label = game.i18n.localize(CONFIG.BASICFANTASYRPG.saves[k]) ?? k;
@@ -267,7 +267,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   _onItemEdit(event) {
     const li = event.target.closest(".item");
     if (!li?.dataset.itemId) return;
-    
+
     const item = this.document.items.get(li.dataset.itemId);
     if (item) {
       item.sheet.render(true);
@@ -318,16 +318,16 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     if (!item) return;
 
     // Add deletion animation class
-    li.classList.add('item-deleting');
-    
+    li.classList.add("item-deleting");
+
     // Listen for animation end
     const handleAnimationEnd = async () => {
-      li.removeEventListener('animationend', handleAnimationEnd);
+      li.removeEventListener("animationend", handleAnimationEnd);
       await item.delete();
       // Sheet will auto-render due to document change
     };
-    
-    li.addEventListener('animationend', handleAnimationEnd);
+
+    li.addEventListener("animationend", handleAnimationEnd);
   }
 
   /**

@@ -306,7 +306,7 @@
         "label": "BASICFANTASYRPG.Damage",
         "abbr": "BASICFANTASYRPG.DamageAbbr"
       },
-      "range":{
+      "range": {
         "value": "Melee",
         "label": "BASICFANTASYRPG.Range"
       },

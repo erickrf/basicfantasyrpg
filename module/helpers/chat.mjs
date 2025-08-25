@@ -7,22 +7,22 @@
  *
  * @return {String} Will return a blank message if it cannot parse result or targetNumber
  */
-export function successChatMessage(result, targetNumber, rollUnder=false) {
-  let msg = '';
+export function successChatMessage(result, targetNumber, rollUnder = false) {
+  let msg = "";
   let success = false;
   if (result && !isNaN(result) && targetNumber && !isNaN(targetNumber)) {
     if (rollUnder) {
-      success = (Number(result) <= Number(targetNumber));
+      success = Number(result) <= Number(targetNumber);
     } else {
-      success = (Number(result) === 20 || (Number(result) > 1 && Number(result) >= Number(targetNumber)));
+      success = Number(result) === 20 || (Number(result) > 1 && Number(result) >= Number(targetNumber));
     }
     msg += `<span class="chat-item-description">`;
     if (success) {
-      msg += `<span class="chat-roll-success">&#9989;&nbsp;${game.i18n.localize('BASICFANTASYRPG.Success')}</span>`;
+      msg += `<span class="chat-roll-success">&#9989;&nbsp;${game.i18n.localize("BASICFANTASYRPG.Success")}</span>`;
     } else {
-      msg += `<span class="chat-roll-failure">&#9940;&nbsp;${game.i18n.localize('BASICFANTASYRPG.Failure')}</span>`;
+      msg += `<span class="chat-roll-failure">&#9940;&nbsp;${game.i18n.localize("BASICFANTASYRPG.Failure")}</span>`;
     }
-    msg += ` ${game.i18n.localize('BASICFANTASYRPG.VersusAbbr')} ${game.i18n.localize('BASICFANTASYRPG.TargetNumber').toLowerCase()} <span class="chat-roll-target-number">${targetNumber}</span></span>`;
+    msg += ` ${game.i18n.localize("BASICFANTASYRPG.VersusAbbr")} ${game.i18n.localize("BASICFANTASYRPG.TargetNumber").toLowerCase()} <span class="chat-roll-target-number">${targetNumber}</span></span>`;
   }
   return msg;
 }

@@ -3,114 +3,113 @@
  * Extends TypeDataModel directly (no base template inheritance)
  */
 export class SiegeEngineDataModel extends foundry.abstract.TypeDataModel {
-  
   static defineSchema() {
     const fields = foundry.data.fields;
-    
+
     return {
       attackBonus: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
-          initial: 0
+          initial: 0,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.AttackBonus"
+          initial: "BASICFANTASYRPG.AttackBonus",
         }),
         abbr: new fields.StringField({
-          initial: "BASICFANTASYRPG.AttackBonusAbbr"
-        })
+          initial: "BASICFANTASYRPG.AttackBonusAbbr",
+        }),
       }),
-      
+
       biography: new fields.HTMLField({
-        initial: ""
+        initial: "",
       }),
-      
+
       cost: new fields.SchemaField({
         value: new fields.StringField({
-          initial: ""
+          initial: "",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.Cost"
-        })
+          initial: "BASICFANTASYRPG.Cost",
+        }),
       }),
-      
+
       damage: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
-          initial: 0
+          initial: 0,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.Damage"
-        })
+          initial: "BASICFANTASYRPG.Damage",
+        }),
       }),
-      
+
       rangeBonus: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
-          initial: 0
+          initial: 0,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.RangeBonus"
-        })
+          initial: "BASICFANTASYRPG.RangeBonus",
+        }),
       }),
-      
+
       rangeShort: new fields.SchemaField({
         value: new fields.StringField({
-          initial: ""
+          initial: "",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.RangeShort"
-        })
+          initial: "BASICFANTASYRPG.RangeShort",
+        }),
       }),
-      
+
       rangeMedium: new fields.SchemaField({
         value: new fields.StringField({
-          initial: ""
+          initial: "",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.RangeMedium"
-        })
+          initial: "BASICFANTASYRPG.RangeMedium",
+        }),
       }),
-      
+
       rangeLong: new fields.SchemaField({
         value: new fields.StringField({
-          initial: ""
+          initial: "",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.RangeLong"
-        })
+          initial: "BASICFANTASYRPG.RangeLong",
+        }),
       }),
-      
+
       rateOfFire: new fields.SchemaField({
         value: new fields.StringField({
-          initial: ""
+          initial: "",
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.RateOfFire"
-        })
+          initial: "BASICFANTASYRPG.RateOfFire",
+        }),
       }),
-      
+
       targetAC: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,
           nullable: false,
           integer: true,
           min: 0,
-          initial: 20
+          initial: 20,
         }),
         label: new fields.StringField({
-          initial: "BASICFANTASYRPG.TargetAC"
-        })
-      })
+          initial: "BASICFANTASYRPG.TargetAC",
+        }),
+      }),
     };
   }
-  
+
   /**
    * Prepare derived data for siege engines
    * No complex calculations needed - siege engines are straightforward
@@ -119,7 +118,7 @@ export class SiegeEngineDataModel extends foundry.abstract.TypeDataModel {
     // Siege engines don't need complex derived data calculations
     // All their data is static or user-input
   }
-  
+
   /**
    * Migrate data from older versions
    * @param {object} source - The source data to migrate

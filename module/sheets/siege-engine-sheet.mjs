@@ -1,4 +1,4 @@
-import { BaseActorSheet } from './base-actor-sheet.mjs';
+import { BaseActorSheet } from "./base-actor-sheet.mjs";
 
 /**
  * Siege Engine Sheet for Basic Fantasy RPG
@@ -6,7 +6,6 @@ import { BaseActorSheet } from './base-actor-sheet.mjs';
  * @extends {BaseActorSheet}
  */
 export class SiegeEngineSheet extends BaseActorSheet {
-
   static DEFAULT_OPTIONS = {
     ...BaseActorSheet.DEFAULT_OPTIONS,
     classes: [...BaseActorSheet.DEFAULT_OPTIONS.classes, "siege-engine"],
@@ -19,7 +18,7 @@ export class SiegeEngineSheet extends BaseActorSheet {
   // Siege engines use a single-page layout (no tabs)
   static PARTS = {
     main: {
-      template: "systems/basicfantasyrpg/templates/actor/siege-engine.hbs"
+      template: "systems/basicfantasyrpg/templates/actor/siege-engine.hbs",
     },
   };
 
