@@ -169,6 +169,11 @@ export class CharacterDataModel extends BaseActorDataModel {
         })
       }),
       
+      manualMode: new fields.BooleanField({
+        required: true,
+        initial: false
+      }),
+      
       money: new fields.SchemaField({
         pp: new fields.SchemaField({
           value: new fields.NumberField({
@@ -284,6 +289,9 @@ export class CharacterDataModel extends BaseActorDataModel {
     for (let [, ability] of Object.entries(this.abilities)) {
       ability.bonus = this._calculateAbilityBonus(ability.value);
     }
+    
+    // Skip automated calculations if manual mode is enabled
+    if (this.manualMode) return;
     
     // Calculate next level XP based on class and current level
     this.xp.next = this._calculateNextLevelXP();
