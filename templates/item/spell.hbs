@@ -1,0 +1,30 @@
+<div class="{{item.type}}">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}"/></h1>
+      <div class="grid grid-5col">
+        <div class="resource">
+          <label for="system.class.value" class="resource-label">{{localize data.class.label}}</label>
+          <input type="text" name="system.class.value" value="{{data.class.value}}" data-dtype="String"/>
+        </div>
+        <div class="resource">
+          <label for="system.spellLevel.value" class="resource-label">{{localize data.spellLevel.label}}</label>
+          <input type="text" name="system.spellLevel.value" value="{{data.spellLevel.value}}" data-dtype="Number"/>
+        </div>
+        <div class="resource">
+          <label for="system.range.value" class="resource-label">{{localize data.range.label}}</label>
+          <input type="text" name="system.range.value" value="{{data.range.value}}" data-dtype="String"/>
+        </div>
+        <div class="resource">
+          <label for="system.duration.value" class="resource-label">{{localize data.duration.label}}</label>
+          <input type="text" name="system.duration.value" value="{{data.duration.value}}" data-dtype="String"/>
+        </div>
+        <div class="resource">
+          <label for="system.prepared.value" class="resource-label">{{localize data.prepared.label}}</label>
+          <input type="number" name="system.prepared.value" value="{{data.prepared.value}}" data-dtype="Number"/>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
