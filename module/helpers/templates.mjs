@@ -4,14 +4,18 @@
  * @return {Promise}
  */
  export const preloadHandlebarsTemplates = async function() {
+  const loadTemplates = foundry.applications.handlebars.loadTemplates;
+
   return loadTemplates([
 
     // Actor partials.
-    'systems/basicfantasyrpg/templates/actor/parts/actor-combat.html',
-    'systems/basicfantasyrpg/templates/actor/parts/actor-description.html',
-    'systems/basicfantasyrpg/templates/actor/parts/actor-items.html',
-    'systems/basicfantasyrpg/templates/actor/parts/actor-spells.html',
-    'systems/basicfantasyrpg/templates/actor/parts/actor-features.html',
-    'systems/basicfantasyrpg/templates/actor/parts/actor-floors.html',
+    'systems/basicfantasyrpg/templates/actor/parts/combat.hbs',
+    'systems/basicfantasyrpg/templates/actor/parts/description.hbs',
+    'systems/basicfantasyrpg/templates/actor/parts/items.hbs',
+    'systems/basicfantasyrpg/templates/actor/parts/spells.hbs',
+    'systems/basicfantasyrpg/templates/actor/parts/features.hbs',
+    'systems/basicfantasyrpg/templates/actor/parts/floors.hbs',
+    'systems/basicfantasyrpg/templates/item/parts/sheet.hbs',
+    'systems/basicfantasyrpg/templates/item/parts/description.hbs',
   ]);
 };

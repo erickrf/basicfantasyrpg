@@ -3,8 +3,6 @@ import { BasicFantasyRPGActor } from './documents/actor.mjs';
 import { BasicFantasyRPGItem } from './documents/item.mjs';
 
 // Import sheet classes.
-import { BasicFantasyRPGActorSheet } from './sheets/actor-sheet.mjs';
-import { BasicFantasyRPGItemSheet } from './sheets/item-sheet.mjs';
 import { CharacterSheet } from './sheets/character-sheet.mjs';
 import { MonsterSheet } from './sheets/monster-sheet.mjs';
 import { VehicleSheet } from './sheets/vehicle-sheet.mjs';
@@ -22,6 +20,11 @@ import { StrongholdDataModel } from './data-models/actors/stronghold-data.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { BASICFANTASYRPG } from './helpers/config.mjs';
+
+const Actors = foundry.documents.collections.Actors;
+const Items = foundry.documents.collections.Items;
+const ActorSheet = foundry.appv1.sheets.ActorSheet;
+const ItemSheet = foundry.appv1.sheets.ItemSheet;
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -62,9 +65,6 @@ Hooks.once('init', async function() {
 
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('basicfantasyrpg', BasicFantasyRPGActorSheet,
-      { makeDefault: false }
-  );
   Actors.registerSheet('basicfantasyrpg',
       CharacterSheet,
       { types: ['character'], makeDefault: true, label: "Character Sheet V2"}
@@ -86,7 +86,6 @@ Hooks.once('init', async function() {
     { types: ['stronghold'], makeDefault: true, label: "Stronghold Sheet V2"}
   );
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('basicfantasyrpg', BasicFantasyRPGItemSheet, { makeDefault: false });
   Items.registerSheet('basicfantasyrpg', BasicFantasyRPGItemSheetV2, { makeDefault: true });
 
   // Preload Handlebars templates.
