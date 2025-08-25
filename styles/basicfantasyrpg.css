@@ -540,6 +540,10 @@
   font-weight: bold;
 }
 
+.basicfantasyrpg .resource {
+  flex: 1;
+}
+
 .basicfantasyrpg .items-header {
   height: 28px;
   margin: 2px 0;
