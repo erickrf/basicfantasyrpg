@@ -6,6 +6,23 @@ import { BASICFANTASYRPG } from "../../helpers/config.mjs";
  * Represents weapons with combat-related properties
  */
 export class WeaponDataModel extends ValuableItemDataModel {
+  /**
+   * Migrate legacy data to current schema
+   * @param {Object} source The source data to migrate
+   * @returns {Object} The migrated data
+   */
+  static migrateData(source) {
+    // Handle legacy size field
+    if (typeof source.size === 'string') {
+      const validSizes = Object.keys(BASICFANTASYRPG.weaponSizes);
+      source.size = {
+        value: validSizes.includes(source.size) ? source.size : 'M',
+        label: "BASICFANTASYRPG.Size"
+      };
+    }
+    return super.migrateData(source);
+  }
+
   static defineSchema() {
     const fields = foundry.data.fields;
     const baseSchema = super.defineSchema();

@@ -6,6 +6,34 @@ import { BASICFANTASYRPG } from "../../helpers/config.mjs";
  * Represents spells with spell-specific properties
  */
 export class SpellDataModel extends BaseItemDataModel {
+  /**
+   * Migrate legacy data to current schema
+   * @param {Object} source The source data to migrate
+   * @returns {Object} The migrated data
+   */
+  static migrateData(source) {
+    // Handle legacy class field
+    if (typeof source.class === 'string') {
+      // Normalize legacy class names by removing whitespace, hyphens and lowercasing
+      const normalizedClass = source.class.toLowerCase().replace(/[\s-]+/g, '');
+      
+      // Map normalized names to internal camelCase identifiers
+      const legacyClassMap = {
+        'magicuser': 'magicUser',
+        'cleric': 'cleric'
+      };
+      
+      const mappedClass = legacyClassMap[normalizedClass] || '';
+      const validClasses = Object.keys(BASICFANTASYRPG.spellcasterClasses);
+      
+      source.class = {
+        value: validClasses.includes(mappedClass) ? mappedClass : '',
+        label: "BASICFANTASYRPG.Class"
+      };
+    }
+    return super.migrateData(source);
+  }
+
   static defineSchema() {
     const fields = foundry.data.fields;
     const baseSchema = super.defineSchema();
@@ -15,7 +43,7 @@ export class SpellDataModel extends BaseItemDataModel {
       
       class: new fields.SchemaField({
         value: new fields.StringField({
-          initial: "",
+          initial: "magicUser",
           choices: Object.keys(BASICFANTASYRPG.spellcasterClasses),
         }),
         label: new fields.StringField({
