@@ -69,6 +69,11 @@
   "BASICFANTASYRPG.Electrum": "Électrum",
   "BASICFANTASYRPG.Silver": "Argent",
   "BASICFANTASYRPG.Copper": "Cuivre",
+  "BASICFANTASYRPG.PlatinumAbbr": "pp",
+  "BASICFANTASYRPG.GoldAbbr": "po",
+  "BASICFANTASYRPG.ElectrumAbbr": "pe",
+  "BASICFANTASYRPG.SilverAbbr": "pa",
+  "BASICFANTASYRPG.CopperAbbr": "pc",
 
   "BASICFANTASYRPG.AbilityCheck": "Test de capacité",
   "BASICFANTASYRPG.Add": "Ajouter",

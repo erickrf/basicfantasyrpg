@@ -68,7 +68,7 @@
           <div class="flex-left align-right">{{item.system.weight.value}}&nbsp;{{localize
               "BASICFANTASYRPG.PoundsAbbr"
             }}</div>
-          <div class="flex-right">{{item.system.price.value}}</div>
+          <div class="flex-right">{{item.system.price.amount}} {{localize (lookup ../money item.system.price.currency)}}</div>
         </div>
         <div class="item-controls">
           <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>

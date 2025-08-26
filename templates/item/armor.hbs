@@ -1,7 +1,12 @@
 <div class="grid grid-3col">
   <div class="resource">
-    <label for="system.price.value" class="resource-label">{{localize data.price.label}}</label>
-    <input type="text" name="system.price.value" value="{{data.price.value}}" data-dtype="String" />
+    <label class="resource-label">{{localize data.price.label}}</label>
+    <div class="flexrow">
+      <input type="number" name="system.price.amount" value="{{data.price.amount}}" data-dtype="Number" min="0" style="flex: 2;" />
+      <select name="system.price.currency" data-dtype="String" style="flex: 1; margin-left: 4px;">
+        {{selectOptions moneyAbbr selected=data.price.currency localize=true}}
+      </select>
+    </div>
   </div>
   <div class="resource">
     <label for="system.weight.value" class="resource-label">{{localize data.weight.label}}</label>

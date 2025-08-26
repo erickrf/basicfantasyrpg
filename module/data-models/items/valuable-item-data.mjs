@@ -1,4 +1,5 @@
 import { BaseItemDataModel } from "./base-item-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Valuable Item Data Model for Basic Fantasy RPG
@@ -13,8 +14,16 @@ export class ValuableItemDataModel extends BaseItemDataModel {
       ...baseSchema,
       
       price: new fields.SchemaField({
-        value: new fields.StringField({
-          initial: "",
+        amount: new fields.NumberField({
+          required: true,
+          nullable: false,
+          min: 0,
+          initial: 0,
+        }),
+        currency: new fields.StringField({
+          required: true,
+          initial: "gp",
+          choices: Object.keys(BASICFANTASYRPG.money),
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Price",

@@ -47,6 +47,18 @@ BASICFANTASYRPG.money = {
 };
 
 /**
+ * Abbreviated money names used within the system.
+ * @type {Object}
+ */
+BASICFANTASYRPG.moneyAbbr = {
+  pp: "BASICFANTASYRPG.PlatinumAbbr",
+  gp: "BASICFANTASYRPG.GoldAbbr",
+  ep: "BASICFANTASYRPG.ElectrumAbbr",
+  sp: "BASICFANTASYRPG.SilverAbbr",
+  cp: "BASICFANTASYRPG.CopperAbbr",
+};
+
+/**
  * Character classes available in Basic Fantasy RPG
  * @type {Object}
  */
@@ -56,6 +68,16 @@ BASICFANTASYRPG.characterClasses = {
   cleric: "BASICFANTASYRPG.ClassCleric",
   magicUser: "BASICFANTASYRPG.ClassMagicUser",
   thief: "BASICFANTASYRPG.ClassThief",
+};
+
+/**
+ * Weapon sizes available in Basic Fantasy RPG
+ * @type {Object}
+ */
+BASICFANTASYRPG.weaponSizes = {
+  S: "BASICFANTASYRPG.SizeSmall",
+  M: "BASICFANTASYRPG.SizeMedium",
+  L: "BASICFANTASYRPG.SizeLarge",
 };
 
 /**
