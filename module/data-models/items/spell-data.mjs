@@ -1,4 +1,5 @@
 import { BaseItemDataModel } from "./base-item-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Spell Data Model for Basic Fantasy RPG
@@ -15,6 +16,7 @@ export class SpellDataModel extends BaseItemDataModel {
       class: new fields.SchemaField({
         value: new fields.StringField({
           initial: "",
+          choices: Object.keys(BASICFANTASYRPG.spellcasterClasses),
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Class",

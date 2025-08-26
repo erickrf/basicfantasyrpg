@@ -1,7 +1,9 @@
 <div class="grid grid-5col">
   <div class="resource">
     <label for="system.class.value" class="resource-label">{{localize data.class.label}}</label>
-    <input type="text" name="system.class.value" value="{{data.class.value}}" data-dtype="String" />
+    <select name="system.class.value" data-dtype="String">
+      {{selectOptions spellcasterClasses selected=data.class.value localize=true}}
+    </select>
   </div>
   <div class="resource">
     <label for="system.spellLevel.value" class="resource-label">{{localize data.spellLevel.label}}</label>

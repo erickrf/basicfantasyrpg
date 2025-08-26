@@ -1,4 +1,5 @@
 import { ValuableItemDataModel } from "./valuable-item-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Weapon Data Model for Basic Fantasy RPG
@@ -51,7 +52,7 @@ export class WeaponDataModel extends ValuableItemDataModel {
         value: new fields.StringField({
           required: true,
           initial: "M",
-          choices: ["S", "M", "L"],
+          choices: Object.keys(BASICFANTASYRPG.weaponSizes),
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Size",

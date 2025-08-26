@@ -15,17 +15,8 @@
   </div>
   <div class="resource grid-span-2">
     <label for="system.material.value" class="resource-label">{{localize data.material.label}}</label>
-    <select name="system.material.value" id="system.material.value">
-      <option value="floor" {{selected (eq data.material.value "floor")}}>{{localize "ITEM.TypeFloor"}}</option>
-      <option value="roofThatch" {{selected (eq data.material.value "roofThatch")}}>{{localize
-          "BASICFANTASYRPG.RoofThatched"
-        }}</option>
-      <option value="roofWood" {{selected (eq data.material.value "roofWood")}}>{{localize
-          "BASICFANTASYRPG.RoofWood"
-        }}</option>
-      <option value="roofSlate" {{selected (eq data.material.value "roofSlate")}}>{{localize
-          "BASICFANTASYRPG.RoofSlate"
-        }}</option>
+    <select name="system.material.value" data-dtype="String">
+      {{selectOptions floorMaterials selected=data.material.value localize=true}}
     </select>
   </div>
   <div class="resource">

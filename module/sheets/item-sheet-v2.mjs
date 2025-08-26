@@ -74,6 +74,9 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
     // Add configuration data for dropdowns
     context.weaponSizes = CONFIG.BASICFANTASYRPG.weaponSizes;
     context.moneyAbbr = CONFIG.BASICFANTASYRPG.moneyAbbr;
+    context.floorMaterials = CONFIG.BASICFANTASYRPG.floorMaterials;
+    context.wallMaterials = CONFIG.BASICFANTASYRPG.wallMaterials;
+    context.spellcasterClasses = CONFIG.BASICFANTASYRPG.spellcasterClasses;
 
     // Enrich description for editor
     context.enrichedDescription = await TextEditor.enrichHTML(this.document.system.description, { async: true });

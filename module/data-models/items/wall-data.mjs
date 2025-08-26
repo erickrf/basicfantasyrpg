@@ -1,4 +1,5 @@
 import { ValuableItemDataModel } from "./valuable-item-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Wall Data Model for Basic Fantasy RPG
@@ -41,7 +42,7 @@ export class WallDataModel extends ValuableItemDataModel {
       material: new fields.SchemaField({
         value: new fields.StringField({
           initial: "wood",
-          choices: ["wood", "brick", "stoneSoft", "stoneHard"],
+          choices: Object.keys(BASICFANTASYRPG.wallMaterials),
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Material",

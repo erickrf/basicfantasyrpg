@@ -5,19 +5,8 @@
   </div>
   <div class="resource grid-span-2">
     <label for="system.material.value" class="resource-label">{{localize data.material.label}}</label>
-    <select name="system.material.value" id="system.material.value">
-      <option value="wood" {{selected (eq data.material.value "wood")}}>{{localize
-          "BASICFANTASYRPG.MaterialWood"
-        }}</option>
-      <option value="brick" {{selected (eq data.material.value "brick")}}>{{localize
-          "BASICFANTASYRPG.MaterialBrick"
-        }}</option>
-      <option value="stoneSoft" {{selected (eq data.material.value "stoneSoft")}}>{{localize
-          "BASICFANTASYRPG.MaterialStoneSoft"
-        }}</option>
-      <option value="stoneHard" {{selected (eq data.material.value "stoneHard")}}>{{localize
-          "BASICFANTASYRPG.MaterialStoneHard"
-        }}</option>
+    <select name="system.material.value" data-dtype="String">
+      {{selectOptions wallMaterials selected=data.material.value localize=true}}
     </select>
   </div>
   <div class="resource">

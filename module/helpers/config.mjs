@@ -71,6 +71,16 @@ BASICFANTASYRPG.characterClasses = {
 };
 
 /**
+ * Spellcaster classes available in Basic Fantasy RPG
+ * @type {Object}
+ */
+BASICFANTASYRPG.spellcasterClasses = {
+  "": "",
+  cleric: BASICFANTASYRPG.characterClasses.cleric,
+  magicUser: BASICFANTASYRPG.characterClasses.magicUser,
+};
+
+/**
  * Weapon sizes available in Basic Fantasy RPG
  * @type {Object}
  */
@@ -78,6 +88,28 @@ BASICFANTASYRPG.weaponSizes = {
   S: "BASICFANTASYRPG.SizeSmall",
   M: "BASICFANTASYRPG.SizeMedium",
   L: "BASICFANTASYRPG.SizeLarge",
+};
+
+/**
+ * Floor materials available for stronghold construction
+ * @type {Object}
+ */
+BASICFANTASYRPG.floorMaterials = {
+  floor: "ITEM.TypeFloor",
+  roofThatch: "BASICFANTASYRPG.RoofThatched",
+  roofWood: "BASICFANTASYRPG.RoofWood",
+  roofSlate: "BASICFANTASYRPG.RoofSlate",
+};
+
+/**
+ * Wall materials available for stronghold construction
+ * @type {Object}
+ */
+BASICFANTASYRPG.wallMaterials = {
+  wood: "BASICFANTASYRPG.MaterialWood",
+  brick: "BASICFANTASYRPG.MaterialBrick",
+  stoneSoft: "BASICFANTASYRPG.MaterialStoneSoft",
+  stoneHard: "BASICFANTASYRPG.MaterialStoneHard",
 };
 
 /**

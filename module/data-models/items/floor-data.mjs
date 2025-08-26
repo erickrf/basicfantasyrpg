@@ -1,4 +1,5 @@
 import { ValuableItemDataModel } from "./valuable-item-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Floor Data Model for Basic Fantasy RPG
@@ -39,7 +40,7 @@ export class FloorDataModel extends ValuableItemDataModel {
       material: new fields.SchemaField({
         value: new fields.StringField({
           initial: "floor",
-          choices: ["floor", "roofThatch", "roofWood", "roofSlate"],
+          choices: Object.keys(BASICFANTASYRPG.floorMaterials),
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Material",
