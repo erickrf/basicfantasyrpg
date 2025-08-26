@@ -42,6 +42,9 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
     floor: {
       template: "systems/basicfantasyrpg/templates/item/floor.hbs",
     },
+    item: {
+      template: "systems/basicfantasyrpg/templates/item/item.hbs",
+    },
     spell: {
       template: "systems/basicfantasyrpg/templates/item/spell.hbs",
     },

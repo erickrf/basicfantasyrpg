@@ -13,21 +13,18 @@ export class SpellDataModel extends BaseItemDataModel {
    */
   static migrateData(source) {
     // Handle legacy class field
-    if (typeof source.class === 'string') {
+    if (typeof source.class?.value === 'string') {
       // Normalize legacy class names by removing whitespace, hyphens and lowercasing
-      const normalizedClass = source.class.toLowerCase().replace(/[\s-]+/g, '');
-      
-      // Map normalized names to internal camelCase identifiers
+      const normalizedClass = source.class.value.toLowerCase().replace(/[\s-]+/g, '');
+
       const legacyClassMap = {
         'magicuser': 'magicUser',
         'cleric': 'cleric'
       };
       
       const mappedClass = legacyClassMap[normalizedClass] || '';
-      const validClasses = Object.keys(BASICFANTASYRPG.spellcasterClasses);
-      
       source.class = {
-        value: validClasses.includes(mappedClass) ? mappedClass : '',
+        value: mappedClass,
         label: "BASICFANTASYRPG.Class"
       };
     }
