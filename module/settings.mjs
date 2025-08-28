@@ -1,33 +1,28 @@
+import { initializeAddons, getRegisteredAddons, applyActiveLocalization, applyEnabledAddons } from './addons/addon-registry.mjs';
+
 /**
  * Settings to apply to the module, including common house rules and supplements.
  */
 
-
 export function registerSystemSettings() {
-  game.settings.register('basicfantasyrpg', 'mySettingName', {
-    name: 'My Setting',
-    hint: 'A description of the registered setting and its behavior.',
-    scope: 'world',     // "world" = sync to db, "client" = local storage
-    config: true,       // false if you dont want it to show in module config
-    type: Number,       // You want the primitive class, e.g. Number, not the name of the class as a string
-    default: 0,
-    onChange: value => { // value is the new value of the setting
-      console.log(value)
-    },
-    requiresReload: true, // true if you want to prompt the user to reload
-    /** Creates a select dropdown */
-    choices: {
-      1: "Option Label 1",
-      2: "Option Label 2",
-      3: "Option Label 3"
-    },
-    /** Number settings can have a range slider, with an optional step property */
-    range: {
-      min: 0,
-      step: 2,
-      max: 10
-    },
-    /** "audio", "image", "video", "imagevideo", "folder", "font", "graphics", "text", or "any" */
-    filePicker: "any"
+  const addons = getRegisteredAddons();
+
+  // Register individual checkbox settings for each addon
+  addons.forEach(addon => {
+    game.settings.register('basicfantasyrpg', `addon-${addon.id}`, {
+      name: `BASICFANTASYRPG.SETTINGS.Enable${addon.id.charAt(0).toUpperCase() + addon.id.slice(1)}`,
+      hint: addon.description || `Enable ${addon.name}`,
+      scope: 'world',
+      config: true,
+      type: Boolean,
+      default: false,
+      requiresReload: true
+    });
   });
+
+  // Apply enabled addons to game configuration
+  applyEnabledAddons();
+  
+  // Apply active localization
+  applyActiveLocalization();
 }

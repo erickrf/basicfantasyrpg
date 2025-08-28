@@ -182,5 +182,8 @@
   "BASICFANTASYRPG.EffectCreate": "Create Effect",
   "BASICFANTASYRPG.EffectToggle": "Toggle Effect",
   "BASICFANTASYRPG.EffectEdit": "Edit Effect",
-  "BASICFANTASYRPG.EffectDelete": "Delete Effect"
+  "BASICFANTASYRPG.EffectDelete": "Delete Effect",
+
+  "BASICFANTASYRPG.SETTINGS.EnableNecromancer": "Enable Necromancer Class",
+  "BASICFANTASYRPG.ClassNecromancer": "Necromancer"
 }
