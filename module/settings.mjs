@@ -1,4 +1,4 @@
-import { getRegisteredAddons, applyActiveLocalization, applyEnabledAddons } from "./addons/addon-registry.mjs";
+import { getRegisteredAddons, applyEnabledAddons } from "./addons/addon-registry.mjs";
 
 /**
  * Settings to apply to the module, including common house rules and supplements.
@@ -10,7 +10,7 @@ export function registerSystemSettings() {
   // Register individual checkbox settings for each addon
   addons.forEach((addon) => {
     game.settings.register("basicfantasyrpg", `addon-${addon.id}`, {
-      name: `BASICFANTASYRPG.SETTINGS.Enable${addon.id.charAt(0).toUpperCase() + addon.id.slice(1)}`,
+      name: addon.settingName,
       hint: addon.description || `Enable ${addon.name}`,
       scope: "world",
       config: true,
@@ -22,7 +22,4 @@ export function registerSystemSettings() {
 
   // Apply enabled addons to game configuration
   applyEnabledAddons();
-
-  // Apply active localization
-  applyActiveLocalization();
 }

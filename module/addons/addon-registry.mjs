@@ -1,5 +1,6 @@
 
 import { NecromancerAddon } from './necromancer.mjs';
+import { BarbarianAddon } from './barbarian.mjs';
 
 /**
  * Array of available addons to be chosen in the game settings.
@@ -90,25 +91,17 @@ export function applyEnabledAddons() {
         addon.savesProgression
       );
     }
-    
-    console.log(`Applied addon: ${addon.name}`);
-  });
-}
 
-/**
- * Apply localization from enabled addons
- */
-export function applyActiveLocalization() {
-  const enabledAddons = getEnabledAddons();
-  const currentLang = game.i18n.lang;
-  
-  enabledAddons.forEach(addon => {
-    if (addon.localization && addon.localization[currentLang]) {
-      const strings = addon.localization[currentLang];
+    if (addon.localization && addon.localization[game.i18n.lang]) {
+      const strings = addon.localization[game.i18n.lang];
+      console.log('aeee localizing');
       Object.entries(strings).forEach(([key, value]) => {
+        console.log('adding lalalala', key, value);
         game.i18n.translations[key] = value;
       });
     }
+    
+    console.log(`Applied addon: ${addon.name}`);
   });
 }
 
@@ -117,10 +110,9 @@ export function applyActiveLocalization() {
  */
 export function initializeAddons() {
   // Register all available addons
-  registerAddon(NecromancerAddon);
-  
-  console.log(`Initialized addon system with ${registeredAddons.length} addons`);
+  for (const addon of [NecromancerAddon, BarbarianAddon]) {
+    registerAddon(addon);
+  }
 }
 
 initializeAddons()
-// applyEnabledAddons()
