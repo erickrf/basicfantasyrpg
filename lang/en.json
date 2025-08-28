@@ -94,6 +94,9 @@
   "BASICFANTASYRPG.ClassCleric": "Cleric",
   "BASICFANTASYRPG.ClassMagicUser": "Magic User",
   "BASICFANTASYRPG.ClassThief": "Thief",
+  
+  "BASICFANTASYRPG.SETTINGS.EnabledSupplements": "Enabled Supplements",
+  "BASICFANTASYRPG.SETTINGS.EnabledSupplementsHint": "Choose which supplement books to enable for this world",
   "BASICFANTASYRPG.Cost": "Cost",
   "BASICFANTASYRPG.CostMultiplier": "Cost Multiplier",
   "BASICFANTASYRPG.Damage": "Damage",

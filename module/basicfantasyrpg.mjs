@@ -30,6 +30,9 @@ import { WallDataModel } from "./data-models/items/wall-data.mjs";
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { BASICFANTASYRPG } from "./helpers/config.mjs";
 
+// import settings
+import { registerSystemSettings } from "./settings.mjs"
+
 const Actors = foundry.documents.collections.Actors;
 const Items = foundry.documents.collections.Items;
 const ActorSheet = foundry.appv1.sheets.ActorSheet;
@@ -79,6 +82,8 @@ Hooks.once("init", async function () {
   CONFIG.Item.dataModels.feature = FeatureDataModel;
   CONFIG.Item.dataModels.floor = FloorDataModel;
   CONFIG.Item.dataModels.wall = WallDataModel;
+
+  registerSystemSettings();
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
