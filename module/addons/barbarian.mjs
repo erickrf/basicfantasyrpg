@@ -8,6 +8,7 @@ export const BarbarianAddon = {
   id: 'barbarian',
   name: 'Barbarian Class',
   description: 'Adds the Barbarian class from BFRPG supplements',
+  settingName: 'Enable Barbarian',
 
   classes: {
     barbarian: "BASICFANTASYRPG.ClassBarbarian"

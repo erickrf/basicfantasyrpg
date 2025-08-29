@@ -9,7 +9,7 @@ export const NecromancerAddon = {
   id: 'necromancer',
   name: 'Necromancer Class',
   description: 'Adds the Necromancer class from BFRPG supplements',
-  settingName: 'Enable Necromancer Class',
+  settingName: 'Enable Necromancer',
 
   classes: {
     necromancer: "BASICFANTASYRPG.ClassNecromancer"
