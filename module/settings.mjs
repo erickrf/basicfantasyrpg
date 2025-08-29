@@ -19,7 +19,4 @@ export function registerSystemSettings() {
       requiresReload: true,
     });
   });
-
-  // Apply enabled addons to game configuration
-  applyEnabledAddons();
 }

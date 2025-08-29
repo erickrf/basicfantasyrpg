@@ -96,7 +96,6 @@ export function applyEnabledAddons() {
       const strings = addon.localization[game.i18n.lang];
       console.log('aeee localizing');
       Object.entries(strings).forEach(([key, value]) => {
-        console.log('adding lalalala', key, value);
         game.i18n.translations[key] = value;
       });
     }
@@ -114,5 +113,10 @@ export function initializeAddons() {
     registerAddon(addon);
   }
 }
+
+// Hook into i18nInit to apply addons after i18n system is ready
+Hooks.once('i18nInit', () => {
+  applyEnabledAddons();
+});
 
 initializeAddons()
