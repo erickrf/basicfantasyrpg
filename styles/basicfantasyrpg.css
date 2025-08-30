@@ -396,6 +396,7 @@
   width: 0;
 }
 
+
 /* Styles limited to basicfantasyrpg sheets */
 
 .basicfantasyrpg.sheet.actor {
@@ -525,6 +526,14 @@
 
 .basicfantasyrpg.sheet .tab-container {
   display: flex;
+}
+
+.basicfantasyrpg .abilities-saves {
+  flex: 0.5;
+}
+
+.basicfantasyrpg .combat-main {
+  flex: 1;
 }
 
 .basicfantasyrpg .editor-content {

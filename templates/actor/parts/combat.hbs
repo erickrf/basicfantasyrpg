@@ -41,9 +41,11 @@
         </div>
 
         <div class="resource flex-group-center">
-          <label for="system.attackBonus.value" class="resource-label">{{localize data.attackBonus.abbr}}</label>
+          <label class="resource-label">{{localize data.attackBonus.abbr}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.attackBonus.value" value="{{data.attackBonus.value}}" data-dtype="Number" {{#if (eq actor.type 'monster')}}disabled{{/if}}/>
+            <input type="number" name="system.attackBonus.value" value="{{data.attackBonus.value}}" data-dtype="Number" {{#if (eq actor.type 'monster')}}disabled{{/if}} title="Class Attack Bonus"/>
+            <span class="plus-sign">+</span>
+            <input type="number" name="system.attackBonus.extra" value="{{data.attackBonus.extra}}" data-dtype="Number" title="Temporary Attack Bonus"/>
           </div>
         </div>
 
@@ -63,6 +65,7 @@
 
       </section>
 
+      <!-- weapons -->
       <ol class="items-list">
         <li class="item flexrow items-header">
           <div class="item-name">{{localize 'ITEM.TypeWeapon'}}</div>
@@ -93,6 +96,7 @@
         {{/each}}
       </ol>
 
+      <!-- armor -->
       <ol class="items-list">
         <li class="item flexrow items-header">
           <div class="item-name">{{localize 'ITEM.TypeArmor'}}</div>

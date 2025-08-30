@@ -31,6 +31,12 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
           integer: true,
           initial: 1,
         }),
+        extra: new fields.NumberField({
+          required: false,
+          nullable: true,
+          integer: true,
+          initial: 0
+        }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.AttackBonus",
         }),
