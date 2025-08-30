@@ -372,7 +372,7 @@ export class BasicFantasyRPGActor extends Actor {
   _getActorRollData(data) {
     // Add attack bonus for easier access, or fall back to 0.
     if (data.attackBonus) {
-      data.ab = data.attackBonus.value + data.attackBonus.extra ?? 0;
+      data.ab = data.attackBonus.total ?? 0;
     }
   }
 }

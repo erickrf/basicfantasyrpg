@@ -84,6 +84,7 @@
   "BASICFANTASYRPG.Attack": "Attack",
   "BASICFANTASYRPG.AttackBonus": "Attack Bonus",
   "BASICFANTASYRPG.AttackBonusAbbr": "AB",
+  "BASICFANTASYRPG.AttackBonusExtra": "Attack Bonus Modifier",
   "BASICFANTASYRPG.AttackPenalty": "Attack Penalty",
   "BASICFANTASYRPG.BonusAttackBonus": "Bonus AB",
   "BASICFANTASYRPG.BuildTime": "Time to Build",
