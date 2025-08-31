@@ -66,7 +66,7 @@
     }
   },
   "url": "https://github.com/erickrf/basicfantasyrpg",
-  "manifest": "https://raw.githubusercontent.com/erickrf/basicfantasyrpg/own-manifest/system.json",
+  "manifest": "https://raw.githubusercontent.com/erickrf/basicfantasyrpg/refs/heads/own-manifest/system.json",
   "download": "https://github.com/erickrf/basicfantasyrpg/archive/refs/tags/r15alpha3.zip",
   "license": "LICENSE.txt"
 }
