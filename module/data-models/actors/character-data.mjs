@@ -282,8 +282,6 @@ export class CharacterDataModel extends BaseActorDataModel {
    * Calculates ability bonuses and other derived values
    */
   prepareDerivedData() {
-    super.prepareDerivedData();
-
     // Calculate ability bonuses
     for (let [, ability] of Object.entries(this.abilities)) {
       ability.bonus = this._calculateAbilityBonus(ability.value);
@@ -300,6 +298,9 @@ export class CharacterDataModel extends BaseActorDataModel {
 
     // Calculate attack bonus based on class and level
     this.attackBonus.value = this._calculateAttackBonus();
+
+    // The parent class does generic derivations like adding bonus AB
+    super.prepareDerivedData();
   }
 
   /**
