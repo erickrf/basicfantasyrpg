@@ -55,6 +55,12 @@ export class WeaponDataModel extends ValuableItemDataModel {
         }),
       }),
 
+      addStrength: new fields.BooleanField({
+        required: true,
+        initial: true,
+        label: "BASICFANTASYRPG.addStrength"
+      }),
+
       range: new fields.SchemaField({
         value: new fields.StringField({
           required: true,
