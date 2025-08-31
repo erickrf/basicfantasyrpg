@@ -367,22 +367,18 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   /**
-   * Handle clickable rolls
-   * @param {Event} event The originating click event
+   * Get the roll formula for a given roll type
+   * @param {Object} dataset The dataset from the clicked element
+   * @param {HTMLElement} element The clicked element
+   * @returns {string} The roll formula
    */
-  async _onRoll(event) {
-    const element = event.target.closest(".rollable");
-    const dataset = element.dataset;
-
+  _getRollFormula(dataset, element) {
     if (dataset.rollType) {
       // Handle weapon rolls
       if (dataset.rollType === "weapon") {
         const itemId = element.closest(".item").dataset.itemId;
         const item = this.document.items.get(itemId);
-        let label = dataset.label
-          ? `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.label}</span>`
-          : `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.attack.capitalize()} attack with ${item.name}</span>`;
-
+        
         let rollFormula = "d20+@ab";
         if (this.document.type === "character") {
           if (dataset.attack === "melee") {
@@ -392,16 +388,70 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
           }
         }
         rollFormula += "+" + item.system.bonusAb.value;
-
-        let roll = new Roll(rollFormula, this.document.getRollData());
-        roll.toMessage({
-          speaker: ChatMessage.getSpeaker({ actor: this.document }),
-          flavor: label,
-          rollMode: game.settings.get("core", "rollMode"),
-        });
-        return roll;
+        return rollFormula;
       }
 
+      if (dataset.rollType === "damage") {
+        let formula = dataset.roll;
+        if (this.document.type === "character" && dataset.addStrength) {
+          formula += "+@str.bonus";
+        }
+        return formula;
+      }
+    }
+
+    // Handle rolls that supply the formula directly
+    if (dataset.roll) {
+      return dataset.roll;
+    }
+
+    return null;
+  }
+
+  /**
+   * Get the roll label for a given roll type
+   * @param {Object} dataset The dataset from the clicked element
+   * @param {HTMLElement} element The clicked element
+   * @returns {string} The roll label
+   */
+  _getRollLabel(dataset, element) {
+    if (dataset.rollType) {
+      // Handle weapon rolls
+      if (dataset.rollType === "weapon") {
+        const itemId = element.closest(".item").dataset.itemId;
+        const item = this.document.items.get(itemId);
+        
+        return dataset.label
+          ? `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.label}</span>`
+          : `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.attack.capitalize()} attack with ${item.name}</span>`;
+      }
+
+      if (dataset.rollType === "damage") {
+        return dataset.label
+          ? `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.label}</span>`
+          : "";
+      }
+    }
+
+    // Handle rolls that supply the formula directly
+    if (dataset.roll) {
+      return dataset.label
+        ? `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.label}</span>`
+        : "";
+    }
+
+    console.error("Couldn't find roll formula");
+  }
+
+  /**
+   * Handle clickable rolls
+   * @param {Event} event The originating click event
+   */
+  async _onRoll(event) {
+    const element = event.target.closest(".rollable");
+    const dataset = element.dataset;
+
+    if (dataset.rollType) {
       // Handle item rolls
       if (dataset.rollType === "item") {
         const itemId = element.closest(".item").dataset.itemId;
@@ -410,22 +460,32 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       }
     }
 
-    // Handle rolls that supply the formula directly
-    if (dataset.roll) {
-      let label = dataset.label
-        ? `<span class="chat-item-name">${game.i18n.localize("BASICFANTASYRPG.Roll")}: ${dataset.label}</span>`
-        : "";
-      let roll = new Roll(dataset.roll, this.document.getRollData());
+    // Get formula and label using helper methods
+    const formula = this._getRollFormula(dataset, element);
+    if (!formula) return;
+
+    let label = this._getRollLabel(dataset, element);
+    
+    // Create and execute the roll
+    let roll = new Roll(formula, this.document.getRollData());
+    
+    // For direct formula rolls, add success message after rolling
+    if (dataset.roll && !dataset.rollType) {
       await roll.roll();
       label += successChatMessage(roll.total, dataset.targetNumber, dataset.rollUnder);
-      roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.document }),
-        flavor: label,
-        rollMode: game.settings.get("core", "rollMode"),
-      });
-      return roll;
     }
+    
+    // Send roll to chat
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.document }),
+      flavor: label,
+      rollMode: game.settings.get("core", "rollMode"),
+    });
+    
+    return roll;
   }
+
+
 
   /**
    * Setup drag and drop functionality for items

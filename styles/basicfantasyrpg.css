@@ -396,6 +396,7 @@
   width: 0;
 }
 
+
 /* Styles limited to basicfantasyrpg sheets */
 
 .basicfantasyrpg.sheet.actor {
@@ -527,6 +528,14 @@
   display: flex;
 }
 
+.basicfantasyrpg .abilities-saves {
+  flex: 0.5;
+}
+
+.basicfantasyrpg .combat-main {
+  flex: 1;
+}
+
 .basicfantasyrpg .editor-content {
   font-family: "Soutane", "Century Gothic", "TeX Gyre Adventor", var(--font-primary);
   font-size: 18px;
@@ -551,6 +560,16 @@
 
 .basicfantasyrpg .resource {
   flex: 1;
+}
+
+.basicfantasyrpg .resource .price-value {
+  flex: 2;
+}
+
+.basicfantasyrpg .resource .price-currency {
+  flex: 1;
+  margin-left: 4px;
+  width: fit-content;
 }
 
 .basicfantasyrpg .items-header {

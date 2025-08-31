@@ -20,6 +20,13 @@ export class WeaponDataModel extends ValuableItemDataModel {
         label: "BASICFANTASYRPG.Size"
       };
     }
+
+    // Handle addStrength based on weapon name
+    if (source.name && typeof source.name === 'string') {
+      const weaponName = source.name.toLowerCase();
+      source.addStrength = !weaponName.includes('bow');
+    }
+
     return super.migrateData(source);
   }
 
@@ -53,6 +60,12 @@ export class WeaponDataModel extends ValuableItemDataModel {
         abbr: new fields.StringField({
           initial: "BASICFANTASYRPG.DamageAbbr",
         }),
+      }),
+
+      addStrength: new fields.BooleanField({
+        required: true,
+        initial: true,
+        label: "BASICFANTASYRPG.addStrength"
       }),
 
       range: new fields.SchemaField({

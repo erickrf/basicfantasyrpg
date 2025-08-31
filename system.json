@@ -49,7 +49,20 @@
   "secondaryTokenAttribute": null,
   "documentTypes": {
     "Actor": {
-      "character": "systems/basicfantasyrpg/module/data-models/actors/character-data.mjs"
+      "character": {},
+      "monster": {},
+      "siegeEngine": {},
+      "stronghold": {},
+      "vehicle": {}
+      },
+    "Item": {
+      "armor": {},
+      "feature": {},
+      "floor": {},
+      "item": {},
+      "spell": {},
+      "wall": {},
+      "weapon": {}
     }
   },
   "url": "https://github.com/erickrf/basicfantasyrpg",

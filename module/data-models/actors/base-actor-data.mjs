@@ -31,6 +31,18 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
           integer: true,
           initial: 1,
         }),
+        extra: new fields.NumberField({
+          required: false,
+          nullable: true,
+          integer: true,
+          initial: 0,
+        }),
+        total: new fields.NumberField({
+          required: true,
+          nullable: false,
+          integer: true,
+          initial: 1,
+        }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.AttackBonus",
         }),
@@ -165,5 +177,8 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
    * Prepare derived data for the base actor fields
    * This method should be called by subclasses in their prepareDerivedData method
    */
-  prepareDerivedData() {}
+  prepareDerivedData() {
+    // Calculate total attack bonus (base + extra)
+    this.attackBonus.total = this.attackBonus.value + (this.attackBonus.extra || 0);
+  }
 }
