@@ -1,10 +1,10 @@
-import { BaseActorDataModel } from "./base-actor-data.mjs";
+import { CreatureDataModel } from "./creature-data.mjs";
 
 /**
  * Monster Data Model for Basic Fantasy RPG
- * Extends BaseActorDataModel with monster-specific fields
+ * Extends CreatureDataModel with monster-specific fields
  */
-export class MonsterDataModel extends BaseActorDataModel {
+export class MonsterDataModel extends CreatureDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const baseSchema = super.defineSchema();
