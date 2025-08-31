@@ -102,6 +102,7 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
    * @returns {Promise<void>}
    */
   static async #onSubmitDocumentForm(event, form, formData) {
+    if (!this.isEditable) return;
     const updates = foundry.utils.expandObject(formData.object);
     return this.document.update(updates);
   }
@@ -113,6 +114,7 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
    * @returns {Promise<void>}
    */
   static async #onEditImage(event, target) {
+    if (!this.isEditable) return;
     const item = this.document;
     new FilePicker({
       type: "image",

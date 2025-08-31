@@ -20,6 +20,13 @@ export class WeaponDataModel extends ValuableItemDataModel {
         label: "BASICFANTASYRPG.Size"
       };
     }
+
+    // Handle addStrength based on weapon name
+    if (source.name && typeof source.name === 'string') {
+      const weaponName = source.name.toLowerCase();
+      source.addStrength = !weaponName.includes('bow');
+    }
+
     return super.migrateData(source);
   }
 
