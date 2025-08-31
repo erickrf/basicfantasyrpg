@@ -203,6 +203,8 @@ export class MonsterDataModel extends CreatureDataModel {
     }
   }
 
+  
+
   /**
    * Migrate data from older versions
    * @param {object} source - The source data to migrate
