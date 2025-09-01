@@ -3,7 +3,7 @@
   data-group="{{tabs.combat.group}}"
   data-tab="{{tabs.combat.id}}">
 
-  <div class="tab-container grid grid-3col">
+  <div class="tab-container grid">
 
     <div class="sidebar vehicle-resources">
       <div class="resources">
@@ -64,9 +64,7 @@
       </div>
     </div>
 
-    <section class="main vehicle-main grid-span-2">
-      {{> "systems/basicfantasyrpg/templates/actor/parts/items.hbs"}}
-    </section>
+    {{> "systems/basicfantasyrpg/templates/actor/parts/items-list.hbs"}}
 
   </div>
 </section>

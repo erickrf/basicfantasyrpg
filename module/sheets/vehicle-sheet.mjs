@@ -37,6 +37,9 @@ export class VehicleSheet extends BaseActorSheet {
     description: {
       template: "systems/basicfantasyrpg/templates/actor/parts/description.hbs",
     },
+    items: {
+      template: "systems/basicfantasyrpg/templates/actor/parts/items-list.hbs"
+    }
   };
 
   /** @override */
@@ -54,5 +57,11 @@ export class VehicleSheet extends BaseActorSheet {
     context.tabs = this._prepareTabs("primary");
 
     return context;
+  }
+
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options);
+
+    options.parts = ["main", "tabs", "combat", "description"];
   }
 }
