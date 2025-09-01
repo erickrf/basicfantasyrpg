@@ -1,5 +1,6 @@
 import { CreatureDataModel } from "./creature-data.mjs";
 
+
 /**
  * Monster Data Model for Basic Fantasy RPG
  * Extends CreatureDataModel with monster-specific fields
@@ -29,6 +30,13 @@ export class MonsterDataModel extends CreatureDataModel {
           required: true,
           nullable: false,
           integer: true,
+          initial: 0,
+        }),
+        effective: new fields.NumberField({
+          required: true,
+          nullable: false,
+          integer: true,
+          min: 0,
           initial: 0,
         }),
         label: new fields.StringField({
@@ -111,6 +119,9 @@ export class MonsterDataModel extends CreatureDataModel {
   prepareDerivedData() {
     super.prepareDerivedData();
 
+    // Calculate effective hit dice for saves
+    this.hitDice.effective = this._calculateEffectiveHitDice();
+
     // Calculate base XP from hit dice if not manually set
     if (this.xp.value === 0) {
       this.xp.value = this._calculateBaseXP();
@@ -122,6 +133,33 @@ export class MonsterDataModel extends CreatureDataModel {
 
     // Calculate monster saves based on hit dice
     this._setMonsterSaves();
+  }
+
+  /**
+   * Calculate effective hit dice for save calculations
+   * @returns {number} The effective hit dice value
+   */
+  _calculateEffectiveHitDice() {
+    const hitDice = this.hitDice;
+    const dieSize = parseInt(hitDice.size.substring(1)); // Extract number from "d8"
+    
+    // If die size is less than d8, effective is 0
+    if (dieSize < 8) {
+      return 0;
+    }
+    
+    // If effective hit dice is less than 1 (like 1d8-2), effective is 0
+    if (hitDice.number === 1 && hitDice.mod < 0) {
+      return 0;
+    }
+    
+    // If less than 1 full hit die, effective is 0
+    if (hitDice.number < 1) {
+      return 0;
+    }
+    
+    // Otherwise, return the number of dice (ignoring modifier)
+    return hitDice.number;
   }
 
   /**
@@ -226,7 +264,7 @@ export class MonsterDataModel extends CreatureDataModel {
    * @returns {object} Object containing save values for each save type
    */
   _calculateMonsterSaves() {
-    if (this._shouldUseNormalManSaves()) {
+    if (this.hitDice.effective === 0) {
       return CONFIG.BASICFANTASYRPG.savesNormalMan;
     } else {
       return this._getFighterSaves();
@@ -234,37 +272,11 @@ export class MonsterDataModel extends CreatureDataModel {
   }
 
   /**
-   * Determine if monster should use normal man saves
-   * @returns {boolean} True if should use normal man saves
-   */
-  _shouldUseNormalManSaves() {
-    const hitDice = this.hitDice;
-    
-    // Check if die size is less than d8
-    const dieSize = parseInt(hitDice.size.substring(1)); // Extract number from "d8"
-    if (dieSize < 8) {
-      return true;
-    }
-    
-    // Check if effective hit dice is less than 1
-    if (hitDice.number === 1 && hitDice.mod < 0) {
-      return true;
-    }
-    
-    // If less than 1 full hit die
-    if (hitDice.number < 1) {
-      return true;
-    }
-    
-    return false;
-  }
-
-  /**
    * Get fighter saves for the monster's hit dice level
    * @returns {object} Object containing fighter save values
    */
   _getFighterSaves() {
-    const fighterLevel = Math.min(Math.max(this.hitDice.number, 1), 20); // Clamp between 1-20
+    const fighterLevel = Math.min(Math.max(this.hitDice.effective, 1), 20); // Clamp between 1-20
     const fighterSaves = {};
     
     for (const saveType in CONFIG.BASICFANTASYRPG.savesProgression.fighter) {
@@ -281,8 +293,6 @@ export class MonsterDataModel extends CreatureDataModel {
    * @returns {object} The migrated data
    */
   static migrateData(source) {
-    // Handle any data structure changes for existing monsters
-    // For now, just return the source data as-is
-    return source;
+    return super.migrateData(source);
   }
 }
