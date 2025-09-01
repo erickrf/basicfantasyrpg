@@ -97,6 +97,10 @@
   "BASICFANTASYRPG.ClassCleric": "Cleric",
   "BASICFANTASYRPG.ClassMagicUser": "Magic User",
   "BASICFANTASYRPG.ClassThief": "Thief",
+  "BASICFANTASYRPG.RaceHuman": "Human",
+  "BASICFANTASYRPG.RaceDwarf": "Dwarf",
+  "BASICFANTASYRPG.RaceElf": "Elf",
+  "BASICFANTASYRPG.RaceHalfling": "Halfling",
   
   "BASICFANTASYRPG.SETTINGS.EnabledSupplements": "Enabled Supplements",
   "BASICFANTASYRPG.SETTINGS.EnabledSupplementsHint": "Choose which supplement books to enable for this world",

@@ -9,7 +9,13 @@
     <div class="resource flex-group-center">
       <label for="system.race.value" class="resource-label">{{localize data.race.label}}</label>
       <div class="resource-content flexrow flex-center flex-between">
-        <input type="text" name="system.race.value" value="{{data.race.value}}" data-dtype="String"/>
+        <select name="system.race.value" class="race-selector" id="system.race.value" data-dtype="String">
+          {{#each characterRaces as |label key|}}
+            <option value="{{key}}" {{selected (eq ../data.race.value key)}}>
+              {{#if label}}{{localize label}}{{else}}--{{/if}}
+            </option>
+          {{/each}}
+        </select>
       </div>
     </div>
 

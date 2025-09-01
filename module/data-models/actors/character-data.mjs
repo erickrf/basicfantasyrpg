@@ -140,6 +140,8 @@ export class CharacterDataModel extends CreatureDataModel {
       race: new fields.SchemaField({
         value: new fields.StringField({
           initial: "",
+          blank: true,
+          choices: CONFIG.BASICFANTASYRPG.characterRaces,
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Race",

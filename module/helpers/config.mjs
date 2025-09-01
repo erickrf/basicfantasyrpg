@@ -71,6 +71,18 @@ BASICFANTASYRPG.characterClasses = {
 };
 
 /**
+ * Character races available in Basic Fantasy RPG
+ * @type {Object}
+ */
+BASICFANTASYRPG.characterRaces = {
+  "": "",
+  human: "BASICFANTASYRPG.RaceHuman",
+  dwarf: "BASICFANTASYRPG.RaceDwarf",
+  elf: "BASICFANTASYRPG.RaceElf",
+  halfling: "BASICFANTASYRPG.RaceHalfling",
+};
+
+/**
  * Spellcaster classes available in Basic Fantasy RPG
  * @type {Object}
  */
