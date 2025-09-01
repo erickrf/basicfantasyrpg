@@ -50,7 +50,7 @@
                 <div class="resource-content flexrow flex-center flex-between">
                   <input type="text" name="system.xp.value" value="{{data.xp.value}}" data-dtype="Number"/>
                   <span class="flexshrink flex-align-center">&nbsp;/&nbsp;</span>
-                  <input type="text" name="system.xp.next" value="{{data.xp.next}}" data-dtype="Number"/>
+                  <input type="text" name="system.xp.next" value="{{data.xp.next}}" data-dtype="Number" {{#unless data.manualMode}}readonly{{/unless}}/>
                 </div>
               </div>
 
