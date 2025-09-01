@@ -299,6 +299,9 @@ export class CharacterDataModel extends CreatureDataModel {
     // Calculate attack bonus based on class and level
     this.attackBonus.value = this._calculateAttackBonus();
 
+    // Calculate base armor class from armor and dexterity
+    this.armorClass.value = this._calculateBaseArmorClass();
+
     // The parent class does generic derivations like adding bonus AB
     super.prepareDerivedData();
   }
@@ -416,5 +419,39 @@ export class CharacterDataModel extends CreatureDataModel {
 
     // Fallback to 1 if class not found in progression table
     return 1;
+  }
+
+  /**
+   * Find the AC granted by the current equipment
+   * @private
+   */
+  _findEquipmentArmorClass() {
+    const armors = this.parent?.itemTypes?.armor || [];
+
+    if (armors.length === 0) {
+      return 11;
+    }
+
+    // Find the highest armor class
+    let bestArmorAC = 0;
+    for (const armor of armors) {
+      const armorAC = armor.system.armorClass?.value || 0;
+      if (armorAC > bestArmorAC) {
+        bestArmorAC = armorAC;
+      }
+    }
+
+    return bestArmorAC
+  }
+
+  /**
+   * Calculate base armor class from armor items and dexterity bonus
+   * @returns {number} The calculated base armor class
+   * @private
+   */
+  _calculateBaseArmorClass() {
+    const baseAC = this._findEquipmentArmorClass();
+
+    return baseAC + (this.abilities.dex.bonus || 0);
   }
 }
