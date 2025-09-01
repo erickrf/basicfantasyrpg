@@ -70,6 +70,8 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
    */
   static async #onEditImage(event, target) {
     const actor = this.document;
+    const FilePicker = foundry.applications.apps.FilePicker.implementation;
+
     new FilePicker({
       type: "image",
       current: actor.img,

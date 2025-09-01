@@ -116,6 +116,8 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
   static async #onEditImage(event, target) {
     if (!this.isEditable) return;
     const item = this.document;
+    const FilePicker = foundry.applications.apps.FilePicker.implementation;
+
     new FilePicker({
       type: "image",
       current: item.img,
