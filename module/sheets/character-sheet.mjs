@@ -46,6 +46,10 @@ export class CharacterSheet extends BaseActorSheet {
     features: {
       template: "systems/basicfantasyrpg/templates/actor/parts/features.hbs",
     },
+    itemsList: {
+      template: "systems/basicfantasyrpg/templates/actor/parts/items-list.hbs",
+      internal: true
+    }
   };
 
   /** @override */
