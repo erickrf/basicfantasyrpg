@@ -221,8 +221,21 @@ BASICFANTASYRPG.attackBonusProgression = {
 };
 
 /**
+ * "Normal man" saves; used for classless NPCs and monsters with less than 1d8 HD.
+ * @type {{}}
+ */
+BASICFANTASYRPG.savesNormalMan = {
+  death: 13,
+  wands: 14,
+  paralysis: 15,
+  breath: 16,
+  spells: 18
+}
+
+/**
  * Saving throw progression tables for each class
- * Key is class, value is object with save types containing arrays indexed by level (0-based)
+ * Key is class, value is object with save types containing arrays indexed by level
+ * (level 1 pointing to index 0)
  * @type {Object}
  */
 BASICFANTASYRPG.savesProgression = {

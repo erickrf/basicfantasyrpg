@@ -26,10 +26,6 @@ export class VehicleDataModel extends BaseActorDataModel {
         }),
       }),
 
-      biography: new fields.HTMLField({
-        initial: "",
-      }),
-
       cargo: new fields.SchemaField({
         value: new fields.NumberField({
           required: true,

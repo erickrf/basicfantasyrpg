@@ -521,4 +521,18 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     // Set data transfer
     event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
+
+  /**
+   * Exclude parts that should not be added automatically, but are needed internally
+   * by some templates.
+   * @param options
+   * @private
+   */
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options);
+
+    options.parts = Object.keys(this.constructor.PARTS).filter(
+      key => this.constructor.PARTS[key]?.internal !== true
+    );
+  }
 }

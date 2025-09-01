@@ -37,6 +37,10 @@ export class VehicleSheet extends BaseActorSheet {
     description: {
       template: "systems/basicfantasyrpg/templates/actor/parts/description.hbs",
     },
+    items: {
+      template: "systems/basicfantasyrpg/templates/actor/parts/items-list.hbs",
+      internal: true
+    }
   };
 
   /** @override */

@@ -1,10 +1,11 @@
-import { BaseActorDataModel } from "./base-actor-data.mjs";
+import { CreatureDataModel } from "./creature-data.mjs";
+
 
 /**
  * Monster Data Model for Basic Fantasy RPG
- * Extends BaseActorDataModel with monster-specific fields
+ * Extends CreatureDataModel with monster-specific fields
  */
-export class MonsterDataModel extends BaseActorDataModel {
+export class MonsterDataModel extends CreatureDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const baseSchema = super.defineSchema();
@@ -29,6 +30,13 @@ export class MonsterDataModel extends BaseActorDataModel {
           required: true,
           nullable: false,
           integer: true,
+          initial: 0,
+        }),
+        effective: new fields.NumberField({
+          required: true,
+          nullable: false,
+          integer: true,
+          min: 0,
           initial: 0,
         }),
         label: new fields.StringField({
@@ -111,14 +119,49 @@ export class MonsterDataModel extends BaseActorDataModel {
   prepareDerivedData() {
     super.prepareDerivedData();
 
+    // Calculate effective hit dice for saves
+    this.hitDice.effective = this._calculateEffectiveHitDice();
+
+
     // Calculate base XP from hit dice if not manually set
     if (this.xp.value === 0) {
       this.xp.value = this._calculateBaseXP();
     }
 
-    if (this.attackBonus.value === 0) {
-      this.attackBonus.value = this._calculateMonsterAttackBonus();
+    // a given value above 1 should override automatic calculation
+    if (this.attackBonus.value <= 1) {
+      this.attackBonus.value = this.hitDice.effective;
     }
+
+    // Calculate monster saves based on hit dice
+    this._setMonsterSaves();
+  }
+
+  /**
+   * Calculate effective hit dice for save calculations
+   * @returns {number} The effective hit dice value
+   */
+  _calculateEffectiveHitDice() {
+    const hitDice = this.hitDice;
+    const dieSize = parseInt(hitDice.size.substring(1)); // Extract number from "d8"
+    
+    // If die size is less than d8, effective is 0
+    if (dieSize < 8) {
+      return 0;
+    }
+    
+    // If effective hit dice is less than 1 (like 1d8-2), effective is 0
+    if (hitDice.number === 1 && hitDice.mod < 0) {
+      return 0;
+    }
+    
+    // If less than 1 full hit die, effective is 0
+    if (hitDice.number < 1) {
+      return 0;
+    }
+    
+    // Otherwise, return the number of dice (ignoring modifier)
+    return hitDice.number;
   }
 
   /**
@@ -141,7 +184,7 @@ export class MonsterDataModel extends BaseActorDataModel {
     let xpValue = 0;
     let xpSpecialAbilityBonus = 0;
 
-    if (hitDice.number < 1 || (hitDice.number === 1 && hitDice.mod < 0) || hitDice.size < "d8") {
+    if (this.hitDice.effective === 0) {
       xpValue = xpLookup[0];
       xpSpecialAbilityBonus = specialAbilityLookup[0] * specialAbility;
     } else if (hitDice.number > 25) {
@@ -157,50 +200,46 @@ export class MonsterDataModel extends BaseActorDataModel {
   }
 
   /**
-   * Calculate monster attack bonus
+   * Set monster saves based on hit dice
+   * Uses normal man saves for < 1d8 HD, otherwise uses fighter saves
    */
-  _calculateMonsterAttackBonus() {
-    const hitDiceNumber = this.hitDice.number;
-    if (hitDiceNumber < 1) {
-      return 0;
-    } else if (hitDiceNumber > 31) {
-      return 16;
+  _setMonsterSaves() {
+    const calculatedSaves = this._calculateMonsterSaves();
+    
+    // Update save values
+    this.saves.death.value = calculatedSaves.death;
+    this.saves.wands.value = calculatedSaves.wands;
+    this.saves.paralysis.value = calculatedSaves.paralysis;
+    this.saves.breath.value = calculatedSaves.breath;
+    this.saves.spells.value = calculatedSaves.spells;
+  }
+
+  /**
+   * Calculate monster saves based on hit dice
+   * @returns {object} Object containing save values for each save type
+   */
+  _calculateMonsterSaves() {
+    if (this.hitDice.effective === 0) {
+      return CONFIG.BASICFANTASYRPG.savesNormalMan;
+    } else {
+      return this._getFighterSaves();
     }
-    switch (hitDiceNumber) {
-      case 9:
-        return 8;
-      case 10:
-      case 11:
-        return 9;
-      case 12:
-      case 13:
-        return 10;
-      case 14:
-      case 15:
-        return 11;
-      case 16:
-      case 17:
-      case 18:
-      case 19:
-        return 12;
-      case 20:
-      case 21:
-      case 22:
-      case 23:
-        return 13;
-      case 24:
-      case 25:
-      case 26:
-      case 27:
-        return 14;
-      case 28:
-      case 29:
-      case 30:
-      case 31:
-        return 15;
-      default:
-        return hitDiceNumber; // this handles 1-9
+  }
+
+  /**
+   * Get fighter saves for the monster's hit dice level
+   * @returns {object} Object containing fighter save values
+   */
+  _getFighterSaves() {
+    const fighterLevel = Math.min(Math.max(this.hitDice.effective, 1), 20); // Clamp between 1-20
+    const fighterSaves = {};
+    
+    for (const saveType in CONFIG.BASICFANTASYRPG.savesProgression.fighter) {
+      const progression = CONFIG.BASICFANTASYRPG.savesProgression.fighter[saveType];
+      fighterSaves[saveType] = progression[fighterLevel - 1]; // Array is 0-indexed
     }
+    
+    return fighterSaves;
   }
 
   /**
@@ -209,8 +248,6 @@ export class MonsterDataModel extends BaseActorDataModel {
    * @returns {object} The migrated data
    */
   static migrateData(source) {
-    // Handle any data structure changes for existing monsters
-    // For now, just return the source data as-is
-    return source;
+    return super.migrateData(source);
   }
 }
