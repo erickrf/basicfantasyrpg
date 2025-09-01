@@ -34,9 +34,11 @@
       <section class="resources grid grid-4col">
 
         <div class="resource flex-group-center">
-          <label for="system.armorClass.value" class="resource-label">{{localize data.armorClass.abbr}}</label>
+          <label class="resource-label">{{localize data.armorClass.abbr}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number"/>
+            <input type="number" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number" title="{{localize 'BASICFANTASYRPG.BaseArmorClass'}}"/>
+            <span class="plus-sign">+</span>
+            <input type="number" name="system.armorClass.extra" value="{{data.armorClass.extra}}" data-dtype="Number" title="{{localize 'BASICFANTASYRPG.ArmorClassBonus'}}"/>
           </div>
         </div>
 

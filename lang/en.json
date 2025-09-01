@@ -81,6 +81,8 @@
   "BASICFANTASYRPG.Area": "Area",
   "BASICFANTASYRPG.ArmorClass": "Armor Class",
   "BASICFANTASYRPG.ArmorClassAbbr": "AC",
+  "BASICFANTASYRPG.ArmorClassBonus": "Armor Class Bonus",
+  "BASICFANTASYRPG.BaseArmorClass": "Base Armor Class",
   "BASICFANTASYRPG.Attack": "Attack",
   "BASICFANTASYRPG.AttackBonus": "Attack Bonus",
   "BASICFANTASYRPG.AttackBonusAbbr": "AB",
