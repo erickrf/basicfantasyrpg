@@ -119,6 +119,9 @@ export class MonsterDataModel extends CreatureDataModel {
     if (this.attackBonus.value === 0) {
       this.attackBonus.value = this._calculateMonsterAttackBonus();
     }
+
+    // Calculate monster saves based on hit dice
+    this._setMonsterSaves();
   }
 
   /**
@@ -203,7 +206,74 @@ export class MonsterDataModel extends CreatureDataModel {
     }
   }
 
-  
+  /**
+   * Set monster saves based on hit dice
+   * Uses normal man saves for < 1d8 HD, otherwise uses fighter saves
+   */
+  _setMonsterSaves() {
+    const calculatedSaves = this._calculateMonsterSaves();
+    
+    // Update save values
+    this.saves.death.value = calculatedSaves.death;
+    this.saves.wands.value = calculatedSaves.wands;
+    this.saves.paralysis.value = calculatedSaves.paralysis;
+    this.saves.breath.value = calculatedSaves.breath;
+    this.saves.spells.value = calculatedSaves.spells;
+  }
+
+  /**
+   * Calculate monster saves based on hit dice
+   * @returns {object} Object containing save values for each save type
+   */
+  _calculateMonsterSaves() {
+    if (this._shouldUseNormalManSaves()) {
+      return CONFIG.BASICFANTASYRPG.savesNormalMan;
+    } else {
+      return this._getFighterSaves();
+    }
+  }
+
+  /**
+   * Determine if monster should use normal man saves
+   * @returns {boolean} True if should use normal man saves
+   */
+  _shouldUseNormalManSaves() {
+    const hitDice = this.hitDice;
+    
+    // Check if die size is less than d8
+    const dieSize = parseInt(hitDice.size.substring(1)); // Extract number from "d8"
+    if (dieSize < 8) {
+      return true;
+    }
+    
+    // Check if effective hit dice is less than 1
+    if (hitDice.number === 1 && hitDice.mod < 0) {
+      return true;
+    }
+    
+    // If less than 1 full hit die
+    if (hitDice.number < 1) {
+      return true;
+    }
+    
+    return false;
+  }
+
+  /**
+   * Get fighter saves for the monster's hit dice level
+   * @returns {object} Object containing fighter save values
+   */
+  _getFighterSaves() {
+    const fighterLevel = Math.min(Math.max(this.hitDice.number, 1), 20); // Clamp between 1-20
+    const fighterSaves = {};
+    
+    for (const saveType in CONFIG.BASICFANTASYRPG.savesProgression.fighter) {
+      const progression = CONFIG.BASICFANTASYRPG.savesProgression.fighter[saveType];
+      fighterSaves[saveType] = progression[fighterLevel - 1]; // Array is 0-indexed
+    }
+    
+    return fighterSaves;
+  }
 
   /**
    * Migrate data from older versions
