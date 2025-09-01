@@ -94,13 +94,12 @@ export function applyEnabledAddons() {
 
     if (addon.localization && addon.localization[game.i18n.lang]) {
       const strings = addon.localization[game.i18n.lang];
-      console.log('aeee localizing');
+
       Object.entries(strings).forEach(([key, value]) => {
         game.i18n.translations[key] = value;
       });
     }
     
-    console.log(`Applied addon: ${addon.name}`);
   });
 }
 
