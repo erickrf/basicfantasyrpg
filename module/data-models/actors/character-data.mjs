@@ -311,7 +311,7 @@ export class CharacterDataModel extends CreatureDataModel {
    * @returns {string} The character class
    */
   _getCharacterClass() {
-    return this.class.value || "fighter";
+    return this.class.value || null;
   }
 
   /**
@@ -366,6 +366,11 @@ export class CharacterDataModel extends CreatureDataModel {
    */
   _calculateNextLevelXP() {
     const characterClass = this._getCharacterClass();
+
+    if (characterClass === null) {
+      return 0;
+    }
+
     const currentLevel = this._getCurrentLevel();
 
     // Get the progression table for this class
@@ -388,15 +393,29 @@ export class CharacterDataModel extends CreatureDataModel {
     const characterClass = this._getCharacterClass();
     const levelIndex = this._getLevelIndex();
 
-    // Get the saves progression table for this class
-    const savesTable = CONFIG.BASICFANTASYRPG.savesProgression[characterClass];
+    let savesTable;
+    
+    // Characters without a class use "normal man" saves
+    if (characterClass === null) {
+      savesTable = CONFIG.BASICFANTASYRPG.savesNormalMan;
+    } else {
+      savesTable = CONFIG.BASICFANTASYRPG.savesProgression[characterClass];
+    }
+
+    if (!savesTable) return;
 
     // Iterate through each save type and set the value
     for (let [saveType, saveData] of Object.entries(this.saves)) {
-      const progressionArray = savesTable[saveType];
-      if (progressionArray) {
-        const saveIndex = Math.min(levelIndex, progressionArray.length - 1);
-        saveData.value = progressionArray[saveIndex];
+      const saveValue = savesTable[saveType];
+      if (saveValue !== undefined) {
+        if (Array.isArray(saveValue)) {
+          // Class progression saves are arrays
+          const saveIndex = Math.min(levelIndex, saveValue.length - 1);
+          saveData.value = saveValue[saveIndex];
+        } else {
+          // Normal man saves are fixed values
+          saveData.value = saveValue;
+        }
       }
     }
   }
@@ -407,6 +426,11 @@ export class CharacterDataModel extends CreatureDataModel {
    */
   _calculateAttackBonus() {
     const characterClass = this._getCharacterClass();
+
+    if (characterClass === null){
+      return 0;
+    }
+    
     const levelIndex = this._getLevelIndex();
 
     // Get the attack bonus progression table for this class
