@@ -417,15 +417,4 @@ export class CharacterDataModel extends CreatureDataModel {
     // Fallback to 1 if class not found in progression table
     return 1;
   }
-
-  /**
-   * Migrate data from older versions
-   * @param {object} source - The source data to migrate
-   * @returns {object} The migrated data
-   */
-  static migrateData(source) {
-    // Handle any data structure changes for existing characters
-    // For now, just return the source data as-is
-    return source;
-  }
 }

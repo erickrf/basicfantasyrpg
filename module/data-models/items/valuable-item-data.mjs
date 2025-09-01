@@ -12,6 +12,8 @@ export class ValuableItemDataModel extends BaseItemDataModel {
    * @returns {Object} The migrated data
    */
   static migrateData(source) {
+    source = super.migrateData(source);
+
     // Handle legacy price field migration
     if (typeof source.price === 'string') {
       const priceMatch = source.price.match(/^(\d+(?:\.\d+)?)\s*([a-z]{2})$/i);
@@ -34,7 +36,6 @@ export class ValuableItemDataModel extends BaseItemDataModel {
         };
       }
     }
-    return super.migrateData(source);
   }
 
   static defineSchema() {

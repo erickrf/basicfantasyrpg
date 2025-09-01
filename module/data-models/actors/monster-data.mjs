@@ -241,13 +241,4 @@ export class MonsterDataModel extends CreatureDataModel {
     
     return fighterSaves;
   }
-
-  /**
-   * Migrate data from older versions
-   * @param {object} source - The source data to migrate
-   * @returns {object} The migrated data
-   */
-  static migrateData(source) {
-    return super.migrateData(source);
-  }
 }
