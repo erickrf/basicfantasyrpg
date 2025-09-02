@@ -151,6 +151,8 @@
   "BASICFANTASYRPG.RangeLong": "Long (-2)",
   "BASICFANTASYRPG.RangeMedium": "Medium (+0)",
   "BASICFANTASYRPG.RangeShort": "Short (+1)",
+
+  "BASICFANTASYRPG.Melee": "Melee",
   "BASICFANTASYRPG.RateOfFire": "Rate of Fire",
   "BASICFANTASYRPG.Roll": "Roll",
   "BASICFANTASYRPG.RollUnder": "Roll Under",

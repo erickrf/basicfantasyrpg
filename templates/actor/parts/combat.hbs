@@ -85,7 +85,9 @@
               <h4>{{weapon.name}}</h4>
             </div>
             <div class="item-prop item-image">
+              {{#if weapon.system.melee.value}}
               <a class="rollable" data-roll-type="weapon" data-attack="melee">{{> iconMelee}}</a>
+              {{/if}}
               <a class="rollable" data-roll-type="weapon" data-attack="ranged">{{> iconRanged}}</a>
               <span class="flexshrink">/</span>
               <a class="rollable" data-roll-type="damage" data-add-strength="{{weapon.system.addStrength}}" data-roll="{{weapon.system.damage.value}}" data-label="{{weapon.name}} {{localizeLowerCase weapon.system.damage.label}}">{{> iconDamage}}</a>

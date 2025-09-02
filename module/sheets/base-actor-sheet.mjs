@@ -395,7 +395,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
       if (dataset.rollType === "damage") {
         let formula = dataset.roll;
-        if (this.document.type === "character" && dataset.addStrength) {
+        if (this.document.type === "character" && dataset.addStrength === "true") {
           formula += "+@str.bonus";
         }
         return formula;

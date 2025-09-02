@@ -21,10 +21,14 @@ export class WeaponDataModel extends ValuableItemDataModel {
       };
     }
 
-    // Handle addStrength based on weapon name
-    if (source.name && typeof source.name === 'string') {
-      const weaponName = source.name.toLowerCase();
-      source.addStrength = !weaponName.includes('bow');
+    
+    // Handle melee based on weapon range
+    if (!source.melee && source.melee?.value !== true) {
+      if (source.range && typeof source.range === 'string') {
+        source.melee = source.range.toLowerCase().includes('melee');
+      } else if (source.range && source.range.value) {
+        source.melee = source.range.value.toLowerCase().includes('melee');
+      }
     }
 
     return super.migrateData(source);
@@ -88,6 +92,33 @@ export class WeaponDataModel extends ValuableItemDataModel {
           initial: "BASICFANTASYRPG.Size",
         }),
       }),
+
+      melee: new fields.SchemaField({
+        value: new fields.BooleanField({
+          required: true,
+          initial: false,
+        }),
+        label: new fields.StringField({
+          initial: "BASICFANTASYRPG.Melee",
+        }),
+      }),
     };
+  }
+
+  /**
+   * Prepare derived data for weapons
+   */
+  prepareDerivedData() {
+    // Calculate addStrength based on weapon name
+    const weaponName = this.parent?.name?.toLowerCase() || '';
+    this.addStrength = !weaponName.includes('bow');
+
+    const rangeValue = this.range?.value?.toLowerCase() || '';
+    if (rangeValue.includes('melee')){
+      this.melee.value = true;
+    }
+
+    // Call parent prepareDerivedData if it exists
+    super.prepareDerivedData();
   }
 }
