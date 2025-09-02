@@ -22,6 +22,18 @@ export class CreatureDataModel extends BaseActorDataModel {
           min: 0,
           initial: 11,
         }),
+        extra: new fields.NumberField({
+          required: false,
+          nullable: true,
+          integer: true,
+          initial: 0,
+        }),
+        total: new fields.NumberField({
+          required: true,
+          nullable: false,
+          integer: true,
+          initial: 11,
+        }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.ArmorClass",
         }),
@@ -149,5 +161,8 @@ export class CreatureDataModel extends BaseActorDataModel {
 
     // Calculate total attack bonus (base + extra)
     this.attackBonus.total = this.attackBonus.value + (this.attackBonus.extra || 0);
+
+    // Calculate total armor class (base + extra)
+    this.armorClass.total = this.armorClass.value + (this.armorClass.extra || 0);
   }
 }

@@ -70,6 +70,8 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
    */
   static async #onEditImage(event, target) {
     const actor = this.document;
+    const FilePicker = foundry.applications.apps.FilePicker.implementation;
+
     new FilePicker({
       type: "image",
       current: actor.img,
@@ -393,7 +395,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
       if (dataset.rollType === "damage") {
         let formula = dataset.roll;
-        if (this.document.type === "character" && dataset.addStrength) {
+        if (this.document.type === "character" && dataset.addStrength === "true") {
           formula += "+@str.bonus";
         }
         return formula;

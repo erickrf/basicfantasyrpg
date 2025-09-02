@@ -23,7 +23,7 @@
         {{#each data.saves as |save key|}}
           <div class="ability flexrow flex-group-center">
             <label for="system.saves.{{key}}.value" class="resource-label rollable flexlarge align-left" title="{{localize 'BASICFANTASYRPG.Roll'}} {{localize 'BASICFANTASYRPG.SavingThrow'}}" data-roll="d20" data-label="{{localize 'BASICFANTASYRPG.SavingThrow'}} - {{localize save.label}}" data-target-number="{{save.value}}">{{localize save.label}}</label>
-            <input type="text" name="system.saves.{{key}}.value" value="{{save.value}}" data-dtype="Number"/>
+            <input type="text" name="system.saves.{{key}}.value" value="{{save.value}}" data-dtype="Number" {{#unless ../data.manualMode}}readonly{{/unless}}/>
           </div>
         {{/each}}
       </div>
@@ -34,16 +34,18 @@
       <section class="resources grid grid-4col">
 
         <div class="resource flex-group-center">
-          <label for="system.armorClass.value" class="resource-label">{{localize data.armorClass.abbr}}</label>
+          <label class="resource-label">{{localize data.armorClass.abbr}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number"/>
+            <input type="number" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number" title="{{localize 'BASICFANTASYRPG.BaseArmorClass'}}" {{#unless data.manualMode}}readonly{{/unless}}/>
+            <span class="plus-sign">+</span>
+            <input type="number" name="system.armorClass.extra" value="{{data.armorClass.extra}}" data-dtype="Number" title="{{localize 'BASICFANTASYRPG.ArmorClassBonus'}}"/>
           </div>
         </div>
 
         <div class="resource flex-group-center">
           <label class="resource-label">{{localize data.attackBonus.abbr}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" name="system.attackBonus.value" value="{{data.attackBonus.value}}" data-dtype="Number" {{#if (eq actor.type 'monster')}}disabled{{/if}} title="Class Attack Bonus"/>
+            <input type="number" name="system.attackBonus.value" value="{{data.attackBonus.value}}" data-dtype="Number" {{#if (eq actor.type 'monster')}}disabled{{else}}{{#unless data.manualMode}}readonly{{/unless}}{{/if}} title="Class Attack Bonus"/>
             <span class="plus-sign">+</span>
             <input type="number" name="system.attackBonus.extra" value="{{data.attackBonus.extra}}" data-dtype="Number" title="Temporary Attack Bonus"/>
           </div>
@@ -80,11 +82,15 @@
               <div class="item-image">
                 <a class="rollable" data-roll-type="item"><img src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24"/></a>
               </div>
-              <h4>{{weapon.name}}</h4>
+              <h4>{{weapon.name}}{{#if weapon.system.isRanged}} <span class="range">({{weapon.system.range.short}}/{{weapon.system.range.medium}}/{{weapon.system.range.long}})</span>{{/if}}</h4>
             </div>
             <div class="item-prop item-image">
+              {{#if weapon.system.melee.value}}
               <a class="rollable" data-roll-type="weapon" data-attack="melee">{{> iconMelee}}</a>
+              {{/if}}
+              {{#if weapon.system.isRanged}}
               <a class="rollable" data-roll-type="weapon" data-attack="ranged">{{> iconRanged}}</a>
+              {{/if}}
               <span class="flexshrink">/</span>
               <a class="rollable" data-roll-type="damage" data-add-strength="{{weapon.system.addStrength}}" data-roll="{{weapon.system.damage.value}}" data-label="{{weapon.name}} {{localizeLowerCase weapon.system.damage.label}}">{{> iconDamage}}</a>
             </div>

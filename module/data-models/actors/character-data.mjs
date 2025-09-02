@@ -140,6 +140,8 @@ export class CharacterDataModel extends CreatureDataModel {
       race: new fields.SchemaField({
         value: new fields.StringField({
           initial: "",
+          blank: true,
+          choices: CONFIG.BASICFANTASYRPG.characterRaces,
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Race",
@@ -299,6 +301,9 @@ export class CharacterDataModel extends CreatureDataModel {
     // Calculate attack bonus based on class and level
     this.attackBonus.value = this._calculateAttackBonus();
 
+    // Calculate base armor class from armor and dexterity
+    this.armorClass.value = this._calculateBaseArmorClass();
+
     // The parent class does generic derivations like adding bonus AB
     super.prepareDerivedData();
   }
@@ -308,7 +313,7 @@ export class CharacterDataModel extends CreatureDataModel {
    * @returns {string} The character class
    */
   _getCharacterClass() {
-    return this.class.value || "fighter";
+    return this.class.value || null;
   }
 
   /**
@@ -363,6 +368,11 @@ export class CharacterDataModel extends CreatureDataModel {
    */
   _calculateNextLevelXP() {
     const characterClass = this._getCharacterClass();
+
+    if (characterClass === null) {
+      return 0;
+    }
+
     const currentLevel = this._getCurrentLevel();
 
     // Get the progression table for this class
@@ -385,15 +395,29 @@ export class CharacterDataModel extends CreatureDataModel {
     const characterClass = this._getCharacterClass();
     const levelIndex = this._getLevelIndex();
 
-    // Get the saves progression table for this class
-    const savesTable = CONFIG.BASICFANTASYRPG.savesProgression[characterClass];
+    let savesTable;
+    
+    // Characters without a class use "normal man" saves
+    if (characterClass === null) {
+      savesTable = CONFIG.BASICFANTASYRPG.savesNormalMan;
+    } else {
+      savesTable = CONFIG.BASICFANTASYRPG.savesProgression[characterClass];
+    }
+
+    if (!savesTable) return;
 
     // Iterate through each save type and set the value
     for (let [saveType, saveData] of Object.entries(this.saves)) {
-      const progressionArray = savesTable[saveType];
-      if (progressionArray) {
-        const saveIndex = Math.min(levelIndex, progressionArray.length - 1);
-        saveData.value = progressionArray[saveIndex];
+      const saveValue = savesTable[saveType];
+      if (saveValue !== undefined) {
+        if (Array.isArray(saveValue)) {
+          // Class progression saves are arrays
+          const saveIndex = Math.min(levelIndex, saveValue.length - 1);
+          saveData.value = saveValue[saveIndex];
+        } else {
+          // Normal man saves are fixed values
+          saveData.value = saveValue;
+        }
       }
     }
   }
@@ -404,6 +428,11 @@ export class CharacterDataModel extends CreatureDataModel {
    */
   _calculateAttackBonus() {
     const characterClass = this._getCharacterClass();
+
+    if (characterClass === null){
+      return 0;
+    }
+    
     const levelIndex = this._getLevelIndex();
 
     // Get the attack bonus progression table for this class
@@ -419,13 +448,36 @@ export class CharacterDataModel extends CreatureDataModel {
   }
 
   /**
-   * Migrate data from older versions
-   * @param {object} source - The source data to migrate
-   * @returns {object} The migrated data
+   * Find the AC granted by the current equipment
+   * @private
    */
-  static migrateData(source) {
-    // Handle any data structure changes for existing characters
-    // For now, just return the source data as-is
-    return source;
+  _findEquipmentArmorClass() {
+    const armors = this.parent?.itemTypes?.armor || [];
+
+    if (armors.length === 0) {
+      return 11;
+    }
+
+    // Find the highest armor class
+    let bestArmorAC = 0;
+    for (const armor of armors) {
+      const armorAC = armor.system.armorClass?.value || 0;
+      if (armorAC > bestArmorAC) {
+        bestArmorAC = armorAC;
+      }
+    }
+
+    return bestArmorAC
+  }
+
+  /**
+   * Calculate base armor class from armor items and dexterity bonus
+   * @returns {number} The calculated base armor class
+   * @private
+   */
+  _calculateBaseArmorClass() {
+    const baseAC = this._findEquipmentArmorClass();
+
+    return baseAC + (this.abilities.dex.bonus || 0);
   }
 }

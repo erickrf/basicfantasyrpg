@@ -116,6 +116,8 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
   static async #onEditImage(event, target) {
     if (!this.isEditable) return;
     const item = this.document;
+    const FilePicker = foundry.applications.apps.FilePicker.implementation;
+
     new FilePicker({
       type: "image",
       current: item.img,
@@ -132,9 +134,5 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
     // Add any item-specific rendering logic
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
-
-    // Additional event handling could go here if needed
-    // Roll handlers, click handlers, etc. would be implemented as actions
-    // or through the standard v2 event system
   }
 }

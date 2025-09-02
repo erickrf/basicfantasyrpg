@@ -122,7 +122,6 @@ export class MonsterDataModel extends CreatureDataModel {
     // Calculate effective hit dice for saves
     this.hitDice.effective = this._calculateEffectiveHitDice();
 
-
     // Calculate base XP from hit dice if not manually set
     if (this.xp.value === 0) {
       this.xp.value = this._calculateBaseXP();
@@ -169,7 +168,7 @@ export class MonsterDataModel extends CreatureDataModel {
    * @returns {number} The calculated base XP value
    */
   _calculateBaseXP() {
-    const hitDice = this.hitDice.number;
+    const effectiveHitDice = this.hitDice.effective;
     const specialAbility = this.specialAbility.value;
 
     const xpLookup = [
@@ -184,15 +183,13 @@ export class MonsterDataModel extends CreatureDataModel {
     let xpValue = 0;
     let xpSpecialAbilityBonus = 0;
 
-    if (this.hitDice.effective === 0) {
-      xpValue = xpLookup[0];
-      xpSpecialAbilityBonus = specialAbilityLookup[0] * specialAbility;
-    } else if (hitDice.number > 25) {
-      xpValue = 9000 + (hitDice.number - 25) * 750;
-      xpSpecialAbilityBonus = (325 + (hitDice.number - 25) * 25) * specialAbility;
+    if (effectiveHitDice > 25) {
+      xpValue = 9000 + (effectiveHitDice - 25) * 750;
+      xpSpecialAbilityBonus = (325 + (effectiveHitDice - 25) * 25) * specialAbility;
     } else {
-      xpValue = xpLookup[hitDice.number];
-      xpSpecialAbilityBonus = specialAbilityLookup[hitDice.number] * specialAbility;
+      // index 0 really corresponds to < 1 HD
+      xpValue = xpLookup[effectiveHitDice];
+      xpSpecialAbilityBonus = specialAbilityLookup[effectiveHitDice] * specialAbility;
     }
 
     xpSpecialAbilityBonus = Math.max(0, xpSpecialAbilityBonus); // never return a negative special ability bonus
@@ -240,14 +237,5 @@ export class MonsterDataModel extends CreatureDataModel {
     }
     
     return fighterSaves;
-  }
-
-  /**
-   * Migrate data from older versions
-   * @param {object} source - The source data to migrate
-   * @returns {object} The migrated data
-   */
-  static migrateData(source) {
-    return super.migrateData(source);
   }
 }

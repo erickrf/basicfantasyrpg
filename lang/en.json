@@ -81,6 +81,8 @@
   "BASICFANTASYRPG.Area": "Area",
   "BASICFANTASYRPG.ArmorClass": "Armor Class",
   "BASICFANTASYRPG.ArmorClassAbbr": "AC",
+  "BASICFANTASYRPG.ArmorClassBonus": "Armor Class Bonus",
+  "BASICFANTASYRPG.BaseArmorClass": "Base Armor Class",
   "BASICFANTASYRPG.Attack": "Attack",
   "BASICFANTASYRPG.AttackBonus": "Attack Bonus",
   "BASICFANTASYRPG.AttackBonusAbbr": "AB",
@@ -95,6 +97,10 @@
   "BASICFANTASYRPG.ClassCleric": "Cleric",
   "BASICFANTASYRPG.ClassMagicUser": "Magic User",
   "BASICFANTASYRPG.ClassThief": "Thief",
+  "BASICFANTASYRPG.RaceHuman": "Human",
+  "BASICFANTASYRPG.RaceDwarf": "Dwarf",
+  "BASICFANTASYRPG.RaceElf": "Elf",
+  "BASICFANTASYRPG.RaceHalfling": "Halfling",
   
   "BASICFANTASYRPG.SETTINGS.EnabledSupplements": "Enabled Supplements",
   "BASICFANTASYRPG.SETTINGS.EnabledSupplementsHint": "Choose which supplement books to enable for this world",
@@ -145,6 +151,8 @@
   "BASICFANTASYRPG.RangeLong": "Long (-2)",
   "BASICFANTASYRPG.RangeMedium": "Medium (+0)",
   "BASICFANTASYRPG.RangeShort": "Short (+1)",
+
+  "BASICFANTASYRPG.Melee": "Melee",
   "BASICFANTASYRPG.RateOfFire": "Rate of Fire",
   "BASICFANTASYRPG.Roll": "Roll",
   "BASICFANTASYRPG.RollUnder": "Roll Under",
