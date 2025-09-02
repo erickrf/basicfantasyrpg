@@ -21,6 +21,38 @@ export class WeaponDataModel extends ValuableItemDataModel {
       };
     }
 
+    // Handle range field migration - parse existing range strings
+    if (source.range) {
+      let rangeValue = '';
+      if (typeof source.range === 'string') {
+        rangeValue = source.range;
+      } else if (source.range.value) {
+        rangeValue = source.range.value;
+      }
+
+      // Use regex to extract range components (e.g., "10/30/60")
+      const rangeMatch = rangeValue.match(/(\d+)\/(\d+)\/(\d+)/);
+      
+      if (rangeMatch) {
+        // Found ranged weapon pattern
+        source.range = {
+          value: rangeValue,
+          short: parseInt(rangeMatch[1], 10),
+          medium: parseInt(rangeMatch[2], 10),
+          long: parseInt(rangeMatch[3], 10),
+          label: "BASICFANTASYRPG.Range"
+        };
+      } else {
+        // No ranged pattern found, ensure range has proper structure
+        source.range = {
+          value: rangeValue || "Melee",
+          short: null,
+          medium: null,
+          long: null,
+          label: "BASICFANTASYRPG.Range"
+        };
+      }
+    }
     
     // Handle melee based on weapon range
     if (!source.melee && source.melee?.value !== true) {
@@ -77,6 +109,24 @@ export class WeaponDataModel extends ValuableItemDataModel {
           required: true,
           initial: "Melee",
         }),
+        short: new fields.NumberField({
+          required: false,
+          nullable: true,
+          integer: true,
+          initial: null,
+        }),
+        medium: new fields.NumberField({
+          required: false,
+          nullable: true,
+          integer: true,
+          initial: null,
+        }),
+        long: new fields.NumberField({
+          required: false,
+          nullable: true,
+          integer: true,
+          initial: null,
+        }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Range",
         }),
@@ -102,6 +152,11 @@ export class WeaponDataModel extends ValuableItemDataModel {
           initial: "BASICFANTASYRPG.Melee",
         }),
       }),
+
+      isRanged: new fields.BooleanField({
+        required: true,
+        initial: false,
+      }),
     };
   }
 
@@ -117,6 +172,16 @@ export class WeaponDataModel extends ValuableItemDataModel {
     if (rangeValue.includes('melee')){
       this.melee.value = true;
     }
+
+    // Set isRanged based on whether the weapon has all three range components
+    this.isRanged = (
+      this.range?.short != null && 
+      this.range?.medium != null && 
+      this.range?.long != null &&
+      this.range.short > 0 &&
+      this.range.medium > 0 &&
+      this.range.long > 0
+    );
 
     // Call parent prepareDerivedData if it exists
     super.prepareDerivedData();

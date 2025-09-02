@@ -82,13 +82,15 @@
               <div class="item-image">
                 <a class="rollable" data-roll-type="item"><img src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24"/></a>
               </div>
-              <h4>{{weapon.name}}</h4>
+              <h4>{{weapon.name}}{{#if weapon.system.isRanged}} <span class="range">({{weapon.system.range.short}}/{{weapon.system.range.medium}}/{{weapon.system.range.long}})</span>{{/if}}</h4>
             </div>
             <div class="item-prop item-image">
               {{#if weapon.system.melee.value}}
               <a class="rollable" data-roll-type="weapon" data-attack="melee">{{> iconMelee}}</a>
               {{/if}}
+              {{#if weapon.system.isRanged}}
               <a class="rollable" data-roll-type="weapon" data-attack="ranged">{{> iconRanged}}</a>
+              {{/if}}
               <span class="flexshrink">/</span>
               <a class="rollable" data-roll-type="damage" data-add-strength="{{weapon.system.addStrength}}" data-roll="{{weapon.system.damage.value}}" data-label="{{weapon.name}} {{localizeLowerCase weapon.system.damage.label}}">{{> iconDamage}}</a>
             </div>
