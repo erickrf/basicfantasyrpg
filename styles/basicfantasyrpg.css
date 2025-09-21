@@ -524,6 +524,23 @@
   max-height: calc(100% - 53px);
 }
 
+/* make prose mirror editor scrollable and use all the height */
+.basicfantasyrpg.sheet .tab.description.active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.basicfantasyrpg.sheet .editor {
+  flex: 1;
+}
+
+.basicfantasyrpg.sheet .tab.description prose-mirror .ProseMirror {
+  height: 100%;
+  overflow: auto;
+}
+
+
 .basicfantasyrpg.sheet .tab-container {
   display: flex;
 }
