@@ -1,4 +1,4 @@
-import { getRegisteredAddons, applyEnabledAddons } from "./addons/addon-registry.mjs";
+import { getRegisteredAddons } from "./addons/addon-registry.mjs";
 
 /**
  * Settings to apply to the module, including common house rules and supplements.

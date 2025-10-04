@@ -55,9 +55,6 @@ export class CharacterSheet extends BaseActorSheet {
   /** @override */
   _onRender(context, options) {
     super._onRender(context, options);
-
-    // Add character-specific rendering logic
-    console.log("Character Sheet rendered for:", context.name);
   }
 
   /** @override */

@@ -46,9 +46,6 @@ export class VehicleSheet extends BaseActorSheet {
   /** @override */
   _onRender(context, options) {
     super._onRender(context, options);
-
-    // Add vehicle-specific rendering logic if needed
-    console.log("Vehicle Sheet rendered for:", context.name);
   }
 
   /** @override */

@@ -9,7 +9,7 @@ const registeredAddons = [];
 
 /**
  * Register an addon as available to the system
- * @param {Object} addon - The addon object to register
+ * @param {Object} addon - The addon module to register
  */
 export function registerAddon(addon) {
   if (!addon.id || !addon.name) {
@@ -23,7 +23,6 @@ export function registerAddon(addon) {
   }
   
   registeredAddons.push(addon);
-  console.log(`Registered addon: ${addon.name} (${addon.id})`);
 }
 
 /**
@@ -46,7 +45,9 @@ export function getEnabledAddons() {
 }
 
 /**
- * Apply enabled addons to the game configuration
+ * Apply enabled addons to the game configuration.
+ *
+ * This function essentially patches CONFIG.BASICFANTASYRPG
  */
 export function applyEnabledAddons() {
   const enabledAddons = getEnabledAddons();
@@ -92,6 +93,17 @@ export function applyEnabledAddons() {
       );
     }
 
+    
+  });
+}
+
+/**
+ * Add i18n strings for the enabled addons
+ */
+export function applyI18n() {
+  const enabledAddons = getEnabledAddons();
+
+  enabledAddons.forEach(addon => {
     if (addon.localization && addon.localization[game.i18n.lang]) {
       const strings = addon.localization[game.i18n.lang];
 
@@ -99,7 +111,6 @@ export function applyEnabledAddons() {
         game.i18n.translations[key] = value;
       });
     }
-    
   });
 }
 
@@ -116,6 +127,7 @@ export function initializeAddons() {
 // Hook into i18nInit to apply addons after i18n system is ready
 Hooks.once('i18nInit', () => {
   applyEnabledAddons();
+  applyI18n();
 });
 
-initializeAddons()
+initializeAddons();

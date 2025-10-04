@@ -17,16 +17,13 @@ export class SpellDataModel extends BaseItemDataModel {
       // Normalize legacy class names by removing whitespace, hyphens and lowercasing
       const normalizedClass = source.class.value.toLowerCase().replace(/[\s-]+/g, '');
 
-      const legacyClassMap = {
-        'magicuser': 'magicUser',
-        'cleric': 'cleric'
-      };
-      
-      const mappedClass = legacyClassMap[normalizedClass] || '';
-      source.class = {
-        value: mappedClass,
-        label: "BASICFANTASYRPG.Class"
-      };
+      if (normalizedClass === 'magicuser') {
+        source.class = {
+          value: "magicUser",
+          label: "BASICFANTASYRPG.Class"
+        };
+      }
+
     }
     return super.migrateData(source);
   }
@@ -41,7 +38,7 @@ export class SpellDataModel extends BaseItemDataModel {
       class: new fields.SchemaField({
         value: new fields.StringField({
           initial: "magicUser",
-          choices: Object.keys(BASICFANTASYRPG.spellcasterClasses),
+          choices: () => Object.keys(CONFIG.BASICFANTASYRPG.spellcasterClasses),
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.Class",
