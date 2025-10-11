@@ -1,6 +1,8 @@
 
 import { NecromancerAddon } from './necromancer.mjs';
 import { BarbarianAddon } from './barbarian.mjs';
+import { IllusionistAddon} from "./illusionist.mjs";
+import { SpellcrafterAddon} from "./spellcrafter.mjs";
 
 /**
  * Array of available addons to be chosen in the game settings.
@@ -119,7 +121,8 @@ export function applyI18n() {
  */
 export function initializeAddons() {
   // Register all available addons
-  for (const addon of [NecromancerAddon, BarbarianAddon]) {
+  const addons = [NecromancerAddon, BarbarianAddon, IllusionistAddon, SpellcrafterAddon];
+  for (const addon of addons) {
     registerAddon(addon);
   }
 }
