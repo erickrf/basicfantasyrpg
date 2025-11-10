@@ -39,6 +39,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     context.name = this.document.name;
     context.data = context.system;
     context.items = this.document.items.contents;
+    context.manualMode = this.actor.type !== "character" || context.data?.manualMode;
 
     // biography editor
     context.enrichedBiography = await TextEditor.enrichHTML(this.document.system.biography, {
