@@ -231,6 +231,13 @@ Hooks.on("createActor", async function (actor) {
         displayName: CONST.TOKEN_DISPLAY_MODES.OWNER,
       },
     });
+
+    const hd = actor.system.hitDice;
+    const hpRoll = await new Roll(`${hd.number}${hd.size}+${hd.mod}`).evaluate({ async: true });
+    await actor.update({
+      "system.hitPoints.value": Math.max(1, hpRoll.total),
+      "system.hitPoints.max": Math.max(1, hpRoll.total)
+    });
   } else if (actor.type === "stronghold") {
     const floor = {
       name: `New ${game.i18n.localize("ITEM.TypeFloor")}`,
@@ -245,7 +252,8 @@ Hooks.on("createActor", async function (actor) {
 /* -------------------------------------------- */
 
 Hooks.on("createToken", async function (token, options, id) {
-  if (token.actor.type === "monster") {
+  if (token.actor.type === "monster" && !token.actorLink) {
+    // roll HP fo unlinked monsters
     let newHitPoints = new Roll(
       `${token.actor.system.hitDice.number}${token.actor.system.hitDice.size}+${token.actor.system.hitDice.mod}`
     );
