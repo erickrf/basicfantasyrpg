@@ -487,6 +487,24 @@
   display: flex;
 }
 
+.basicfantasyrpg .inline-selector {
+  align-items: baseline;
+  display: flex;
+  gap: 0.5em;
+  justify-content: flex-start;
+}
+
+.basicfantasyrpg .inline-selector select {
+  flex: 1;
+}
+
+.basicfantasyrpg .save-separator {
+    border: none;
+    border-top: 1px solid #aaa;
+    margin: 1em 0 1em 0;
+    opacity: 0.5;
+}
+
 .basicfantasyrpg .sheet-header h1.charname {
   height: 50px;
   padding: 0px;

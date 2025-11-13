@@ -149,7 +149,7 @@ export class MonsterDataModel extends CreatureDataModel {
       this.attackBonus.value = this.hitDice.effective;
     }
 
-    // Calculate monster saves based on hit dice
+    // Calculate monster saves based on hit dice if the "saves as" class is not custom
     this._setMonsterSaves();
   }
 
@@ -218,6 +218,11 @@ export class MonsterDataModel extends CreatureDataModel {
    * Uses normal man saves for < 1d8 HD, otherwise uses fighter saves
    */
   _setMonsterSaves() {
+    // if saves are set to custom, leave them as they are
+    if (this.saveAs.value === "custom") {
+      return;
+    }
+
     const calculatedSaves = this._calculateMonsterSaves();
     
     // Update save values
@@ -236,23 +241,24 @@ export class MonsterDataModel extends CreatureDataModel {
     if (this.hitDice.effective === 0) {
       return CONFIG.BASICFANTASYRPG.savesNormalMan;
     } else {
-      return this._getFighterSaves();
+      return this._getClassBasedSaves();
     }
   }
 
   /**
-   * Get fighter saves for the monster's hit dice level
-   * @returns {object} Object containing fighter save values
+   * Get saves for the monster's hit dice level and "saves as" class
+   * @returns {object} Object containing save values
    */
-  _getFighterSaves() {
-    const fighterLevel = Math.min(Math.max(this.hitDice.effective, 1), 20); // Clamp between 1-20
-    const fighterSaves = {};
-    
-    for (const saveType in CONFIG.BASICFANTASYRPG.savesProgression.fighter) {
-      const progression = CONFIG.BASICFANTASYRPG.savesProgression.fighter[saveType];
-      fighterSaves[saveType] = progression[fighterLevel - 1]; // Array is 0-indexed
+  _getClassBasedSaves() {
+    const level = Math.min(Math.max(this.hitDice.effective, 1), 20); // Clamp between 1-20
+    const saves = {};
+    const saveProgression = CONFIG.BASICFANTASYRPG.savesProgression[this.saveAs.value];
+
+    for (const saveType in saveProgression) {
+      const saveValues = saveProgression[saveType];
+      saves[saveType] = saveValues[level - 1]; // Array is 0-indexed
     }
     
-    return fighterSaves;
+    return saves;
   }
 }
