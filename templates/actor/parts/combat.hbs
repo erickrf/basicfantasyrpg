@@ -20,6 +20,19 @@
         <hr>
         {{/if}}
 
+        <!-- saves -->
+        {{#if (eq actor.type 'monster')}}
+          <label for="system.saveAs.value" class="resource-label">{{localize data.saveAs.label}}</label>
+          <div class="resource-content flexrow flex-center flex-between">
+            <select name="system.saveAs.value" class="class-selector" id="system.saveAs.value" data-dtype="String">
+              {{#each saveAsClasses as |label key|}}
+                <option value="{{key}}" {{selected (eq ../data.saveAs.value key)}}>
+                  {{#if label}}{{localize label}}{{else}}--{{/if}}
+                </option>
+              {{/each}}
+            </select> 
+          </div>
+        {{/if}}
         {{#each data.saves as |save key|}}
           <div class="ability flexrow flex-group-center">
             <label for="system.saves.{{key}}.value" class="resource-label rollable flexlarge align-left" title="{{localize 'BASICFANTASYRPG.Roll'}} {{localize 'BASICFANTASYRPG.SavingThrow'}}" data-roll="d20" data-label="{{localize 'BASICFANTASYRPG.SavingThrow'}} - {{localize save.label}}" data-target-number="{{save.value}}">{{localize save.label}}</label>

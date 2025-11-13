@@ -1,6 +1,12 @@
 import { CreatureDataModel } from "./creature-data.mjs";
 
 
+export function getSaveClassChoices() {
+  const classes = CONFIG.BASICFANTASYRPG.characterClasses ?? {};
+  const allChoices = { ...classes, custom: "BASICFANTASYRPG.Custom" };
+  return Object.fromEntries(Object.entries(allChoices).filter(([, v]) => v !== ""));
+}
+
 /**
  * Monster Data Model for Basic Fantasy RPG
  * Extends CreatureDataModel with monster-specific fields
@@ -107,6 +113,17 @@ export class MonsterDataModel extends CreatureDataModel {
         }),
         abbr: new fields.StringField({
           initial: "BASICFANTASYRPG.ExperiencePointsAbbr",
+        }),
+      }),
+
+      saveAs: new fields.SchemaField({
+        value: new fields.StringField({
+          initial: "custom",
+          blank: true,
+          choices: getSaveClassChoices()
+        }),
+        label: new fields.StringField({
+          initial: "BASICFANTASYRPG.SaveAs",
         }),
       }),
     };

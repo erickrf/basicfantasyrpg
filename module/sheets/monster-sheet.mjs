@@ -1,5 +1,5 @@
 import { BaseActorSheet } from "./base-actor-sheet.mjs";
-
+import { getSaveClassChoices } from "../data-models/actors/monster-data.mjs";
 /**
  * Monster Sheet for Basic Fantasy RPG
  * Extends BaseActorSheet with monster-specific functionality
@@ -49,6 +49,7 @@ export class MonsterSheet extends BaseActorSheet {
     const context = await super._prepareContext(options);
 
     context.tabs = this._prepareTabs("primary");
+    context.saveAsClasses = getSaveClassChoices()
 
     return context;
   }
