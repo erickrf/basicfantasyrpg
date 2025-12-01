@@ -2,10 +2,10 @@
   "id": "basicfantasyrpg",
   "title": "Basic Fantasy RPG",
   "description": "The Basic Fantasy RPG system for FoundryVTT!",
-  "version": "r14",
+  "version": "r15alpha5",
   "compatibility": {
     "minimum": "11",
-    "verified": "12"
+    "verified": "13"
   },
   "authors": [
     {
@@ -17,6 +17,10 @@
       "name": "JugglinDan",
       "email": "jugglindan@gmail.com",
       "discord": "JugglinDan"
+    },
+    {
+      "name": "erickrf",
+      "email": "erickrfonseca@gmail.com"
     }
   ],
   "esmodules": ["module/basicfantasyrpg.mjs"],
@@ -61,8 +65,8 @@
       "weapon": {}
     }
   },
-  "url": "https://github.com/orffen/basicfantasyrpg",
-  "manifest": "https://raw.githubusercontent.com/orffen/basicfantasyrpg/main/system.json",
-  "download": "https://github.com/orffen/basicfantasyrpg/archive/refs/tags/r14.zip",
+  "url": "https://github.com/erickrf/basicfantasyrpg",
+  "manifest": "https://raw.githubusercontent.com/erickrf/basicfantasyrpg/refs/heads/own-manifest/system.json",
+  "download": "https://github.com/erickrf/basicfantasyrpg/archive/refs/tags/r15alpha5.zip",
   "license": "LICENSE.txt"
 }
