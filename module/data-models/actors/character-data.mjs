@@ -455,7 +455,10 @@ export class CharacterDataModel extends CreatureDataModel {
     const armors = this.parent?.itemTypes?.armor || [];
 
     if (armors.length === 0) {
-      return 11;
+      const noArmorAC = 11
+      this.armorClass.breakdown.push({ key: "BASICFANTASYRPG.NoArmor", value: noArmorAC})
+
+      return noArmorAC;
     }
 
     // Find the highest armor class
@@ -467,6 +470,8 @@ export class CharacterDataModel extends CreatureDataModel {
       }
     }
 
+    this.armorClass.breakdown.push({key: "ITEM.TypeArmor", value: bestArmorAC});
+
     return bestArmorAC
   }
 
@@ -476,7 +481,14 @@ export class CharacterDataModel extends CreatureDataModel {
    * @private
    */
   _calculateBaseArmorClass() {
+    this.armorClass.breakdown = [];
+
     const baseAC = this._findEquipmentArmorClass();
+    const dexBonus = this.abilities.dex.bonus;
+    
+    if (dexBonus) {
+      this.armorClass.breakdown.push({ key: "BASICFANTASYRPG.AbilityDex", value: dexBonus });
+    }
 
     return baseAC + (this.abilities.dex.bonus || 0);
   }
