@@ -826,8 +826,6 @@
 .basicfantasyrpg-breakdown .tooltip-breakdown {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    min-width: 160px;
     padding: 4px 0;
 }
 
