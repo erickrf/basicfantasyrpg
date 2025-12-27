@@ -456,7 +456,7 @@ export class CharacterDataModel extends CreatureDataModel {
 
     if (armors.length === 0) {
       const noArmorAC = 11
-      this.armorClass.breakdown.push({ key: "BASICFANTASYRPG.NoArmor", value: noArmorAC})
+      this.armorClass.breakdown.push({ label: "BASICFANTASYRPG.NoArmor", value: noArmorAC, sign: false})
 
       return noArmorAC;
     }
@@ -470,7 +470,7 @@ export class CharacterDataModel extends CreatureDataModel {
       }
     }
 
-    this.armorClass.breakdown.push({key: "ITEM.TypeArmor", value: bestArmorAC});
+    this.armorClass.breakdown.push({label: "ITEM.TypeArmor", value: bestArmorAC, sign: false});
 
     return bestArmorAC
   }
@@ -485,11 +485,24 @@ export class CharacterDataModel extends CreatureDataModel {
 
     const baseAC = this._findEquipmentArmorClass();
     const dexBonus = this.abilities.dex.bonus;
-    
+
     if (dexBonus) {
-      this.armorClass.breakdown.push({ key: "BASICFANTASYRPG.AbilityDex", value: dexBonus });
+      this.armorClass.breakdown.push({ label: "BASICFANTASYRPG.AbilityDex", value: dexBonus, sign: true });
     }
 
     return baseAC + (this.abilities.dex.bonus || 0);
   }
+
+  get armorClassTooltip() {
+    if (!this.armorClass?.breakdown) return "";
+
+    return this.armorClass.breakdown
+      .map(item => {
+        const label = game.i18n.localize(item.label);
+        const value = item.sign && item.value >= 0 ? `+${item.value}` : item.value;
+        return `${label} ${value}`;
+      })
+      .join("\n");
+  }
+
 }

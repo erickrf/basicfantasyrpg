@@ -65,10 +65,6 @@ export class CharacterSheet extends BaseActorSheet {
     context.characterClasses = CONFIG.BASICFANTASYRPG.characterClasses;
     context.characterRaces = CONFIG.BASICFANTASYRPG.characterRaces;
 
-    context.armorClassTooltip = context.system.armorClass?.breakdown
-      ?.map(item => `${item.label} ${item.value >= 0 ? '+' : ''}${item.value}`)
-      .join('\n') || '';
-
     return context;
   }
 }
