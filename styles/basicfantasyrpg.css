@@ -822,6 +822,40 @@
   width: max-content;
 }
 
+/* sheet tooltip */
+.basicfantasyrpg-breakdown .tooltip-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 160px;
+    padding: 4px 0;
+}
+
+.basicfantasyrpg-breakdown .tooltip-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 2px 0;
+}
+
+.basicfantasyrpg-breakdown .tooltip-label {
+    text-align: left;
+    flex: 1;
+}
+
+.basicfantasyrpg-breakdown .tooltip-value {
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 40px;
+}
+
+.basicfantasyrpg-breakdown .tooltip-breakdown-row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 4px;
+}
+
 /* Item deletion animation */
 .basicfantasyrpg .items-list .item.item-deleting {
   animation: itemDeleteFade 0.15s ease-out forwards;
