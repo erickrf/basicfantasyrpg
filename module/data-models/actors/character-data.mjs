@@ -463,14 +463,16 @@ export class CharacterDataModel extends CreatureDataModel {
 
     // Find the highest armor class
     let bestArmorAC = 0;
+    let bestName = "";
     for (const armor of armors) {
       const armorAC = armor.system.armorClass?.value || 0;
       if (armorAC > bestArmorAC) {
         bestArmorAC = armorAC;
+        bestName = armor.name;
       }
     }
 
-    this.armorClass.breakdown.push({label: "ITEM.TypeArmor", value: bestArmorAC, sign: false});
+    this.armorClass.breakdown.push({label: bestName, value: bestArmorAC, sign: false});
 
     return bestArmorAC
   }
