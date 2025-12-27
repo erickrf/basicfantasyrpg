@@ -263,6 +263,30 @@ Hooks.on("createToken", async function (token, options, id) {
   }
 });
 
+/* ------------ */
+/* Tooltips     */
+/* ------------ */
+Hooks.once('init', () => {
+  Handlebars.registerHelper('formatBreakdown', function(breakdown) {
+    // format breakdown calculations of derived values (AC, AB, etc)
+    if (!breakdown) return "";
+    const rows = breakdown
+      .map(item => {
+        const label = game.i18n.localize(item.label);
+        const value = item.sign && item.value >= 0 ? `+${item.value}` : item.value;
+        return `
+          <div class="tooltip-breakdown-row">
+            <span class="tooltip-label">${label}</span>
+            <span class="tooltip-value">${value}</span>
+          </div>
+        `;
+      })
+      .join("");
+
+    return `<div class="tooltip-breakdown">${rows}</div>`;
+  });
+});
+
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */

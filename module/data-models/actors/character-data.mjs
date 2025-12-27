@@ -493,16 +493,16 @@ export class CharacterDataModel extends CreatureDataModel {
     return baseAC + (this.abilities.dex.bonus || 0);
   }
 
-  get armorClassTooltip() {
-    if (!this.armorClass?.breakdown) return "";
-
-    return this.armorClass.breakdown
-      .map(item => {
-        const label = game.i18n.localize(item.label);
-        const value = item.sign && item.value >= 0 ? `+${item.value}` : item.value;
-        return `${label} ${value}`;
-      })
-      .join("\n");
-  }
+  // get armorClassTooltip() {
+  //   if (!this.armorClass?.breakdown) return "";
+  //
+  //   return this.armorClass.breakdown
+  //     .map(item => {
+  //       const label = game.i18n.localize(item.label);
+  //       const value = item.sign && item.value >= 0 ? `+${item.value}` : item.value;
+  //       return `${label} ${value}`;
+  //     })
+  //     .join("\n");
+  // }
 
 }
