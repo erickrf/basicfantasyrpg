@@ -1,4 +1,4 @@
-<div class="grid grid-3col ">
+<div class="grid grid-4col ">
   <div class="resource flex-group-left">
     <label class="resource-label">{{localize data.price.label}}</label>
     <div class="flexrow">
@@ -15,5 +15,11 @@
   <div class="resource flex-group-left">
     <label for="system.armorClass.value" class="resource-label">{{localize data.armorClass.abbr}}</label>
     <input type="text" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number" />
+  </div>
+  <div class="resource flex-group-left">
+    <label for="system.armorType.value" class="resource-label">{{localize data.armorType.label}}</label>
+    <select name="system.armorType.value" data-dtype="String">
+      {{selectOptions armorTypes selected=data.armorType.value localize=true}}
+    </select>
   </div>
 </div>

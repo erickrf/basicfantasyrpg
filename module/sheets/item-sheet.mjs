@@ -1,3 +1,5 @@
+import * as CONFIG from "../helpers/config.mjs";
+
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2: ItemSheet } = foundry.applications.sheets;
 
@@ -80,6 +82,7 @@ export class BasicFantasyRPGItemSheet extends HandlebarsApplicationMixin(ItemShe
     context.floorMaterials = CONFIG.BASICFANTASYRPG.floorMaterials;
     context.wallMaterials = CONFIG.BASICFANTASYRPG.wallMaterials;
     context.spellcasterClasses = CONFIG.BASICFANTASYRPG.spellcasterClasses;
+    context.armorTypes = CONFIG.BASICFANTASYRPG.armorTypes;
 
     // Enrich description for editor
     context.enrichedDescription = await TextEditor.enrichHTML(this.document.system.description, { async: true });

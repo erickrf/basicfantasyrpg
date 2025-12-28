@@ -105,7 +105,7 @@ BASICFANTASYRPG.weaponSizes = {
 /**
  * Armor types (including shield)
  */
-BASICFANTASYRPG.ArmorTypes = {
+BASICFANTASYRPG.armorTypes = {
   leather: "BASICFANTASYRPG.ArmorLeather",
   metal: "BASICFANTASYRPG.ArmorMetal",
   shield: "BASICFANTASYRPG.ArmorShield",

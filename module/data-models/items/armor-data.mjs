@@ -33,7 +33,7 @@ export class ArmorDataModel extends ValuableItemDataModel {
         value: new fields.StringField({
           initial: "",
           blank: true,
-          choices: CONFIG.BASICFANTASYRPG.ArmorTypes
+          choices: CONFIG.BASICFANTASYRPG.armorTypes
         }),
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.ArmorType",
