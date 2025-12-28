@@ -1,12 +1,12 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
-const { ItemSheetV2 } = foundry.applications.sheets;
+const { ItemSheetV2: ItemSheet } = foundry.applications.sheets;
 
 /**
  * Item Sheet v2 for Basic Fantasy RPG
- * Extends ItemSheetV2 with Basic Fantasy RPG-specific functionality
- * @extends {ItemSheetV2}
+ * Extends ItemSheet with Basic Fantasy RPG-specific functionality
+ * @extends {ItemSheet}
  */
-export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
+export class BasicFantasyRPGItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
   static DEFAULT_OPTIONS = {
     classes: ["basicfantasyrpg", "sheet", "item", "themed", "theme-light"],
     position: {
@@ -17,11 +17,11 @@ export class BasicFantasyRPGItemSheetV2 extends HandlebarsApplicationMixin(ItemS
       resizable: true,
     },
     form: {
-      handler: BasicFantasyRPGItemSheetV2.#onSubmitDocumentForm,
+      handler: BasicFantasyRPGItemSheet.#onSubmitDocumentForm,
       submitOnChange: true,
     },
     actions: {
-      editImage: BasicFantasyRPGItemSheetV2.#onEditImage,
+      editImage: BasicFantasyRPGItemSheet.#onEditImage,
     },
   };
 

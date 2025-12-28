@@ -594,7 +594,11 @@
 }
 
 .basicfantasyrpg .resource {
-  flex: 1;
+    flex: 1;
+}
+
+.basicfantasyrpg .resource {
+    flex: 1;
 }
 
 .basicfantasyrpg .resource .price-value {
@@ -605,6 +609,13 @@
   flex: 1;
   margin-left: 4px;
   width: fit-content;
+}
+
+.basicfantasyrpg .armor-properties {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 0;
 }
 
 .basicfantasyrpg .items-header {

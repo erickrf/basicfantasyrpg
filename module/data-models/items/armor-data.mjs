@@ -1,4 +1,5 @@
 import { ValuableItemDataModel } from "./valuable-item-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Armor Data Model for Basic Fantasy RPG
@@ -27,6 +28,17 @@ export class ArmorDataModel extends ValuableItemDataModel {
           initial: "BASICFANTASYRPG.ArmorClassAbbr",
         }),
       }),
+
+      armorType: new fields.SchemaField({
+        value: new fields.StringField({
+          initial: "",
+          blank: true,
+          choices: CONFIG.BASICFANTASYRPG.ArmorTypes
+        }),
+        label: new fields.StringField({
+          initial: "BASICFANTASYRPG.ArmorType",
+        })
+      })
     };
   }
 }

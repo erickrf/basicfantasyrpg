@@ -84,6 +84,7 @@
   "BASICFANTASYRPG.ArmorClassBonus": "Armor Class Bonus",
   "BASICFANTASYRPG.BaseArmorClass": "Base Armor Class",
   "BASICFANTASYRPG.NoArmor": "No armor",
+  "BASICFANTASYRPG.ArmorType": "Armor Type",
   "BASICFANTASYRPG.Attack": "Attack",
   "BASICFANTASYRPG.AttackBonus": "Attack Bonus",
   "BASICFANTASYRPG.AttackBonusAbbr": "AB",
@@ -104,6 +105,11 @@
   "BASICFANTASYRPG.RaceElf": "Elf",
   "BASICFANTASYRPG.RaceHalfling": "Halfling",
   "BASICFANTASYRPG.Custom": "Custom",
+
+  "BASICFANTASYRPG.ArmorLeather": "Leather armor",
+  "BASICFANTASYRPG.ArmorMetal": "Metal armor",
+  "BASICFANTASYRPG.ArmorShield": "Shield",
+  "BASICFANTASYRPG.ArmorClothing": "Clothing",
 
   "BASICFANTASYRPG.SETTINGS.EnabledSupplements": "Enabled Supplements",
   "BASICFANTASYRPG.SETTINGS.EnabledSupplementsHint": "Choose which supplement books to enable for this world",

@@ -103,6 +103,16 @@ BASICFANTASYRPG.weaponSizes = {
 };
 
 /**
+ * Armor types (including shield)
+ */
+BASICFANTASYRPG.ArmorTypes = {
+  leather: "BASICFANTASYRPG.ArmorLeather",
+  metal: "BASICFANTASYRPG.ArmorMetal",
+  shield: "BASICFANTASYRPG.ArmorShield",
+  clothing: "BASICFANTASYRPG.ArmorClothing",
+};
+
+/**
  * Floor materials available for stronghold construction
  * @type {Object}
  */

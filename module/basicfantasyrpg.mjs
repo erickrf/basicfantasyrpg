@@ -8,7 +8,7 @@ import { MonsterSheet } from "./sheets/monster-sheet.mjs";
 import { VehicleSheet } from "./sheets/vehicle-sheet.mjs";
 import { SiegeEngineSheet } from "./sheets/siege-engine-sheet.mjs";
 import { StrongholdSheet } from "./sheets/stronghold-sheet.mjs";
-import { BasicFantasyRPGItemSheetV2 } from "./sheets/item-sheet-v2.mjs";
+import { BasicFantasyRPGItemSheet } from "./sheets/item-sheet.mjs";
 
 // Import data models.
 import { CharacterDataModel } from "./data-models/actors/character-data.mjs";
@@ -113,7 +113,7 @@ Hooks.once("init", async function () {
     label: "Stronghold Sheet V2",
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("basicfantasyrpg", BasicFantasyRPGItemSheetV2, { makeDefault: true });
+  Items.registerSheet("basicfantasyrpg", BasicFantasyRPGItemSheet, { makeDefault: true });
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
