@@ -1,4 +1,5 @@
 import { CreatureDataModel } from "./creature-data.mjs";
+import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Character Data Model for Basic Fantasy RPG
@@ -454,27 +455,37 @@ export class CharacterDataModel extends CreatureDataModel {
   _findEquipmentArmorClass() {
     const armors = this.parent?.itemTypes?.armor || [];
 
-    if (armors.length === 0) {
-      const noArmorAC = 11
-      this.armorClass.breakdown.push({ label: "BASICFANTASYRPG.NoArmor", value: noArmorAC, sign: false})
+    // Find the highest armor class and best shield
+    let bestArmorAC = 11;
+    let bestName = "BASICFANTASYRPG.NoArmor";
 
-      return noArmorAC;
-    }
+    let bestShieldName = "";
+    let bestShieldBonus = 0;
 
-    // Find the highest armor class
-    let bestArmorAC = 0;
-    let bestName = "";
     for (const armor of armors) {
       const armorAC = armor.system.armorClass?.value || 0;
-      if (armorAC > bestArmorAC) {
+
+      console.log("reading stuff!!!!!!!!!! I got " + armor.system.armorType);
+      console.log("same? " + armor.system.armorType === "shield")
+
+      console.log(armor);
+      console.log("what is " + CONFIG.BASICFANTASYRPG.armorTypes.shield);
+
+      if (armor.system.armorType.value === "shield" && armorAC > bestShieldBonus) {
+        bestShieldName = armor.name;
+        bestShieldBonus = armorAC;
+      } else if (armorAC > bestArmorAC) {
         bestArmorAC = armorAC;
         bestName = armor.name;
       }
     }
 
     this.armorClass.breakdown.push({label: bestName, value: bestArmorAC, sign: false});
+    if (bestShieldBonus !== 0){
+      this.armorClass.breakdown.push({label: bestShieldName, value: bestShieldBonus, sign: true});
+    }
 
-    return bestArmorAC
+    return bestArmorAC + bestShieldBonus;
   }
 
   /**
