@@ -1,5 +1,4 @@
 import { CreatureDataModel } from "./creature-data.mjs";
-import { BASICFANTASYRPG } from "../../helpers/config.mjs";
 
 /**
  * Character Data Model for Basic Fantasy RPG
@@ -310,18 +309,26 @@ export class CharacterDataModel extends CreatureDataModel {
   }
 
   /**
-   * Get the character's class, defaulting to fighter if not set
+   * Get the character's class
    * @returns {string} The character class
    */
-  _getCharacterClass() {
+  getCharacterClass() {
     return this.class.value || null;
+  }
+
+  /** Get the character's race
+   *
+   * @returns {string | null}
+   */
+  getCharacterRace() {
+    return this.race.value || null;
   }
 
   /**
    * Get the character's current level, defaulting to 1
    * @returns {number} The current level
    */
-  _getCurrentLevel() {
+  getCurrentLevel() {
     return this.level.value || 1;
   }
 
@@ -329,8 +336,8 @@ export class CharacterDataModel extends CreatureDataModel {
    * Get the 0-based level index for use with progression arrays
    * @returns {number} The level index (level - 1, minimum 0)
    */
-  _getLevelIndex() {
-    return Math.max(0, this._getCurrentLevel() - 1);
+  getLevelIndex() {
+    return Math.max(0, this.getCurrentLevel() - 1);
   }
 
   /**
@@ -368,13 +375,13 @@ export class CharacterDataModel extends CreatureDataModel {
    * @returns {number} The XP required for the next level
    */
   _calculateNextLevelXP() {
-    const characterClass = this._getCharacterClass();
+    const characterClass = this.getCharacterClass();
 
     if (characterClass === null) {
       return 0;
     }
 
-    const currentLevel = this._getCurrentLevel();
+    const currentLevel = this.getCurrentLevel();
 
     // Get the progression table for this class
     const progressionTable = CONFIG.BASICFANTASYRPG?.xpProgression?.[characterClass];
@@ -393,8 +400,8 @@ export class CharacterDataModel extends CreatureDataModel {
    * Calculate saving throws based on class and current level
    */
   _calculateSavingThrows() {
-    const characterClass = this._getCharacterClass();
-    const levelIndex = this._getLevelIndex();
+    const characterClass = this.getCharacterClass();
+    const levelIndex = this.getLevelIndex();
 
     let savesTable;
     
@@ -421,6 +428,17 @@ export class CharacterDataModel extends CreatureDataModel {
         }
       }
     }
+
+    // now add racial bonus
+    const race = this.getCharacterRace();
+    if (Object.hasOwn(CONFIG.BASICFANTASYRPG.racialResistanceBonus, race)) {
+      // racial bonuses maps resistance names to a bonus
+      const racialBonuses = CONFIG.BASICFANTASYRPG.racialResistanceBonus[race];
+      for (let [saveType, bonus] of Object.entries(racialBonuses)) {
+        this.saves[saveType].value -= bonus;
+      }
+    }
+
   }
 
   /**
@@ -428,13 +446,13 @@ export class CharacterDataModel extends CreatureDataModel {
    * @returns {number} The calculated attack bonus
    */
   _calculateAttackBonus() {
-    const characterClass = this._getCharacterClass();
+    const characterClass = this.getCharacterClass();
 
     if (characterClass === null){
       return 0;
     }
     
-    const levelIndex = this._getLevelIndex();
+    const levelIndex = this.getLevelIndex();
 
     // Get the attack bonus progression table for this class
     const attackBonusTable = CONFIG.BASICFANTASYRPG.attackBonusProgression[characterClass];

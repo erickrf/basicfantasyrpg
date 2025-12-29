@@ -82,6 +82,28 @@ BASICFANTASYRPG.characterRaces = {
   halfling: "BASICFANTASYRPG.RaceHalfling",
 };
 
+BASICFANTASYRPG.racialResistanceBonus = {
+  dwarf: {
+    death: 4,
+    wands: 4,
+    paralysis: 4,
+    breath: 3,
+    spells: 4
+  },
+  elf: {
+    paralysis: 1,
+    wands: 2,
+    spells: 2
+  },
+  halfling: {
+    death: 4,
+    wands: 4,
+    paralysis: 4,
+    breath: 3,
+    spells: 4
+  }
+}
+
 /**
  * Spellcaster classes available in Basic Fantasy RPG
  * @type {Object}
