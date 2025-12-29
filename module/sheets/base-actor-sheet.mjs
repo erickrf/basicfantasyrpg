@@ -113,11 +113,12 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         if (!quantity || quantity === "" || Number.isNaN(quantity) || quantity < 0) {
           return; // check we have a valid quantity, and do nothing if we do not
         }
-        let q = Math.floor(quantity / 20);
+
         if (!Number.isNaN(parseFloat(moreWeight))) {
           this.value += parseFloat(moreWeight) * quantity;
         } else if (moreWeight === "*" && q > 0) {
-          // '*' is gold pieces
+          // "*" signals item that weigh 1 pound per 20 units
+          const q = Math.floor(quantity / 20);
           this.value += q;
         }
       },
@@ -160,12 +161,12 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
     // Iterate through money, add to carried weight
     if (context.data.money) {
-      let gp = Number(context.data.money.gp.value);
-      gp += context.data.money.pp.value;
-      gp += context.data.money.ep.value;
-      gp += context.data.money.sp.value;
-      gp += context.data.money.cp.value;
-      carriedWeight._addWeight("*", gp); // '*' will calculate GP weight
+      let numCoins = Number(context.data.money.gp.value);
+      numCoins += context.data.money.pp.value;
+      numCoins += context.data.money.ep.value;
+      numCoins += context.data.money.sp.value;
+      numCoins += context.data.money.cp.value;
+      carriedWeight._addWeight("*", numCoins);
     }
 
     // Assign and return
