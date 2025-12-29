@@ -39,7 +39,15 @@
         {{#each data.saves as |save key|}}
           <div class="ability flexrow flex-group-center">
             <label for="system.saves.{{key}}.value" class="resource-label rollable flexlarge align-left" title="{{localize 'BASICFANTASYRPG.Roll'}} {{localize 'BASICFANTASYRPG.SavingThrow'}}" data-roll="d20" data-label="{{localize 'BASICFANTASYRPG.SavingThrow'}} - {{localize save.label}}" data-target-number="{{save.value}}">{{localize save.label}}</label>
-            <input type="text" name="system.saves.{{key}}.value" value="{{save.value}}" data-dtype="Number" {{#unless ../manualMode}}readonly{{/unless}}/>
+            <input
+              type="number"
+              name="system.saves.{{key}}.value"
+              value="{{save.value}}"
+              data-dtype="Number"
+              data-tooltip-html="{{formatBreakdown save.breakdown}}"
+              data-tooltip-direction="UP"
+              data-tooltip-class="basicfantasyrpg-breakdown"
+              {{#unless ../manualMode}}readonly{{/unless}}/>
           </div>
         {{/each}}
       </div>

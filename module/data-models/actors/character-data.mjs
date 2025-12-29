@@ -417,14 +417,19 @@ export class CharacterDataModel extends CreatureDataModel {
     // Iterate through each save type and set the value
     for (let [saveType, saveData] of Object.entries(this.saves)) {
       const saveValue = savesTable[saveType];
+      saveData.breakdown = [];
+
       if (saveValue !== undefined) {
         if (Array.isArray(saveValue)) {
           // Class progression saves are arrays
           const saveIndex = Math.min(levelIndex, saveValue.length - 1);
           saveData.value = saveValue[saveIndex];
+          saveData.breakdown.push({label: characterClass, value: saveData.value, sign: false});
+
         } else {
           // Normal man saves are fixed values
           saveData.value = saveValue;
+          saveData.breakdown.push({label: "BASICFANTASYRPG.NormalMan", value: saveData.value, sign: false});
         }
       }
     }
@@ -436,6 +441,7 @@ export class CharacterDataModel extends CreatureDataModel {
       const racialBonuses = CONFIG.BASICFANTASYRPG.racialSaveBonus[race];
       for (let [saveType, bonus] of Object.entries(racialBonuses)) {
         this.saves[saveType].value -= bonus;
+        this.saves[saveType].breakdown.push({label: race, value: bonus, sign: true});
       }
     }
 
