@@ -413,6 +413,7 @@ export class CharacterDataModel extends CreatureDataModel {
     }
 
     if (!savesTable) return;
+    const displayClass = CONFIG.BASICFANTASYRPG.characterClasses[characterClass];
 
     // Iterate through each save type and set the value
     for (let [saveType, saveData] of Object.entries(this.saves)) {
@@ -424,7 +425,7 @@ export class CharacterDataModel extends CreatureDataModel {
           // Class progression saves are arrays
           const saveIndex = Math.min(levelIndex, saveValue.length - 1);
           saveData.value = saveValue[saveIndex];
-          saveData.breakdown.push({label: characterClass, value: saveData.value, sign: false});
+          saveData.breakdown.push({label: displayClass, value: saveData.value, sign: false});
 
         } else {
           // Normal man saves are fixed values
@@ -439,9 +440,11 @@ export class CharacterDataModel extends CreatureDataModel {
     if (Object.hasOwn(CONFIG.BASICFANTASYRPG.racialSaveBonus, race)) {
       // racial bonuses maps resistance names to a bonus
       const racialBonuses = CONFIG.BASICFANTASYRPG.racialSaveBonus[race];
+      const displayRace = CONFIG.BASICFANTASYRPG.characterRaces[race];
+
       for (let [saveType, bonus] of Object.entries(racialBonuses)) {
         this.saves[saveType].value -= bonus;
-        this.saves[saveType].breakdown.push({label: race, value: bonus, sign: true});
+        this.saves[saveType].breakdown.push({label: displayRace, value: bonus, sign: true});
       }
     }
 
