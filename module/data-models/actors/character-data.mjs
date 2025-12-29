@@ -465,12 +465,6 @@ export class CharacterDataModel extends CreatureDataModel {
     for (const armor of armors) {
       const armorAC = armor.system.armorClass?.value || 0;
 
-      console.log("reading stuff!!!!!!!!!! I got " + armor.system.armorType);
-      console.log("same? " + armor.system.armorType === "shield")
-
-      console.log(armor);
-      console.log("what is " + CONFIG.BASICFANTASYRPG.armorTypes.shield);
-
       if (armor.system.armorType.value === "shield" && armorAC > bestShieldBonus) {
         bestShieldName = armor.name;
         bestShieldBonus = armorAC;
