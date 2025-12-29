@@ -1,5 +1,6 @@
-<div class="grid grid-4col ">
-  <div class="resource flex-group-left">
+<div class="grid grid-6col ">
+  <!-- 6-col container because price and type span 2 each -->
+  <div class="resource flex-group-left grid-span-2">
     <label class="resource-label">{{localize data.price.label}}</label>
     <div class="flexrow">
       <input type="number" name="system.price.amount" value="{{data.price.amount}}" data-dtype="Number" min="0" class="price-value"/>
@@ -16,7 +17,7 @@
     <label for="system.armorClass.value" class="resource-label">{{localize data.armorClass.abbr}}</label>
     <input type="text" name="system.armorClass.value" value="{{data.armorClass.value}}" data-dtype="Number" />
   </div>
-  <div class="resource flex-group-left">
+  <div class="resource flex-group-left grid-span-2">
     <label for="system.armorType.value" class="resource-label">{{localize data.armorType.label}}</label>
     <select name="system.armorType.value" data-dtype="String">
       {{selectOptions armorTypes selected=data.armorType.value localize=true}}
