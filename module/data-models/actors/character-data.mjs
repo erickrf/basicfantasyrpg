@@ -431,9 +431,9 @@ export class CharacterDataModel extends CreatureDataModel {
 
     // now add racial bonus
     const race = this.getCharacterRace();
-    if (Object.hasOwn(CONFIG.BASICFANTASYRPG.racialResistanceBonus, race)) {
+    if (Object.hasOwn(CONFIG.BASICFANTASYRPG.racialSaveBonus, race)) {
       // racial bonuses maps resistance names to a bonus
-      const racialBonuses = CONFIG.BASICFANTASYRPG.racialResistanceBonus[race];
+      const racialBonuses = CONFIG.BASICFANTASYRPG.racialSaveBonus[race];
       for (let [saveType, bonus] of Object.entries(racialBonuses)) {
         this.saves[saveType].value -= bonus;
       }

@@ -82,7 +82,7 @@ BASICFANTASYRPG.characterRaces = {
   halfling: "BASICFANTASYRPG.RaceHalfling",
 };
 
-BASICFANTASYRPG.racialResistanceBonus = {
+BASICFANTASYRPG.racialSaveBonus = {
   dwarf: {
     death: 4,
     wands: 4,
