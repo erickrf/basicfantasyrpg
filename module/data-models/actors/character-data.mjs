@@ -289,6 +289,9 @@ export class CharacterDataModel extends CreatureDataModel {
       ability.bonus = this._calculateAbilityBonus(ability.value);
     }
 
+    // compute carried weight
+    this.calculateCarriedWeight();
+
     // Skip automated calculations if manual mode is enabled
     if (this.manualMode) return;
 
@@ -306,6 +309,54 @@ export class CharacterDataModel extends CreatureDataModel {
 
     // The parent class does generic derivations like adding bonus AB
     super.prepareDerivedData();
+  }
+
+  /**
+   * Calculate the total carried item weight
+   */
+  calculateCarriedWeight() {
+    const items = this.parent.items?.contents;
+
+    // Define an object to store carried weight.
+    let carriedWeight = {
+      value: 0,
+      _addWeight(moreWeight, quantity) {
+        if (!quantity || quantity === "" || Number.isNaN(quantity) || quantity < 0) {
+          return; // check we have a valid quantity, and do nothing if we do not
+        }
+
+        if (!Number.isNaN(parseFloat(moreWeight))) {
+          this.value += parseFloat(moreWeight) * quantity;
+        } else if (moreWeight === "*" && quantity > 0) {
+          // "*" signals item that weigh 1 pound per 20 units
+          this.value += Math.floor(quantity / 20);
+        }
+      },
+    };
+
+    // Iterate through items, allocating to containers
+    for (const item of items) {
+
+      // Append to gear.
+      if (item.type === "item") {
+        carriedWeight._addWeight(item.system.weight.value, item.system.quantity.value);
+      } else if (["weapon", "armor"].includes(item.type)) {
+        // Weapons and armor are always quantity 1
+        carriedWeight._addWeight(item.system.weight.value, 1);
+      }
+    }
+
+    // Iterate through money, add to carried weight
+    if (this.money) {
+      let numCoins = Number(this.money.gp.value);
+      numCoins += this.money.pp.value;
+      numCoins += this.money.ep.value;
+      numCoins += this.money.sp.value;
+      numCoins += this.money.cp.value;
+      carriedWeight._addWeight("*", numCoins);
+    }
+
+    this.carriedWeight = Math.floor(carriedWeight.value);
   }
 
   /**

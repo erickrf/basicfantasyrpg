@@ -106,39 +106,18 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     const floors = [];
     const walls = [];
 
-    // Define an object to store carried weight.
-    let carriedWeight = {
-      value: 0,
-      _addWeight(moreWeight, quantity) {
-        if (!quantity || quantity === "" || Number.isNaN(quantity) || quantity < 0) {
-          return; // check we have a valid quantity, and do nothing if we do not
-        }
-
-        if (!Number.isNaN(parseFloat(moreWeight))) {
-          this.value += parseFloat(moreWeight) * quantity;
-        } else if (moreWeight === "*" && q > 0) {
-          // "*" signals item that weigh 1 pound per 20 units
-          const q = Math.floor(quantity / 20);
-          this.value += q;
-        }
-      },
-    };
-
     // Iterate through items, allocating to containers
     for (let i of context.items) {
       i.img = i.img || DEFAULT_TOKEN;
       // Append to gear.
       if (i.type === "item") {
         gear.push(i);
-        carriedWeight._addWeight(i.system.weight.value, i.system.quantity.value);
       } else if (i.type === "weapon") {
         // Append to weapons.
         weapons.push(i);
-        carriedWeight._addWeight(i.system.weight.value, 1); // Weapons are always quantity 1
       } else if (i.type === "armor") {
         // Append to armors.
         armors.push(i);
-        carriedWeight._addWeight(i.system.weight.value, 1); // Armor is always quantity 1
       } else if (i.type === "spell") {
         // Append to spells.
         if (i.system.spellLevel.value !== undefined) {
@@ -159,16 +138,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       }
     }
 
-    // Iterate through money, add to carried weight
-    if (context.data.money) {
-      let numCoins = Number(context.data.money.gp.value);
-      numCoins += context.data.money.pp.value;
-      numCoins += context.data.money.ep.value;
-      numCoins += context.data.money.sp.value;
-      numCoins += context.data.money.cp.value;
-      carriedWeight._addWeight("*", numCoins);
-    }
-
     // Assign and return
     context.gear = gear;
     context.weapons = weapons;
@@ -177,7 +146,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     context.features = features;
     context.floors = floors;
     context.walls = walls;
-    context.carriedWeight = Math.floor(carriedWeight.value); // we discard fractions of weight when we update the sheet
+    context.carriedWeight = context.data.carriedWeight;
   }
 
   _onRender(context, options) {
