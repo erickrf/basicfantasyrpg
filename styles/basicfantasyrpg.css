@@ -466,16 +466,6 @@
   flex: 1;
 }
 
-.basicfantasyrpg .manual-mode-toggle {
-  align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  gap: 6px;
-  width: auto;
-  height: auto;
-  display: flex;
-}
-
 .basicfantasyrpg .manual-mode-toggle input[type="checkbox"] {
   width: 12px;
   height: 12px;
@@ -485,6 +475,8 @@
 
 .basicfantasyrpg .name-and-checkbox {
   display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .basicfantasyrpg .inline-selector {
@@ -509,7 +501,7 @@
   height: 50px;
   padding: 0px;
   margin: 5px 0;
-  flex: 1;
+  flex: auto;
   border-bottom: 0;
   line-height: 48px;
   font-size: 28px;
@@ -528,6 +520,13 @@
   -webkit-box-flex: 0;
   -ms-flex: 0;
   flex: 0;
+}
+
+.basicfantasyrpg .resource-toggle {
+    gap: 4px;
+    flex-direction: column;
+    align-items: flex-start;
+    display: flex;
 }
 
 .basicfantasyrpg .sheet-body,
@@ -591,10 +590,6 @@
 
 .basicfantasyrpg .resource-label {
   font-weight: bold;
-}
-
-.basicfantasyrpg .resource {
-    flex: 1;
 }
 
 .basicfantasyrpg .resource {

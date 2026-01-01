@@ -117,6 +117,8 @@
   "BASICFANTASYRPG.EncumbranceHeavy": "Heavy Load",
   "BASICFANTASYRPG.EncumbranceImpossible": "Impossible Load",
 
+  "BASICFANTASYRPG.IsMagical": "Magical",
+
   "BASICFANTASYRPG.SETTINGS.EnabledSupplements": "Enabled Supplements",
   "BASICFANTASYRPG.SETTINGS.EnabledSupplementsHint": "Choose which supplement books to enable for this world",
   "BASICFANTASYRPG.Cost": "Cost",

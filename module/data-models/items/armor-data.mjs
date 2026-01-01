@@ -38,6 +38,16 @@ export class ArmorDataModel extends ValuableItemDataModel {
         label: new fields.StringField({
           initial: "BASICFANTASYRPG.ArmorType",
         })
+      }),
+
+      isMagical: new fields.SchemaField({
+        value: new fields.BooleanField({
+          initial: false,
+          required: true,
+        }),
+        label: new fields.StringField({
+          initial: "BASICFANTASYRPG.IsMagical",
+        }),
       })
     };
   }

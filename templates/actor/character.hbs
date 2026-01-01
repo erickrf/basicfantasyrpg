@@ -10,9 +10,9 @@
             <h1 class="charname">
               <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}" data-dtype="String"/>
             </h1>
-            <div class="manual-mode-toggle">
+            <div class="resource resource-toggle">
+              <label class="resource-label" for="manual-mode-checkbox">{{localize 'BASICFANTASYRPG.ManualMode'}}</label>
               <input type="checkbox" id="manual-mode-checkbox" name="system.manualMode" {{checked data.manualMode}} data-dtype="Boolean"/>
-              <label for="manual-mode-checkbox">{{localize 'BASICFANTASYRPG.ManualMode'}}</label>
             </div>
           </div>
 

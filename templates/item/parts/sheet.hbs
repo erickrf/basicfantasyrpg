@@ -2,7 +2,20 @@
   <header class="sheet-header">
     <img class="profile-img" src="{{item.img}}" data-action="editImage" title="{{item.name}}"/>
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}"/></h1>
+      <div class="name-and-checkbox">
+        <!-- name -->
+        <h1 class="charname">
+          <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'BASICFANTASYRPG.Name'}}"/>
+        </h1>
+
+        <!-- is magical? -->
+        {{#if system.isMagical}}
+          <div class="resource resource-toggle">
+            <label for="system.isMagical.value" class="resource-label">{{localize system.isMagical.label}}</label>
+            <input type="checkbox" id="system.isMagical.value" name="system.isMagical.value" {{checked system.isMagical.value}}/>
+          </div>
+        {{/if}}
+      </div>
 
       {{> (concat "systems/basicfantasyrpg/templates/item/" item.type ".hbs")}}
 
