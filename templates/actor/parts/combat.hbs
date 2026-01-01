@@ -86,7 +86,14 @@
         <div class="resource flex-group-center">
           <label for="system.move.value" class="resource-label">{{localize data.move.label}}</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="system.move.value" value="{{data.move.value}}" data-dtype="String"/>
+            <input
+              type="text"
+              name="system.move.value"
+              value="{{data.move.value}}"
+              data-tooltip-html="{{formatBreakdown system.move.breakdown}}"
+              data-tooltip-direction="UP"
+              data-tooltip-class="basicfantasyrpg-breakdown"
+              data-dtype="Number"/>
           </div>
         </div>
 

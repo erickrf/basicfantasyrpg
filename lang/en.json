@@ -112,6 +112,7 @@
   "BASICFANTASYRPG.ArmorShield": "Shield",
   "BASICFANTASYRPG.ArmorClothing": "Clothing",
 
+  "BASICFANTASYRPG.Encumbrance": "Encumbrance",
   "BASICFANTASYRPG.EncumbranceLight": "Light Load",
   "BASICFANTASYRPG.EncumbranceHeavy": "Heavy Load",
   "BASICFANTASYRPG.EncumbranceImpossible": "Impossible Load",

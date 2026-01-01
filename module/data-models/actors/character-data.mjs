@@ -309,7 +309,7 @@ export class CharacterDataModel extends CreatureDataModel {
     this.armorClass.value = this._calculateBaseArmorClass();
 
     this.calculateEncumbrance();
-    this.move.value = this.calculateMovement();
+    this.calculateMovement();
 
     // The parent class does generic derivations like adding bonus AB
     super.prepareDerivedData();
@@ -367,10 +367,21 @@ export class CharacterDataModel extends CreatureDataModel {
    *  Calculate movement speed
    */
   calculateMovement() {
+    this.move.breakdown = []
 
-    if (this.encumbrance === "impossible") {
-      return 0;
-    }
+    this.move.value = this._calculateMovement();
+    this.move.breakdown.push({label: "BASICFANTASYRPG.CarriedWeight", value: this.carriedWeight, sign: false});
+    this.move.breakdown.push(
+      {label: "BASICFANTASYRPG.Encumbrance", value: CONFIG.BASICFANTASYRPG.encumbrance[this.encumbrance], sign: false}
+    );
+    this.move.breakdown.push({label: "BASICFANTASYRPG.ArmorType", value: this.armorType, sign: false});
+  }
+
+  /**
+   * Internal helper function
+   * @private
+   */
+  _calculateMovement() {
 
     const armors = this.parent?.itemTypes?.armor || [];
     let heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.clothing;
@@ -383,6 +394,11 @@ export class CharacterDataModel extends CreatureDataModel {
       } else if (armorType === "leather") {
         heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.leather;
       }
+    }
+    this.armorType = heaviestType;
+
+    if (this.encumbrance === "impossible") {
+      return 0;
     }
 
     if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.metal) {

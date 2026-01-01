@@ -273,7 +273,13 @@ Hooks.once('init', () => {
     const rows = breakdown
       .map(item => {
         const label = game.i18n.localize(item.label);
-        const value = item.sign && item.value >= 0 ? `+${item.value}` : item.value;
+        let value = item.value;
+
+        if (typeof value === 'string') {
+          value = game.i18n.localize(value);
+        } else {
+          value = item.sign && value >= 0 ? `+${value}` : value;
+        }
         return `
           <div class="tooltip-breakdown-row">
             <span class="tooltip-label">${label}</span>
