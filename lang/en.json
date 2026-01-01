@@ -112,6 +112,10 @@
   "BASICFANTASYRPG.ArmorShield": "Shield",
   "BASICFANTASYRPG.ArmorClothing": "Clothing",
 
+  "BASICFANTASYRPG.EncumbranceLight": "Light Load",
+  "BASICFANTASYRPG.EncumbranceHeavy": "Heavy Load",
+  "BASICFANTASYRPG.EncumbranceImpossible": "Impossible Load",
+
   "BASICFANTASYRPG.SETTINGS.EnabledSupplements": "Enabled Supplements",
   "BASICFANTASYRPG.SETTINGS.EnabledSupplementsHint": "Choose which supplement books to enable for this world",
   "BASICFANTASYRPG.Cost": "Cost",

@@ -1,4 +1,5 @@
 import { CreatureDataModel } from "./creature-data.mjs";
+import * as CONFIG from "../../helpers/config.mjs";
 
 /**
  * Character Data Model for Basic Fantasy RPG
@@ -307,6 +308,9 @@ export class CharacterDataModel extends CreatureDataModel {
     // Calculate base armor class from armor and dexterity
     this.armorClass.value = this._calculateBaseArmorClass();
 
+    this.calculateEncumbrance();
+    this.move = this.calculateMovement();
+
     // The parent class does generic derivations like adding bonus AB
     super.prepareDerivedData();
   }
@@ -357,6 +361,64 @@ export class CharacterDataModel extends CreatureDataModel {
     }
 
     this.carriedWeight = Math.floor(carriedWeight.value);
+  }
+
+  /**
+   *  Calculate movement speed
+   */
+  calculateMovement() {
+
+    if (this.encumbrance === "impossible") {
+      return 0;
+    }
+
+    const armors = this.parent?.itemTypes?.armor || [];
+    let heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.clothing;
+
+    for (const armor of armors) {
+      if (armor.type === "metal") {
+        heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.metal;
+        break;
+      } else if (armor.type === "leather") {
+        heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.leather;
+      }
+    }
+
+    if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.metal) {
+      if (this.encumbrance === "light"){
+        return 20;
+      } else {
+        return 10;
+      }
+    } else if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.leather) {
+      if (this.encumbrance === "light") {
+        return 30;
+      } else {
+        return 20;
+      }
+    } else {
+      if (this.encumbrance === "light") {
+        return 40;
+      } else {
+        return 30;
+      }
+    }
+  }
+
+  calculateEncumbrance() {
+    const carriedWeight = this.carriedWeight;
+    const race = this.getCharacterRace() ?? "human";
+
+    const strBonus = this.abilities.str.bonus;
+    const thresholds = CONFIG.BASICFANTASYRPG.encumbranceThresholds[race][strBonus];
+
+    if (carriedWeight <= thresholds.lightLoad) {
+      this.encumbrance = "light";
+    } else if (carriedWeight <= thresholds.heavyLoad) {
+      this.encumbrance = "heavy";
+    } else {
+      this.encumbrance = "impossible";
+    }
   }
 
   /**

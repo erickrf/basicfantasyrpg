@@ -102,6 +102,34 @@ BASICFANTASYRPG.racialSaveBonus = {
     breath: 3,
     spells: 4
   }
+};
+
+/**
+ * Create light and heavy encumbrance thresholds per race and strength
+ * @type {number[]}
+ */
+const strengthBonuses = [-3, -2, -1, 0, 1, 2, 3];
+const biggerLoads = [[25, 60], [35, 90], [50, 120], [60, 150], [65, 165], [70, 180], [80, 195]];
+const halflingLoads = [[20, 40], [30, 60], [40, 80], [50, 100], [55, 110], [60, 120], [65, 130]];
+
+const buildRaceData = (loads) =>
+  Object.fromEntries(
+    strengthBonuses.map((bonus, i) =>
+      [bonus, { lightLoad: loads[i][0], heavyLoad: loads[i][1] }]
+    )
+  );
+
+BASICFANTASYRPG.encumbranceThresholds = {
+  dwarf: buildRaceData(biggerLoads),
+  elf: buildRaceData(biggerLoads),
+  human: buildRaceData(biggerLoads),
+  halfling: buildRaceData(halflingLoads)
+};
+
+BASICFANTASYRPG.encumbrance = {
+  light: "BASICFANTASYRPG.EncumbranceLight",
+  heavy: "BASICFANTASYRPG.EncumbranceHeavy",
+  impossible: "BASICFANTASYRPG.EncumbranceImpossible",
 }
 
 /**
