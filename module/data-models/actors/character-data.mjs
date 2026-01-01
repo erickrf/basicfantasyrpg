@@ -309,7 +309,7 @@ export class CharacterDataModel extends CreatureDataModel {
     this.armorClass.value = this._calculateBaseArmorClass();
 
     this.calculateEncumbrance();
-    this.move = this.calculateMovement();
+    this.move.value = this.calculateMovement();
 
     // The parent class does generic derivations like adding bonus AB
     super.prepareDerivedData();
@@ -376,10 +376,11 @@ export class CharacterDataModel extends CreatureDataModel {
     let heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.clothing;
 
     for (const armor of armors) {
-      if (armor.type === "metal") {
+      const armorType = armor.system.armorType.value;
+      if (armorType === "metal") {
         heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.metal;
         break;
-      } else if (armor.type === "leather") {
+      } else if (armorType === "leather") {
         heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.leather;
       }
     }
