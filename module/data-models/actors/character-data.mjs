@@ -375,6 +375,10 @@ export class CharacterDataModel extends CreatureDataModel {
       {label: "BASICFANTASYRPG.Encumbrance", value: CONFIG.BASICFANTASYRPG.encumbrance[this.encumbrance], sign: false}
     );
     this.move.breakdown.push({label: "BASICFANTASYRPG.ArmorType", value: this.armorType, sign: false});
+
+    if (this.isArmorMagical){
+      this.move.breakdown.push({label: "BASICFANTASYRPG.MagicalArmor", value: "", sign: false});
+    }
   }
 
   /**
@@ -385,40 +389,44 @@ export class CharacterDataModel extends CreatureDataModel {
 
     const armors = this.parent?.itemTypes?.armor || [];
     let heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.clothing;
+    let isArmorMagical = false;
 
     for (const armor of armors) {
       const armorType = armor.system.armorType.value;
       if (armorType === "metal") {
         heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.metal;
+        isArmorMagical = armor.system.isMagical.value;
         break;
       } else if (armorType === "leather") {
         heaviestType = CONFIG.BASICFANTASYRPG.armorTypes.leather;
+        isArmorMagical = armor.system.isMagical.value;
       }
     }
     this.armorType = heaviestType;
+    this.isArmorMagical = isArmorMagical;
 
     if (this.encumbrance === "impossible") {
       return 0;
     }
 
-    if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.metal) {
-      if (this.encumbrance === "light"){
-        return 20;
-      } else {
-        return 10;
+    const isLightEncumbrance = this.encumbrance === "light";
+    // Determine effective armor type (magical armor counts as one tier lighter)
+    let effectiveArmorType = heaviestType;
+    if (isArmorMagical) {
+      if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.metal) {
+        effectiveArmorType = CONFIG.BASICFANTASYRPG.armorTypes.leather;
+      } else if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.leather) {
+        effectiveArmorType = CONFIG.BASICFANTASYRPG.armorTypes.clothing;
       }
-    } else if (heaviestType === CONFIG.BASICFANTASYRPG.armorTypes.leather) {
-      if (this.encumbrance === "light") {
-        return 30;
-      } else {
-        return 20;
-      }
+    }
+
+    if (effectiveArmorType === CONFIG.BASICFANTASYRPG.armorTypes.metal) {
+      return isLightEncumbrance ? 20 : 10;
+    } else if (effectiveArmorType === CONFIG.BASICFANTASYRPG.armorTypes.leather) {
+      return isLightEncumbrance ? 30 : 20;
     } else {
-      if (this.encumbrance === "light") {
-        return 40;
-      } else {
-        return 30;
-      }
+      // no armor
+      return isLightEncumbrance ? 40 : 30;
     }
   }
 
