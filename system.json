@@ -67,6 +67,6 @@
   },
   "url": "https://github.com/erickrf/basicfantasyrpg",
   "manifest": "https://raw.githubusercontent.com/erickrf/basicfantasyrpg/refs/heads/migrate-v13/system.json",
-  "download": "https://github.com/erickrf/basicfantasyrpg/archive/refs/tags/r15alpha6.zip",
+  "download": "https://github.com/erickrf/basicfantasyrpg/archive/refs/tags/r15alpha7.zip",
   "license": "LICENSE.txt"
 }
